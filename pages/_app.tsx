@@ -7,7 +7,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import nextI18NextConfig from '../next-i18next.config.js';
 import { appWithTranslation, useTranslation } from 'next-i18next';
 // MUI
-import theme from '../src/theme';
+import theme from '@/styles/theme';
 import createCache from '@emotion/cache';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';

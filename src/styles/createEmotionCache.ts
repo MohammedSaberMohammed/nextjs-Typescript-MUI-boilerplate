@@ -22,6 +22,4 @@ export default function createEmotionCache(direction = 'rtl') {
     stylisPlugins: direction === 'rtl' ? [prefixer, rtlPlugin] : [],
     insertionPoint,
   });
-
-  // return createCache({ key: "mui-style-ltr", insertionPoint });
 }
