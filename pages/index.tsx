@@ -1,12 +1,9 @@
-import * as React from 'react';
-import type { NextPage, GetStaticProps } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import type { NextPage } from 'next';
 import Head from 'next/head';
-const Home: NextPage = () => {
-  const { t } = useTranslation('common');
+// Components
+import HomePage from '@/screens/Home';
 
+const Home: NextPage = () => {
   return (
     <>
       <Head>
@@ -14,15 +11,9 @@ const Home: NextPage = () => {
         <meta name='description' content='Home is redy' />
       </Head>
 
-      {t('hello')}
+      <HomePage />
     </>
   );
 };
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale || 'ar', ['common']),
-  },
-});
 
 export default Home;
