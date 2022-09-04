@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
-  },
+  }, 
 
   extends: ["next/core-web-vitals", "eslint:recommended"],
   parserOptions: {
