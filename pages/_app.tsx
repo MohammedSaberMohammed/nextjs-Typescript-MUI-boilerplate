@@ -13,6 +13,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 
+// Styles
+import '@/styles/main.scss';
+import LayoutProvider from '@/context/layout';
+import Layout from '@/components/Layout';
+import { useRouter } from 'next/router.js';
+
 // Client-side cache, shared for the whole session of the user in the browser
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -44,20 +50,27 @@ function MyApp(props: MyAppProps) {
 
   const { Component, pageProps } = props;
   
-  useEffect(() => {
-    // ? Change Layout direction
-    document.body.dir = i18n.dir();
-  }, [i18n]);
+  // ! To be revisited
+  // useEffect(() => {
+  //   // ? Change Layout direction
+  //   document.body.dir = i18n.dir();
+  // }, [i18n]);
   
   return (
     <CacheProvider value={i18n.dir() === 'rtl' ? cacheRtl : cacheLtr}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+      
       <ThemeProvider theme={{...theme, direction: i18n.dir() === 'rtl' ? 'rtl': 'ltr'}}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <Component {...pageProps} />
+        <LayoutProvider>
+          <CssBaseline />
+
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+
+        </LayoutProvider>
       </ThemeProvider>
     </CacheProvider>
   );

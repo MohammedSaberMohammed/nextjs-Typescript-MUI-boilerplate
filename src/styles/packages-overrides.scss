@@ -1,0 +1,28 @@
+.image-gallery {
+  .base-thumbnail {
+    border-radius: 10px;
+  }
+
+  .base-previewed-image {
+    .image-gallery-image {
+      border-radius: 10px;
+    }
+  }
+
+  .image-gallery-thumbnail.active, 
+  .image-gallery-thumbnail:focus,
+  .image-gallery-thumbnail:hover {
+    border-color: #b6955a
+  }
+
+  .image-gallery-thumbnail-inner {
+    border-radius: 6px;
+    .image-gallery-thumbnail-image {
+      border-radius: 6px;
+    }
+  }
+
+  .image-gallery-icon:focus {
+    outline: none 
+  }
+}

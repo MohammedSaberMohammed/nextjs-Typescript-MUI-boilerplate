@@ -1,13 +1,12 @@
 {
   "name": "nextjs-with-typescript",
-  "version": "5.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -16,16 +15,21 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "formik": "^2.2.9",
     "next": "latest",
     "next-i18next": "^12.0.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-image-gallery": "^1.2.9",
+    "sass": "^1.54.8",
     "stylis": "^4.1.1",
-    "stylis-plugin-rtl": "^2.1.1"
+    "stylis-plugin-rtl": "^2.1.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
+    "@types/react-image-gallery": "^1.0.5",
     "eslint": "^8.22.0",
     "eslint-config-next": "^12.2.5",
     "typescript": "latest"
