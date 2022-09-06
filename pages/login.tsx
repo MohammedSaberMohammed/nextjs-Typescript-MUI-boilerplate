@@ -1,7 +1,18 @@
 import LoginScreen from '@/screens/Auth/Login';
-import { NextPage } from 'next';
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType  } from 'next';
+// i18n 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Login: NextPage = () => {
+export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'ar', ['common'])),
+    },
+  };
+};
+
+const Login: InferGetStaticPropsType<typeof getStaticProps> = () => {
+
   return <LoginScreen />;
 };
 

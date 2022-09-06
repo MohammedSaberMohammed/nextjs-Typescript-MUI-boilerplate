@@ -4,55 +4,79 @@ import * as Yup from 'yup';
 // Models
 import { LoginPayload } from '@/models/login';
 // Components
-import { Form, Formik } from 'formik';
-import { SelectAutocompleteField, TextField } from '@/components/Form/Controls';
+import { Field, FieldProps, Form, Formik } from 'formik';
+import { SelectAutocompleteField } from '@/components/Form/Controls';
+import { Countries } from '@/services/staticLookups';
 
 const Login: FC = () => {
-  const INITIAL_FORM_STATE: LoginPayload = {
+  // const INITIAL_FORM_STATE: LoginPayload = {
+  const INITIAL_FORM_STATE: any = {
     phoneNumber: '',
     password: '',
-    rememberMe: false
+    rememberMe: false,
+    koko: 'AD'
   };
 
   const FORM_VALIDATION = Yup.object().shape({
-    phoneNumber: Yup.number()
+    // phoneNumber: Yup.number()
+    //   .required()
+    //   .integer('No decimals')
+    //   .typeError('onlyNumber')
+    //   .test('len', 'Must be exactly 9 characters', val => `${val}`.length === 9),
+    koko: Yup.string()
       .required()
-      .integer('No decimals')
-      .typeError('onlyNumber')
-      .test('len', 'Must be exactly 9 characters', val => `${val}`.length === 9)
   });
 
   const onLogin = (values: LoginPayload) => {
-    console.log({values});
+    console.log('==================== Login ===================', {values});
     
   };
 
   return (
-    <Formik 
-      initialValues={INITIAL_FORM_STATE}
-      validationSchema={FORM_VALIDATION}
-      onSubmit={onLogin}
-    >
-      <Form>
+    <div>
+      <Formik 
+        initialValues={INITIAL_FORM_STATE}
+        validationSchema={FORM_VALIDATION}
+        onSubmit={onLogin}
+      >
+        {() => (
+          <Form> 
 
-        <TextField 
-          name='phoneNumber' 
-          label='phoneNumber'
-          placeholder='5xxxxxxxx'
-        />        
+            {/* <TextField 
+        name='phoneNumber' 
+        label='phoneNumber'
+        placeholder='5xxxxxxxx'
+      />         */}
         
-        <SelectAutocompleteField 
-          multiple
-          disableClearable
-          freeSolo
-          name='phoneNumber' 
-          label='phoneNumber'
-          lookup={[{id: 1, label: 'sdfsdf'}]}
-          // placeholder='5xxxxxxxx'
-        />
-        <button type='submit'>asdasdasdasd</button>
-      </Form>
-    </Formik>
+            <Field name='koko'>
+              {(fieldProps: FieldProps) => (
+                <SelectAutocompleteField
+                  name='koko' 
+                  label='koko'
+                  lookup={Countries}
+                  fieldProps={fieldProps}
+                  value={fieldProps.field.value}
+                  onChange={(name: string, value: string) => fieldProps.form.setFieldValue(name, value)}
+                />
+              )}
+            </Field>
+            {/* 
+          <Field
+            name="koko"
+            render={({ field, form: { touched, errors } }) => (
+              <div>
+                <input {...field} type="text" placeholder="lastName" />
+                {touched[field.name] &&
+         errors[field.name] && <div className="error">{errors[field.name]}</div>}
+              </div>
+            )}
+          /> */}
+            <button type='submit'>asdasdasdasd</button>
+          </Form>
+        )}
+
+      </Formik> 
+    </div>
   );
 };
 
