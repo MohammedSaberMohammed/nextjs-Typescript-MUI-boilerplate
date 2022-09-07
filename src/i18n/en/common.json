@@ -1,4 +1,8 @@
 {
   "welcome": "welcome",
-  "noData": "No data found"
+  "noData": "No data found",
+  "notAvailable": "Not available",
+  "addToBasket": "Add to basket",
+  "call": "Call",
+  "chat": "Chat"
 }

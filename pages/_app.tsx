@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { prefixer } from 'stylis';
@@ -17,7 +16,6 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import '@/styles/main.scss';
 import LayoutProvider from '@/context/layout';
 import Layout from '@/components/Layout';
-import { useRouter } from 'next/router.js';
 
 // Client-side cache, shared for the whole session of the user in the browser
 interface MyAppProps extends AppProps {

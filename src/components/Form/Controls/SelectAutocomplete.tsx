@@ -46,7 +46,7 @@ function SelectAutocomplete({ fieldProps, name, label, lookup, ...props}: any) {
   const configs = useMemo(() => {
     
     const initialConfigs: any = {
-      ...fieldProps.filed,
+      ...(fieldProps?.filed || {}),
       ...props,
       name,
       label,
