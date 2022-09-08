@@ -2,12 +2,17 @@
 @import 'src/styles/mixins.scss';
 
 .cardWrapper {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
   .imageAndActionsWrapper {
     overflow: hidden;
     border: 1px solid $primary-color;
     position: relative;
     height: 200px;
-    border-radius: 10px;
+    max-height: 100%;
+    border-radius: 8px;
 
     .actionsWrapper {
       padding: 15px;
@@ -64,6 +69,12 @@
           }
         }
       }
+
+      &.row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     } 
 
     &:hover {
@@ -78,4 +89,78 @@
     }
   }
 
+  .detailsWrapper {
+    margin-top: 30px;
+
+    .priceWrapper {
+      display: flex;
+      align-items: baseline;
+      
+      font-weight: bold;
+      color: $primary-color;
+
+      .price {
+        font-size: 20px;
+        margin: 0px 6px;
+
+        &.notAvailable {
+          margin: 0px;
+        }
+      }
+
+      .currency {
+        font-size: 14px;
+      }
+    }
+
+    .productName {
+      margin: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      flex: 1;
+    }
+
+    .advertisorChip {
+      border: none;
+      color: $grey;
+      
+      svg {
+        color: $grey;
+      }
+    }
+
+    .tagsWrapper {
+      display: flex;
+      align-items: center;
+      gap: 1%;
+      flex-wrap: wrap;
+
+      .cardTag {
+        @include lightPrimaryBtn;
+
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &.row {
+    .imageAndActionsWrapper {
+      height: 100%;
+    }
+
+    .detailsWrapper {
+      margin-top: 0;
+      border: 1px solid $grey;
+      border-radius: 8px;
+      padding: 10px 20px;
+    }
+  }
+
+  @media (max-width: 599px) {
+    &.row {
+      .imageAndActionsWrapper {
+        height: 200px;
+      }
+    }
+  }
 }

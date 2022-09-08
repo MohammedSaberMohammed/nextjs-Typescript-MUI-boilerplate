@@ -4,5 +4,4 @@ export interface PropsModel {
   product: ProductItem,
   row?: boolean,
   markAsFavorite?: boolean,
-  advertisementMode?: boolean,
 }

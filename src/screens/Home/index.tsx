@@ -1,7 +1,7 @@
 import ImageGallery from '@/components/ImageGallery';
 import LanguageSwitcher from '@/components/languageSwitcher';
 import ProductCard from '@/components/ProductCard';
-import { Box } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 // import FeaturedPosts from './FeaturedPosts';
 // import Hero from './Hero';
 
@@ -36,16 +36,61 @@ const HomePage = () => {
       {/* <FeaturedPosts />
       <LanguageSwitcher /> */}
 
-      <Box sx={{maxWidth: 500, padding: 5, display: 'block', backgroundColor: 'aqua'}}>
-        <ProductCard 
-          product={{
-            isFavorite: false,
-            name: 'رسم دراجة نارية لباس علوي تانك',
-            price: 42,
-            tags: ['قفازات', 'حوامل', 'إضافات']
-          }}
-        />
-      </Box>
+      <Container >
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <ProductCard
+              row
+              product={{
+                isFavorite: false,
+                name: 'رسم دراجة نارية لباس علوي تانك',
+                price: 42,
+                tags: ['قفازات', 'حوامل', 'إضافات'],
+                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
+              }}
+            />
+          </Grid>          
+          
+          <Grid item xs={12} md={6}>
+            <ProductCard
+              row
+              product={{
+                isFavorite: false,
+                name: 'رسم دراجة نارية لباس علوي تانك',
+                price: 42,
+                tags: ['قفازات', 'حوامل', 'إضافات'],
+                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
+              }}
+            />
+          </Grid>          
+          
+          <Grid item xs={12} md={6}>
+            <ProductCard
+              
+              product={{
+                isFavorite: false,
+                name: 'رسم دراجة نارية لباس علوي تانك',
+                price: 42,
+                tags: ['قفازات', 'حوامل', 'إضافات'],
+                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
+              }}
+            />
+          </Grid>          
+          
+          <Grid item xs={12} md={6}>
+            <ProductCard
+              product={{
+                isFavorite: false,
+                name: 'رسم دراجة نارية لباس علوي تانك',
+                price: 42,
+                tags: ['قفازات', 'حوامل', 'إضافات'],
+                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
+              }}
+            />
+          </Grid>
+
+        </Grid>
+      </Container>
     </>
   );
 };

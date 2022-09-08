@@ -4,5 +4,6 @@
   "notAvailable": "Not available",
   "addToBasket": "Add to basket",
   "call": "Call",
-  "chat": "Chat"
+  "chat": "Chat",
+  "priceIsNotAvailable": "Price is not available"
 }

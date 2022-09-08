@@ -5,3 +5,12 @@
   font-weight: bold;
   font-size: 15px;
 }
+
+@mixin lightPrimaryBtn {
+  color: $light-secondary-color;
+  border-color: $light-primary-color;
+  background-color: $light-primary-color;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 5px;
+}
