@@ -9,10 +9,10 @@
     - [x] Yup (validation)
     - [] Controls
       - [x] TextField
-      - [] Select Autocomplete
+      - [ ] Select Autocomplete
         - [x] Base select with form and form validation
         - [ ] Fancy option feature
-      - [] Attachment TextField
+      - [ ] Attachment TextField
         - [ ] in Profile
         - [ ] in Advertisment
   - [ ] Layout (header - footer)
