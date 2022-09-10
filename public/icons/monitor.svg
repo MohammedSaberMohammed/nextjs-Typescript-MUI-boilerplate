@@ -1,0 +1,10 @@
+<svg id="monitor-mobile_bulk" data-name="monitor-mobile /bulk" xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+  <g id="vuesax_bulk_monitor-mobbile" data-name="vuesax/bulk/monitor-mobbile">
+    <g id="monitor-mobbile">
+      <path id="Vector" d="M55.462,0H15.75A15.74,15.74,0,0,0,0,15.713V39.6A15.708,15.708,0,0,0,15.712,55.313h13.5a3.761,3.761,0,0,1,3.75,3.75v3.075a3.761,3.761,0,0,1-3.75,3.75H20.775a2.663,2.663,0,0,0,0,5.325H50.512a2.663,2.663,0,1,0,0-5.325H42.075a3.761,3.761,0,0,1-3.75-3.75V59.063a3.761,3.761,0,0,1,3.75-3.75H55.462A15.708,15.708,0,0,0,71.175,39.6V15.713A15.732,15.732,0,0,0,55.462,0Z" transform="translate(7.537 7.5)" fill="#b28e4d" opacity="0.4"/>
+      <path id="Vector-2" data-name="Vector" d="M28.687,0H8.85C2.363,0,0,2.363,0,8.925V37.913c0,6.6,2.325,8.925,8.85,8.925H28.687c6.487,0,8.85-2.362,8.85-8.925V8.925C37.538,2.325,35.212,0,28.687,0Zm-9.9,40.575a4.125,4.125,0,1,1,4.125-4.125A4.113,4.113,0,0,1,18.788,40.575Z" transform="translate(44.962 35.625)" fill="#b28e4d"/>
+      <path id="Vector-3" data-name="Vector" d="M8.25,4.125A4.125,4.125,0,1,1,4.125,0,4.113,4.113,0,0,1,8.25,4.125Z" transform="translate(59.625 67.95)" fill="#b28e4d" opacity="0.4"/>
+      <path id="Vector-4" data-name="Vector" d="M0,0H90V90H0Z" fill="none" opacity="0"/>
+    </g>
+  </g>
+</svg>

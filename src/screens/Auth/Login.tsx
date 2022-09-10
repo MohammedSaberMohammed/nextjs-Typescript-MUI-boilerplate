@@ -2,7 +2,7 @@ import { FC } from 'react';
 // Validation
 import * as Yup from 'yup';
 // Models
-import { LoginPayload } from '@/models/login';
+// import { LoginPayload } from '@/models/login';
 // Components
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { SelectAutocompleteField } from '@/components/Form/Controls';
@@ -27,8 +27,11 @@ const Login: FC = () => {
       .required()
   });
 
-  const onLogin = (values: LoginPayload) => {
-    console.log('==================== Login ===================', {values});
+  // const onLogin = (values: LoginPayload) => {
+  //   console.log('==================== Login ===================', {values});
+    
+  // };
+  const onLogin = () => {
     
   };
 

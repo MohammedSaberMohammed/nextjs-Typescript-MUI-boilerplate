@@ -1,0 +1,51 @@
+@import 'src/styles/variables.scss';
+
+.logoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  &.inDrawer {
+    margin: 20px 0;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #000;
+}
+
+.notificationWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: #edebe8;
+}
+
+.basketWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: $secondary-color;
+}
+
+.suffix {
+  width: 40px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 12px;
+  color: $primary-color;
+  background-color: $light-primary-color;
+}

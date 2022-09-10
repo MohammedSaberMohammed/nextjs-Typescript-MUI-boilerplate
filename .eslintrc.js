@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   }, 
 
-  extends: ["next/core-web-vitals", "eslint:recommended"],
+  extends: ['next/core-web-vitals', 'eslint:recommended'],
   parserOptions: {
     ecmaVersion: 2020,
   },
@@ -15,13 +15,15 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-extra-semi': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    // React
+    'react-hooks/exhaustive-deps': 'off',
     // Other
     camelcase: 'warn',
     'no-underscore-dangle': 'warn',
     'linebreak-style': ['error', 'unix'],
     'consistent-return': 'off',
     indent: ['error', 2, { SwitchCase: 1 }],
-    'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
+    'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0 }],
     'no-console': 'warn',
     'no-debugger': 'warn',
     'import/no-unresolved': 'off',
