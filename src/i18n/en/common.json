@@ -33,5 +33,15 @@
   "myChats": "My chats",
   "myAddresses": "My addressess",
   "profile": "Profile",
-  "logout": "Logout"
+  "logout": "Logout",
+  "basket": "Basket",
+  "addYourAd": "Add your advertisment",
+  "moreVisitedAds": "More visited advertisment",
+  "sparePartsSections": "Spare parts sections",
+  "termsAndConditions": "Terms and conditions",
+  "returnPolicy": "Return policy",
+  "privacyPolicy": "Privacy policy",
+  "importantLinks": "Important links",
+  "siteSections": "Site sections",
+  "successPartners": "Success partners"
 }

@@ -19,6 +19,7 @@ import BaseMenu from '@/components/BaseMenu/baseMenu';
 // Utils
 import { generateMenus } from './utils';
 import DrawerContent from './drawerContent';
+import { LayoutSettings } from '@/configs/layout';
 // styles
 import classes from './styles.module.scss';
 
@@ -54,9 +55,9 @@ const Header: FC = () => {
         <DrawerContent />
       </Drawer>
       
-      <AppBar color='inherit'  position="static" elevation={0}>
-        <Container maxWidth='xl'>
-          <Toolbar disableGutters  sx={{  display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <AppBar color='inherit' position="static" elevation={0}>
+        <Container maxWidth={LayoutSettings.containerMaxWidth}>
+          <Toolbar disableGutters sx={{  display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             {/* Logo */}
             <Link href='/'>
               <a className={classes.logoWrapper}>

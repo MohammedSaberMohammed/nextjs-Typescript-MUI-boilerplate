@@ -33,5 +33,16 @@
   "myAddresses": "عناويني",
   "favorite": "المفضلة",
   "profile": "الملف الشخصي",
-  "logout": "تسجيل خروج"
+  "logout": "تسجيل خروج",
+  "basket": "سلة الشراء",
+  "addYourAd": "أصف إعلانك",
+  "moreVisitedAds": "إعلانات أكثر زيارة",
+  "sparePartsSections": "أقسام قطع الغيار",
+  "termsAndConditions": "الشروط والاحكام",
+  "returnPolicy": "سياسة الإسترجاع",
+  "privacyPolicy": "سياسة الخصوصية",
+  "importantLinks": "روابط هامة",
+  "successPartners": "شركاء النجاح",
+  "siteSections": "أقسام المنصة",
+  "footerDescription": "أحصل على قطع غيار أصلية لكل أنواع الدراجات النارية في كبرى الشركات من حولك"
 }
