@@ -2,21 +2,24 @@ import { FC, useMemo } from 'react';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
+// Translations
+import { useTranslation } from 'next-i18next';
 // MUI
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 // styles
+import classNames from 'classnames';
 import classes from './styles.module.scss';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
-
 import { generateFooterLinks } from './utils';
-import { useTranslation } from 'next-i18next';
+// Models
 import { FooterLink } from '@/models/footer';
-import { Stack } from '@mui/material';
-import classNames from 'classnames';
-import { ClassNames } from '@emotion/react';
 
 const Footer: FC = () => {
   const { t } = useTranslation();
@@ -26,13 +29,47 @@ const Footer: FC = () => {
   return (
     <footer className={classes.footer}>
       <div className={classes.footerMask} />
+
       <Container maxWidth={LayoutSettings.containerMaxWidth} className={classes.contentWrapper}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={4}>
-1616561651
+          <Grid item xs={12} sm={6} md={5} className={classNames(classes.section, classes.footerDescriptionWrapper)}>
+            <Image src='/icons/logo.svg' width={80} height={70} alt='Bike logo' />
+         
+            <p className={classes.footerDescription}>{t('footerDescription')}</p>
+          
+            <div className={classes.socialLinks}>
+
+              <IconButton
+                color="inherit"
+                disableFocusRipple
+                disableRipple
+                className={classes.btn}
+              >
+                <FacebookRoundedIcon />
+              </IconButton>
+              
+              <IconButton
+                color="inherit"
+                disableFocusRipple
+                disableRipple
+                className={classes.btn}
+              >
+                <TwitterIcon />
+              </IconButton>
+
+              <IconButton
+                color="inherit"
+                disableFocusRipple
+                disableRipple
+                className={classes.btn}
+              >
+                <FacebookRoundedIcon />
+              </IconButton>
+
+            </div>
           </Grid>          
           
-          <Grid item xs={12} sm={6} md={4} className={classes.section}>
+          <Grid item xs={12} sm={6} md={5} className={classes.section}>
             <h6 className={classes.title}>{t('siteSections')}</h6>
             
             <Container disableGutters>
@@ -57,10 +94,11 @@ const Footer: FC = () => {
             </Container>
           </Grid>          
           
-          <Grid item xs={12} sm={6} md={4} className={classNames(classes.section, classes.importantLinks)}>
-            <h6 className={classes.title}>{t('importantLinks')}</h6>
-
+          <Grid item xs={12} sm={6} md={2} className={classNames(classes.section, classes.importantLinks)}>
             <Stack spacing={2} direction={'column'} className={classes.details}>
+
+              <h6 className={classes.title}>{t('importantLinks')}</h6>
+              
               {footerLinks.important.map((item: FooterLink, index: number) => (
                 <Link key={`${item.title}_${index}`} href={item.link} passHref>
                   <a className={classes.menuLink}>
@@ -78,9 +116,12 @@ const Footer: FC = () => {
             </Stack>
           </Grid>
         </Grid>
-        <div className={classes.copyRights}>
 
-        </div>
+        <p className={classes.copyRights}>
+          {t('allRightsReserveredFor')}
+          <span className={classes.siteName}>{' Biker '}</span>
+          {t('sitePurpose')}
+        </p>
       </Container>
     </footer>
   );

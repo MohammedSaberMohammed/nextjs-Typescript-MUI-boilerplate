@@ -3,7 +3,32 @@
 @import './mixins';
 @import './packages-overrides';
 
+@font-face {
+  font-family: 'din-bold';
+  src: url('/fonts/DINNextLTArabic-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'din-medium';
+  src: url('/fonts/DINNextLTArabic-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'din-regular';
+  src: url('/fonts/DINNextLTArabic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'din-light';
+  src: url('/fonts/DINNEXTLTARABIC-LIGHT.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'din-ultra-light';
+  src: url('/fonts/DINNextLTArabic-UltraLight.ttf') format('truetype');
+}
+
 * {
-  // For Debugging only
-  // border: 1px solid red;
+  font-family: $regular-font
 }

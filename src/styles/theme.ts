@@ -4,6 +4,9 @@ import { red } from '@mui/material/colors';
 // Create a theme instance.
 const theme = createTheme({
   direction: 'rtl',
+  typography: {
+    fontFamily: 'din-regular, Roboto, Arial'
+  },
   palette: {
     primary: {
       main: '#b28e4d',
