@@ -56,7 +56,7 @@ const Header: FC = () => {
       </Drawer>
       
       <AppBar color='inherit' position="static" elevation={0}>
-        <Container maxWidth={LayoutSettings.containerMaxWidth}>
+        <Container maxWidth={LayoutSettings.maxWidth}>
           <Toolbar disableGutters sx={{  display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             {/* Logo */}
             <Link href='/'>

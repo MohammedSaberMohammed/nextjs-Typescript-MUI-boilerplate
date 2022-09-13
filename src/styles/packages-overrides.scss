@@ -42,3 +42,35 @@
     border-radius: 10px;
   }
 }
+
+// React-slick
+.slick-slider {
+  .slick-slide {
+    & > div {
+      margin: 10px
+    }
+  }
+
+  .slick-dots {
+    li {
+      width: 30px;
+      height: 3px;
+      border-radius: 5px;
+      background-color: #e1e1e1;
+
+      &.slick-active {
+        background-color: $secondary-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 355px) {
+  .slick-slider {
+    .slick-dots {
+      li {
+        width: 20px;
+      }
+    }
+  }
+}

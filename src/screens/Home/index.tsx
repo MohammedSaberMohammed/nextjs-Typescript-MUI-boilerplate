@@ -1,6 +1,7 @@
 // import ImageGallery from '@/components/ImageGallery';
-// import LanguageSwitcher from '@/components/languageSwitcher';
+import LanguageSwitcher from '@/components/languageSwitcher';
 import ProductCard from '@/components/ProductCard';
+import Carousel from '@/components/Carousel/carousel';
 import {  Container, Grid } from '@mui/material';
 // import FeaturedPosts from './FeaturedPosts';
 // import Hero from './Hero';
@@ -33,11 +34,27 @@ const HomePage = () => {
       {/* <Box sx={{maxWidth: 500, padding: 5, display: 'block'}}>
         <ImageGallery items={images} />
       </Box> */}
-      {/* <FeaturedPosts />
-      <LanguageSwitcher /> */}
+      {/* <FeaturedPosts />*/}
+      <LanguageSwitcher /> 
 
-      <Container >
-        <Grid container spacing={2}>
+      <Container maxWidth={'xl'} sx={{ py: 5 }}>
+        <Carousel>
+          {[1,1,1,1,1,1,1,1].map((item: number, index: number) => (
+
+            <ProductCard
+              key={item}
+              product={{
+                isFavorite: false,
+                name: 'رسم دراجة نارية لباس علوي تانك',
+                price: '42 - ' + index,
+                tags: ['قفازات', 'حوامل', 'إضافات'],
+                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
+              }}
+            />
+          ))}
+        </Carousel>
+        {/* dasd */}
+        {/* <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <ProductCard
               row
@@ -89,7 +106,7 @@ const HomePage = () => {
             />
           </Grid>
 
-        </Grid>
+        </Grid> */}
       </Container>
     </>
   );

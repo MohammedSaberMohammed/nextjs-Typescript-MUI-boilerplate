@@ -1,9 +1,7 @@
-interface LayoutSettingsModel {
-  containerMaxWidth: string
-}
+import { ContainerProps} from '@mui/material/Container';
 
-const LayoutSettings: LayoutSettingsModel = {
-  containerMaxWidth: 'xl'
+const LayoutSettings: ContainerProps = {
+  maxWidth: 'xl'
 };
 
 export {

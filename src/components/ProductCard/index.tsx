@@ -114,12 +114,13 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
   }, [advertisor]);
 
   return (
-    <Box 
+    <Box
+      sx={{ direction: 'ltr' }}
       onClick={onCardClick}
       className={classnames(classes.cardWrapper, { [classes.row]: row })}
     >
       <Container disableGutters>
-        <Grid sx={{padding: 0}} container spacing={2}>
+        <Grid sx={{padding: 0}} container spacing={row ? 2 : 0}>
           <Grid item sx={{padding: 0}} xs={12} sm={row ? 5 : 12} md={row ? 4 : 12}>
             <Box className={classes.imageAndActionsWrapper}>
               <Image 

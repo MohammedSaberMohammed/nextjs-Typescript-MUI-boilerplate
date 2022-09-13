@@ -30,7 +30,7 @@ const Footer: FC = () => {
     <footer className={classes.footer}>
       <div className={classes.footerMask} />
 
-      <Container maxWidth={LayoutSettings.containerMaxWidth} className={classes.contentWrapper}>
+      <Container maxWidth={LayoutSettings.maxWidth} className={classes.contentWrapper}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5} className={classNames(classes.section, classes.footerDescriptionWrapper)}>
             <Image src='/icons/logo.svg' width={80} height={70} alt='Bike logo' />

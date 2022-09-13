@@ -16,6 +16,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import '@/styles/main.scss';
 import LayoutProvider from '@/context/layout';
 import Layout from '@/components/Layout';
+import { useEffect } from 'react';
 
 // Client-side cache, shared for the whole session of the user in the browser
 interface MyAppProps extends AppProps {
@@ -49,10 +50,10 @@ function MyApp(props: MyAppProps) {
   const { Component, pageProps } = props;
   
   // ! To be revisited
-  // useEffect(() => {
-  //   // ? Change Layout direction
-  //   document.body.dir = i18n.dir();
-  // }, [i18n]);
+  useEffect(() => {
+    // ? Change Layout direction
+    document.body.dir = i18n.dir();
+  }, [i18n]);
   
   return (
     <CacheProvider value={i18n.dir() === 'rtl' ? cacheRtl : cacheLtr}>
