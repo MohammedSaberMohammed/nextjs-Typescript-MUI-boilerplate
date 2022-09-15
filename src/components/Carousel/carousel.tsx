@@ -1,48 +1,96 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode, useContext, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
+// MUi
+import ArrowBack from '@mui/icons-material/ArrowBackIosNewOutlined';
+import ArrowForward from '@mui/icons-material/ArrowForwardIosOutlined';
 // Components
 // Styles
 import classes from './styles.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // Models
-import { SlickCarouselProps } from '@/models/slick-carousel';
-import { Box, Stack } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { LayoutContext } from '@/context/layout';
 
-interface CarouselProps extends SlickCarouselProps {
-  children: ReactNode,
+interface CarouselProps {
+  children: ReactNode
 }
 
 const Carousel = (props: CarouselProps) => {
+  const carouselRef = useRef<typeof Slider | null>(null);
   const {isRTL} = useContext(LayoutContext);
+  const isBelowExtraLarge = useMediaQuery('(max-width: 1592px)');
 
   const settings = {
     customPaging: (i: number) => (
       <div className={classes.dot}>{i + 1}</div>
     )
   };
-  console.log(isRTL);
+
+  const slickNext = () => {
+    if(carouselRef.current) {
+      carouselRef.current.slickNext();
+    }
+  };
+
+  const slickPrev = () => {
+    if(carouselRef.current) {
+      carouselRef.current.slickPrev();
+    }
+  };
+
   return (
-    <Box sx={{ position: 'relative' }}>
-      <Box sx={{ position: 'absolute', right: '-40px' }}>next</Box>
+    <>
+      {isBelowExtraLarge && (
+        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+          <Box className={classes.action} onClick={slickNext}>
+            {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
+          </Box>
 
-      <Slider
-        {...settings}
-        {...props}
-        rtl={isRTL}
-      >
-        {props.children}
-      </Slider>
+          <Box className={classes.action} mx={2} onClick={slickPrev}>
+            {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
+          </Box>
 
-      <Box>next</Box>
-    </Box>
+        </Box>
+      )}
+
+      <Box sx={{ position: 'relative' }}>
+        {!isBelowExtraLarge && (
+          <>
+            <Box 
+              onClick={slickPrev}
+              className={classes.action} 
+              sx={{ position: 'absolute', right: '-50px', top: '50%' }}
+            >
+              {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
+            </Box>      
+      
+            <Box 
+              onClick={slickNext}
+              className={classes.action} 
+              sx={{ position: 'absolute', left: '-50px', top: '50%' }}
+            >
+              {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
+            </Box>
+          </>
+        )}
+
+        <Slider
+          ref={carouselRef}
+          {...settings}
+          {...props}
+        >
+          {props.children}
+        </Slider>
+
+      </Box>
+    </>
   );
 };
 
 Carousel.defaultProps = {
   dots: true,
-  arrows: true,
+  arrows: false,
   infinite: true,
   autoplay: false,
 
