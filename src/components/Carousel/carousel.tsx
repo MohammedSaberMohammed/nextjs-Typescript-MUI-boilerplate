@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect, useRef } from 'react';
+import { ReactNode, useContext, useRef } from 'react';
 import Slider from 'react-slick';
 // MUi
 import ArrowBack from '@mui/icons-material/ArrowBackIosNewOutlined';
@@ -43,11 +43,11 @@ const Carousel = (props: CarouselProps) => {
     <>
       {isBelowExtraLarge && (
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-          <Box className={classes.action} onClick={slickNext}>
+          <Box className={classes.action} onClick={isRTL ? slickNext : slickPrev}>
             {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
           </Box>
 
-          <Box className={classes.action} mx={2} onClick={slickPrev}>
+          <Box className={classes.action} mx={2} onClick={isRTL ? slickPrev : slickNext}>
             {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
           </Box>
 
@@ -58,7 +58,7 @@ const Carousel = (props: CarouselProps) => {
         {!isBelowExtraLarge && (
           <>
             <Box 
-              onClick={slickPrev}
+              onClick={isRTL ? slickPrev : slickNext}
               className={classes.action} 
               sx={{ position: 'absolute', right: '-50px', top: '50%' }}
             >
@@ -66,7 +66,7 @@ const Carousel = (props: CarouselProps) => {
             </Box>      
       
             <Box 
-              onClick={slickNext}
+              onClick={isRTL ? slickNext : slickPrev}
               className={classes.action} 
               sx={{ position: 'absolute', left: '-50px', top: '50%' }}
             >
@@ -79,6 +79,7 @@ const Carousel = (props: CarouselProps) => {
           ref={carouselRef}
           {...settings}
           {...props}
+          
         >
           {props.children}
         </Slider>
