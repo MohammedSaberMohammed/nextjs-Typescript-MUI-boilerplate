@@ -22,9 +22,8 @@ import { useTranslation } from 'next-i18next';
 // Models
 import { PropsModel } from './model';
 // Styles
-import classnames from 'classnames';
-import classes from './styles.module.scss';
 import classNames from 'classnames';
+import classes from './styles.module.scss';
 
 const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
   const { t } = useTranslation('common');
@@ -117,7 +116,7 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
     <Box
       sx={{ direction: 'ltr' }}
       onClick={onCardClick}
-      className={classnames(classes.cardWrapper, { [classes.row]: row })}
+      className={classNames(classes.cardWrapper, { [classes.row]: row })}
     >
       <Container disableGutters>
         <Grid sx={{padding: 0}} container spacing={row ? 2 : 0}>
@@ -130,7 +129,7 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
                 alt={name} 
               />
 
-              <Box className={classnames(classes.actionsWrapper, {[classes.row]: row})}>
+              <Box className={classNames(classes.actionsWrapper, {[classes.row]: row})}>
                 {!row && (
                   <IconButton 
                     aria-label="add to favorite list" 
@@ -141,7 +140,7 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
                   </IconButton>
                 )}
 
-                <Box className={classnames(classes.externalActionsWrapper, { [classes.advertisementMode]: advertisor })}>{getExternalAction}</Box>
+                <Box className={classNames(classes.externalActionsWrapper, { [classes.advertisementMode]: advertisor })}>{getExternalAction}</Box>
               </Box>
             </Box>
           </Grid>           

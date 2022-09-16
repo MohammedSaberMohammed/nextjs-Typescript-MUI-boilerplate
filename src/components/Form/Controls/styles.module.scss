@@ -1,0 +1,40 @@
+.fancyOptionsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2%;
+  flex-wrap: wrap;
+
+  .fancyOption {
+    color: #AEAEAE;
+    font-size: 12px;
+    width: fit-content;
+    position: relative;
+    padding: 10px 12px 10px 13px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 11px;
+    cursor: pointer;
+    
+    .overlay {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #747473a6;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: all .2s ease-in-out;
+      transform: translateY(100%);
+    }
+
+    &:hover {
+      .overlay {
+        transform: translateY(0);
+
+      }
+    }
+  }
+}

@@ -1,5 +1,3 @@
-import { i18n } from 'next-i18next';
-// i18n?.init(); 
 
 export const Countries= [
   { id: 'AD', label: 'i18n?.t' },

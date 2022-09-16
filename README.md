@@ -9,14 +9,14 @@
     - [x] Yup (validation)
     - [ ] Controls
       - [x] TextField
-      - [-] Select Autocomplete
+      - [x] Select Autocomplete
         - [x] Base select with form and form validation
-        - [-] Fancy option feature
+        - [x] Fancy option feature
       - [ ] Attachment TextField
         - [ ] in Profile
         - [ ] in Advertisment
   - [x] Layout (header - footer)
   - [x] Product card
   - [x] Image gallery
-  - [x] slider
+  - [x] Carousel
   - [ ] Pagination Layout

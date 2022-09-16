@@ -13,6 +13,7 @@ import { SelectAutocompleteField } from '@/components/Form/Controls';
 import { Countries } from '@/services/staticLookups';
 // styles
 import classes from './styles.module.scss';
+import { SelectAutocompleteValue } from '@/models/SelectAutocomplete';
 
 const Login: FC = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ const Login: FC = () => {
     phoneNumber: '',
     password: '',
     rememberMe: false,
-    koko: 'AD'
+    koko: ''
   };
 
   const FORM_VALIDATION = Yup.object().shape({
@@ -71,7 +72,11 @@ const Login: FC = () => {
                       lookup={Countries}
                       fieldProps={fieldProps}
                       value={fieldProps.field.value}
-                      onChange={(name: string, value: string) => fieldProps.form.setFieldValue(name, value)}
+                      onChange={(name: string, value: SelectAutocompleteValue) => {
+                        console.log({name, value});
+                        fieldProps.form.setFieldValue(name, value);
+                        
+                      }}
                     />
                   )}
                 </Field>

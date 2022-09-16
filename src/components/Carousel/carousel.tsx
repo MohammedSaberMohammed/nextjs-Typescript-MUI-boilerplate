@@ -1,6 +1,8 @@
 import { ReactNode, useContext, useRef } from 'react';
 import Slider from 'react-slick';
 // MUi
+import Box from '@mui/material/Box';
+import { useMediaQuery } from '@mui/material';
 import ArrowBack from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForward from '@mui/icons-material/ArrowForwardIosOutlined';
 // Components
@@ -9,7 +11,6 @@ import classes from './styles.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // Models
-import { Box, useMediaQuery } from '@mui/material';
 import { LayoutContext } from '@/context/layout';
 
 interface CarouselProps {

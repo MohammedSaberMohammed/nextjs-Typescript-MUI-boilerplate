@@ -2,7 +2,7 @@
 import LanguageSwitcher from '@/components/languageSwitcher';
 import ProductCard from '@/components/ProductCard';
 import Carousel from '@/components/Carousel/carousel';
-import {  Container, Grid } from '@mui/material';
+import {  Container } from '@mui/material';
 // import FeaturedPosts from './FeaturedPosts';
 // import Hero from './Hero';
 

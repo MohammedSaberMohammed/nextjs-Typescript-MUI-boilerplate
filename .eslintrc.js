@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   }, 
 
-  extends: ['next/core-web-vitals', 'eslint:recommended'],
+  extends: ['next/core-web-vitals', 'eslint:recommended' ],
   parserOptions: {
     ecmaVersion: 2020,
   },
@@ -18,6 +18,7 @@ module.exports = {
     // React
     'react-hooks/exhaustive-deps': 'off',
     // Other
+    'no-duplicate-imports': 'error',
     camelcase: 'warn',
     'no-underscore-dangle': 'warn',
     'linebreak-style': ['error', 'unix'],
