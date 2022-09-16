@@ -2,7 +2,7 @@ import { i18n } from 'next-i18next';
 // i18n?.init(); 
 
 export const Countries= [
-  { id: 'AD', label: i18n?.t('home') },
+  { id: 'AD', label: 'i18n?.t' },
   { id: 'AE', label: 'United Arab Emirates' },
   { id: 'AF', label: 'Afghanistan' },
   { id: 'AG', label: 'Antigua and Barbuda' },

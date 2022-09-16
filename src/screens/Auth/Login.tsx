@@ -1,14 +1,21 @@
 import { FC } from 'react';
-// Validation
+// Forms - Validation
 import * as Yup from 'yup';
+import { Field, FieldProps, Form, Formik } from 'formik';
+// Translations
+import { useTranslation } from 'next-i18next';
 // Models
 // import { LoginPayload } from '@/models/login';
 // Components
-import { Field, FieldProps, Form, Formik } from 'formik';
+import PageHeader from '@/components/PageHeader/pageHeader';
+
 import { SelectAutocompleteField } from '@/components/Form/Controls';
 import { Countries } from '@/services/staticLookups';
+// styles
+import classes from './styles.module.scss';
 
 const Login: FC = () => {
+  const { t } = useTranslation();
   // const INITIAL_FORM_STATE: LoginPayload = {
   const INITIAL_FORM_STATE: any = {
     phoneNumber: '',
@@ -36,34 +43,39 @@ const Login: FC = () => {
   };
 
   return (
-    <div>
-      <Formik 
-        initialValues={INITIAL_FORM_STATE}
-        validationSchema={FORM_VALIDATION}
-        onSubmit={onLogin}
-      >
-        {() => (
-          <Form> 
+    <>
 
-            {/* <TextField 
+      <PageHeader title={t('login')} />
+
+      <div className={classes.content}>
+        <div className={classes.formWrapper}>
+          <Formik 
+            initialValues={INITIAL_FORM_STATE}
+            validationSchema={FORM_VALIDATION}
+            onSubmit={onLogin}
+          >
+            {() => (
+              <Form> 
+
+                {/* <TextField 
         name='phoneNumber' 
         label='phoneNumber'
         placeholder='5xxxxxxxx'
       />         */}
         
-            <Field name='koko'>
-              {(fieldProps: FieldProps) => (
-                <SelectAutocompleteField
-                  name='koko' 
-                  label='koko'
-                  lookup={Countries}
-                  fieldProps={fieldProps}
-                  value={fieldProps.field.value}
-                  onChange={(name: string, value: string) => fieldProps.form.setFieldValue(name, value)}
-                />
-              )}
-            </Field>
-            {/* 
+                <Field name='koko'>
+                  {(fieldProps: FieldProps) => (
+                    <SelectAutocompleteField
+                      name={fieldProps.field.name} 
+                      label='koko'
+                      lookup={Countries}
+                      fieldProps={fieldProps}
+                      value={fieldProps.field.value}
+                      onChange={(name: string, value: string) => fieldProps.form.setFieldValue(name, value)}
+                    />
+                  )}
+                </Field>
+                {/* 
           <Field
             name="koko"
             render={({ field, form: { touched, errors } }) => (
@@ -74,12 +86,14 @@ const Login: FC = () => {
               </div>
             )}
           /> */}
-            <button type='submit'>asdasdasdasd</button>
-          </Form>
-        )}
+                <button type='submit'>asdasdasdasd</button>
+              </Form>
+            )}
 
-      </Formik> 
-    </div>
+          </Formik> 
+        </div>
+      </div>
+    </>
   );
 };
 

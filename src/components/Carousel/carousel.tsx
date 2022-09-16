@@ -50,7 +50,6 @@ const Carousel = (props: CarouselProps) => {
           <Box className={classes.action} mx={2} onClick={isRTL ? slickPrev : slickNext}>
             {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
           </Box>
-
         </Box>
       )}
 

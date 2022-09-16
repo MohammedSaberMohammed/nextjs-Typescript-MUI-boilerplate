@@ -44,7 +44,6 @@ function SelectAutocomplete({ fieldProps, name, label, lookup, ...props}: any) {
   }, [props, lookup]);
 
   const configs = useMemo(() => {
-    
     const initialConfigs: any = {
       ...(fieldProps?.filed || {}),
       ...props,
@@ -53,8 +52,10 @@ function SelectAutocomplete({ fieldProps, name, label, lookup, ...props}: any) {
     };
 
     if(fieldProps) {
-      const { meta: { touched, error } } = fieldProps;
-      if(touched && error) {
+      const { meta: { error } } = fieldProps;
+
+      // if(touched && error) {
+      if(error) {
         initialConfigs.helperText = error;
         initialConfigs.error = true;
       }
@@ -69,7 +70,6 @@ function SelectAutocomplete({ fieldProps, name, label, lookup, ...props}: any) {
       value={enhancedValue}
       options={lookup}
       noOptionsText={t('noData')}
-      // onChange={handleChange}
       onChange={(...rest) => handleChange(rest[1])}
       renderInput={(params) => (
         <TextField 
@@ -82,7 +82,7 @@ function SelectAutocomplete({ fieldProps, name, label, lookup, ...props}: any) {
 };
 
 SelectAutocomplete.defaultProps = {
-
+  disableClearable: true
 };
 
 export default SelectAutocomplete;

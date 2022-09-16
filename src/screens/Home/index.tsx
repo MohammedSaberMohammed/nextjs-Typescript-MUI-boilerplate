@@ -38,7 +38,7 @@ const HomePage = () => {
       <LanguageSwitcher /> 
 
       <Container maxWidth={'xl'} sx={{ py: 5 }}>
-        <Carousel>
+        <Carousel >
           {[1,1,1,1,1,1,1,1].map((item: number, index: number) => (
 
             <ProductCard
