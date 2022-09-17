@@ -1,0 +1,27 @@
+@import 'src/styles/variables.scss';
+
+.wizard {
+  // max-width: 774px;
+  border-radius: 6px;
+  border: 1px solid #F1F1F1;
+  display: flex;
+
+
+  .logoWrapper {
+    flex-basis: 36%;
+    background-color: $primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contentWrapper {
+    flex-basis: 64%;
+    background: #fff;
+    padding: 50px;
+
+    &.fullWidth {
+      flex-basis: 100%;
+    }
+  }
+}

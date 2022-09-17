@@ -1,7 +1,11 @@
-import LoginScreen from '@/screens/Auth/Login';
 import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType  } from 'next';
+// Next
+import Head from 'next/head';
 // i18n 
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// Components
+import LoginScreen from '@/screens/Auth/Login';
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   return {
@@ -12,8 +16,18 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 };
 
 const Login: InferGetStaticPropsType<typeof getStaticProps> = () => {
+  const { t } = useTranslation('common');
 
-  return <LoginScreen />;
+  return (
+    <>
+      <Head>
+        <title>{t('login')}</title>
+        <meta name='description' content='Login is ready' />
+      </Head>
+      
+      <LoginScreen />
+    </>
+  );
 };
 
 export default Login;

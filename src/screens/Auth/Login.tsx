@@ -4,16 +4,18 @@ import * as Yup from 'yup';
 import { Field, FieldProps, Form, Formik } from 'formik';
 // Translations
 import { useTranslation } from 'next-i18next';
-// Models
 // import { LoginPayload } from '@/models/login';
 // Components
 import PageHeader from '@/components/PageHeader/pageHeader';
-
-import { SelectAutocompleteField } from '@/components/Form/Controls';
+import AnonymousWizard from '@/components/AnonymousWizard/anonymousWizard';
+import { SelectAutocompleteField, TextField } from '@/components/Form/Controls';
+// Utils
 import { Countries } from '@/services/staticLookups';
 // styles
 import classes from './styles.module.scss';
 import { SelectAutocompleteValue } from '@/models/SelectAutocomplete';
+import { Container, Grid } from '@mui/material';
+import { LayoutSettings } from '@/configs/layout';
 
 const Login: FC = () => {
   const { t } = useTranslation();
@@ -26,11 +28,11 @@ const Login: FC = () => {
   };
 
   const FORM_VALIDATION = Yup.object().shape({
-    // phoneNumber: Yup.number()
-    //   .required()
-    //   .integer('No decimals')
-    //   .typeError('onlyNumber')
-    //   .test('len', 'Must be exactly 9 characters', val => `${val}`.length === 9),
+    phoneNumber: Yup.number()
+      .required()
+      .integer('No decimals')
+      .typeError('onlyNumber')
+      .test('len', 'Must be exactly 9 characters', val => `${val}`.length === 9),
     koko: Yup.string()
       .required()
   });
@@ -50,52 +52,42 @@ const Login: FC = () => {
 
       <div className={classes.content}>
         <div className={classes.formWrapper}>
-          <Formik 
-            initialValues={INITIAL_FORM_STATE}
-            validationSchema={FORM_VALIDATION}
-            onSubmit={onLogin}
-          >
-            {() => (
-              <Form> 
 
-                {/* <TextField 
-        name='phoneNumber' 
-        label='phoneNumber'
-        placeholder='5xxxxxxxx'
-      />         */}
-        
-                <Field name='koko'>
-                  {(fieldProps: FieldProps) => (
-                    <SelectAutocompleteField
-                      name={fieldProps.field.name} 
-                      label='koko'
-                      lookup={Countries}
-                      fieldProps={fieldProps}
-                      value={fieldProps.field.value}
-                      onChange={(name: string, value: SelectAutocompleteValue) => {
-                        console.log({name, value});
-                        fieldProps.form.setFieldValue(name, value);
-                        
-                      }}
-                    />
-                  )}
-                </Field>
-                {/* 
-          <Field
-            name="koko"
-            render={({ field, form: { touched, errors } }) => (
-              <div>
-                <input {...field} type="text" placeholder="lastName" />
-                {touched[field.name] &&
-         errors[field.name] && <div className="error">{errors[field.name]}</div>}
-              </div>
-            )}
-          /> */}
-                <button type='submit'>asdasdasdasd</button>
-              </Form>
-            )}
+          <AnonymousWizard>
 
-          </Formik> 
+            <Formik 
+              initialValues={INITIAL_FORM_STATE}
+              validationSchema={FORM_VALIDATION}
+              onSubmit={onLogin}
+            >
+              {() => (
+                <Form> 
+                  <Container maxWidth={LayoutSettings.maxWidth} disableGutters sx={{padding: 0}}>
+                    <Grid container spacing={2} px={0}>
+                      <Grid item  px={0} xs={12}>
+                        <TextField 
+                          name='phoneNumber' 
+                          label='phoneNumber'
+                          placeholder='5xxxxxxxx'
+                        />        
+                      </Grid>                    
+                      
+                      <Grid item xs={12}>
+                        <TextField
+                          type='password'
+                          name='phoneNumber' 
+                          label='phoneNumber'
+                          placeholder='5xxxxxxxx'
+                        />        
+                      </Grid>
+                    </Grid>
+                  </Container>
+                  <button type='submit'>asdasdasdasd</button>
+                </Form>
+              )}
+
+            </Formik> 
+          </AnonymousWizard>
         </div>
       </div>
     </>
