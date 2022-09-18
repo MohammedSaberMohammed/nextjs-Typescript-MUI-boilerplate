@@ -66,7 +66,7 @@ const BaseMenu: FC<Props> = (props) => {
           'aria-labelledby': 'menu-button',
         }}
       >
-        {data.items.map((item: HeaderMenuItem, index: number) => (
+        {data.items && data.items.map((item: HeaderMenuItem, index: number) => (
           <Link href={item.link} passHref key={index}>
             <a className={classes.menuLink}>
               <MenuItem className={classes.menuItem} onClick={handleClose}>
@@ -74,8 +74,8 @@ const BaseMenu: FC<Props> = (props) => {
                 {item.iconPath && (
                   <Image 
                     src={item.iconPath} 
-                    width={23}
-                    height={23}
+                    width={22}
+                    height={25}
                     alt={`${item.title}-image`}
                   />
                 )}

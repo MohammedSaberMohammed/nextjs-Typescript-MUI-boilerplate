@@ -1,3 +1,4 @@
+import { CategoryModel } from '@/models/categories';
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
 
 const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
@@ -40,19 +41,6 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
       { title: t('mostViewed') as string, link: '/advertisments?type=most-viewed' },
     ]
   },  
-  
-  sectionsMenu: {
-    id: 'sections',
-    title: t('sections'),
-    items: [
-      { title: t('allSections'), link: '/categories', iconPath: '/icons/all-sections.svg' },
-      { title: t('piecesOfBodiesAndStructures'), link: '/categories?type=structure', iconPath: '/icons/bike.svg' },
-      { title: t('wheelsAndTires'), link: '/categories?type=wheelsand-tires', iconPath: '/icons/wheel.svg' },
-      { title: t('exteriorLights'), link: '/categories?type=exterior-lights', iconPath: '/icons/light.svg' },
-      { title: t('brakes'), link: '/categories?type=brakes', iconPath: '/icons/brake.svg' },
-      { title: t('accessories'), link: '/categories?type=accessories', iconPath: '/icons/accessories.svg' },
-    ]
-  },
 
   account: {
     id: 'account',
@@ -62,6 +50,21 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
   },
 });
 
+const loadCategoryMenu = (t: any, categories: CategoryModel[]) => {
+  const items = categories.map((category: CategoryModel) => ({
+    title: category.title.ar,
+    link: `/categories?type=${category.id}`,
+    iconPath: category.icon.small
+  }));
+
+  return {
+    id: 'sections',
+    title: t('sections'),
+    items
+  };
+};
+
 export {
-  generateMenus
+  generateMenus,
+  loadCategoryMenu
 };

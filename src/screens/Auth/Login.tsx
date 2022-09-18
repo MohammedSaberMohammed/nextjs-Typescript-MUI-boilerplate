@@ -1,19 +1,17 @@
 import { FC } from 'react';
 // Forms - Validation
 import * as Yup from 'yup';
-import { Field, FieldProps, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 // Translations
 import { useTranslation } from 'next-i18next';
 // import { LoginPayload } from '@/models/login';
 // Components
 import PageHeader from '@/components/PageHeader/pageHeader';
 import AnonymousWizard from '@/components/AnonymousWizard/anonymousWizard';
-import { SelectAutocompleteField, TextField } from '@/components/Form/Controls';
+import { TextField } from '@/components/Form/Controls';
 // Utils
-import { Countries } from '@/services/staticLookups';
 // styles
 import classes from './styles.module.scss';
-import { SelectAutocompleteValue } from '@/models/SelectAutocomplete';
 import { Container, Grid } from '@mui/material';
 import { LayoutSettings } from '@/configs/layout';
 

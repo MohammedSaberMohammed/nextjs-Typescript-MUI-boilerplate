@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, MouseEvent, useMemo, useState } from 'react';
+import { FC, KeyboardEvent, MouseEvent, useEffect, useMemo, useState } from 'react';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
@@ -17,18 +17,38 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 // components
 import BaseMenu from '@/components/BaseMenu/baseMenu';
 // Utils
-import { generateMenus } from './utils';
+import { generateMenus, loadCategoryMenu } from './utils';
 import DrawerContent from './drawerContent';
 import { LayoutSettings } from '@/configs/layout';
 // styles
 import classes from './styles.module.scss';
+import { HeaderMenu } from '@/models/headerMenu';
+import endpoints from '@/services/apis';
 
 const Header: FC = () => {
+  const { t } = useTranslation('common');
   const theme = useTheme();
   const isInSmallScreens = useMediaQuery(theme.breakpoints.down('md'));
-  const { t } = useTranslation('common');
-
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [categoriesMenu, setCategoriesMenu] = useState<HeaderMenu>({
+    id: 'sections',
+    title: t('sections'),
+    items: []
+  });
+
+  useEffect(() => {
+    endpoints.lookups.categories()
+      .then(response => {
+        console.log('response.ok && response.data && response.data.length', response.ok && response.data && response.data.length);
+        if(response.ok && response.data && response.data.length) {
+          // const 
+          console.log({categoriesList: response.data});
+
+          setCategoriesMenu(loadCategoryMenu(t, response.data));
+        }
+      });
+    
+  }, []);
 
   const headerMenus = useMemo(() => generateMenus(t), [t]);
 
@@ -71,7 +91,7 @@ const Header: FC = () => {
               <Stack direction="row" spacing={2}>
                 <BaseMenu data={headerMenus.storeMenu} />
                 <BaseMenu data={headerMenus.adsMenu} />
-                <BaseMenu data={headerMenus.sectionsMenu} />
+                <BaseMenu data={categoriesMenu} />
             
                 <Link href='/about-us'>
                   <a className={classes.link}>{t('aboutBiker')}</a>
