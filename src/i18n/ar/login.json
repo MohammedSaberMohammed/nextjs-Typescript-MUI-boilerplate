@@ -1,3 +1,18 @@
 {
-  "login": "تسجيل الدخول"
+  "login": "تسجيل الدخول",
+  "enter": "دخول",
+  "pageDescription": "لمتابعة جديد قطع غيار الدراجات النارية Biker سجل دخول على حسابك",
+  "phoneNumber": "رقم الجوال",
+  "password": "كلمة المرور",
+  "rememberMe": "تذكرني",
+  "didYouForgetPassword": "هل نسيت كلمة المرور ؟",
+  "youDoNotHaveAnAccount":  "ليس لديك حساب ؟",
+  "createNewAccount": " انشاء حساب جديد ",
+
+  "validations": {
+    "required": "هذا الحقل مطلوب",
+    "onlyIntegers": "الرجاء إدخال أرقام صحيحة فقط",
+    "onlyNumbers": "الرجاء إدخال أرقام فقط",
+    "exactNumbersLength": "عدد الارقام يجب أن يكون {{length}}"
+  }
 }

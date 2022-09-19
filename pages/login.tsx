@@ -16,13 +16,13 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 };
 
 const Login: InferGetStaticPropsType<typeof getStaticProps> = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('login');
 
   return (
     <>
       <Head>
         <title>{t('login')}</title>
-        <meta name='description' content='Login is ready' />
+        <meta name='description' content={t('pageDescription')} />
       </Head>
       
       <LoginScreen />

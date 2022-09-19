@@ -39,11 +39,7 @@ const Header: FC = () => {
   useEffect(() => {
     endpoints.lookups.categories()
       .then(response => {
-        console.log('response.ok && response.data && response.data.length', response.ok && response.data && response.data.length);
         if(response.ok && response.data && response.data.length) {
-          // const 
-          console.log({categoriesList: response.data});
-
           setCategoriesMenu(loadCategoryMenu(t, response.data));
         }
       });

@@ -1,3 +1,18 @@
 {
-  "login": "Login"
+  "login": "Login",
+  "enter": "ُEnter",
+  "pageDescription": "To keep up with the new biker spare parts, log in to your account.",
+  "phoneNumber": "Phone number",
+  "password": "Password",
+  "rememberMe": "Remember me",
+  "didYouForgetPassword": "Did you forget password ?",
+  "youDoNotHaveAnAccount": "Don't have an account ?",
+  "createNewAccount": "create new account",
+
+  "validations": {
+    "required": "This field is required",
+    "onlyIntegers": "Please enter only integers not decimals",
+    "onlyNumbers": "Please enter numbers only",
+    "exactNumbersLength": "Numbers length should be {{length}}"
+  }
 }

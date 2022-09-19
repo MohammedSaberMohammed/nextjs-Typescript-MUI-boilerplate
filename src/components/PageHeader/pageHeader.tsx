@@ -55,7 +55,7 @@ PageHeader.defaultProps = {
   subTitle: '',
   backgroundSrc: '/images/motorcycle-standing-street.png',
   backgroundAlt: 'page header background',
-  prefixBackgroundSrc: '/icons/dots.svg',
+  prefixBackgroundSrc: '/icons/section-dots.svg',
   prefixBackgroundAlt: 'page header icon background',
 };
 

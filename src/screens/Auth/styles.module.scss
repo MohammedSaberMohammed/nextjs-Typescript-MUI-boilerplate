@@ -6,5 +6,30 @@
   .formWrapper {
     max-width: 774px;
     margin: 0 auto;
+
+    .rememberMe,
+    .submitButton,
+    .forgotPassword {
+      font-weight: normal;
+      font-size: 16px;
+      color: $secondary-color;
+      // font-family: $medium-font
+    }
+
+    .submitButton {
+      color: #fff;
+      font-family: $medium-font
+    }
+
+    .register {
+      font-size: 16px;
+
+      .createNew {
+        margin: 0 5px;
+        color: $primary-color;
+        font-family: $medium-font;
+      }
+    }
+
   }
 }
