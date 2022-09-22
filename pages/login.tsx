@@ -1,22 +1,29 @@
-import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType  } from 'next';
 // Next
 import Head from 'next/head';
+import { useSession, getCsrfToken } from 'next-auth/react';
+import { GetServerSideProps, InferGetServerSidePropsType, GetServerSidePropsContext  } from 'next';
 // i18n 
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 // Components
 import LoginScreen from '@/screens/Auth/Login';
+import { useEffect } from 'react';
 
-export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  // fetch(' https://biker.jadeer.co/sanctum/csrf-cookie').then(console.log);
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'ar', ['common', 'login'])),
+      ...(await serverSideTranslations(context.locale || 'ar', ['common', 'login'])),
+      csrfToken: await getCsrfToken(context),
     },
   };
 };
 
-const Login: InferGetStaticPropsType<typeof getStaticProps> = () => {
+const Login: InferGetServerSidePropsType<typeof getServerSideProps> = ({ csrfToken }: {csrfToken: string}) => {
   const { t } = useTranslation('login');
+  const { data: session, status } = useSession();
+
+  useEffect(() => console.log({csrfToken, status, session}), []);
 
   return (
     <>

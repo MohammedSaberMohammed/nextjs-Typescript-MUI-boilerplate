@@ -1,23 +1,36 @@
+import { signOut } from 'next-auth/react';
+// styles
+import classes from './styles.module.scss';
+// Models
 import { CategoryModel } from '@/models/categories';
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
 
 const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
+  console.log('profile', profile);
   if (profile) {
     return [
-      { title: t('login'), link: '/login' },
-      { title: t('signup'), link: '/signup'},  
+      { title: t('myOrders'), link: '/', iconPath: '/icons/book.svg', suffix: 12 },
+      { title: t('myAds'), link: '/', iconPath: '/icons/document.svg', suffix: 6 },
+      { title: t('addAnAd'), link: '/', iconPath: '/icons/add-circle.svg' },
+      { title: t('myChats'), link: '/', iconPath: '/icons/chat.svg' },
+      { title: t('favorite'), link: '/', iconPath: '/icons/favorite.svg' },
+      { title: t('myAddresses'), link: '/', iconPath: '/icons/map.svg' },
+      { title: t('profile'), link: '/', iconPath: '/icons/edit.svg' },
+      { 
+        title: t('logout'), 
+        iconPath: '/icons/logout.svg',
+        link: '',
+        props: { 
+          onClick: () => signOut({ redirect: false }), 
+          className: classes.logout 
+        }
+      },
     ];
   }
 
   return [
-    { title: t('myOrders'), link: '/', iconPath: '/icons/book.svg', suffix: 12 },
-    { title: t('myAds'), link: '/', iconPath: '/icons/document.svg', suffix: 6 },
-    { title: t('addAnAd'), link: '/', iconPath: '/icons/add-circle.svg' },
-    { title: t('myChats'), link: '/', iconPath: '/icons/chat.svg' },
-    { title: t('favorite'), link: '/', iconPath: '/icons/favorite.svg' },
-    { title: t('myAddresses'), link: '/', iconPath: '/icons/map.svg' },
-    { title: t('profile'), link: '/', iconPath: '/icons/edit.svg' },
-    { title: t('logout'), link: '/', iconPath: '/icons/logout.svg' },
+    { title: t('login'), link: '/login' },
+    { title: t('signup'), link: '/signup'},  
   ];
 };
 

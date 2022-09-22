@@ -30,6 +30,38 @@ const BaseMenu: FC<Props> = (props) => {
 
   const handleClose = () => setAnchorEl(null);
 
+  const onMenuItemClicked = (item: HeaderMenuItem) => {
+    const { props } = item;
+    
+    if(props && props.onClick) {
+      props.onClick();
+    }
+
+    handleClose();
+  };
+
+  const renderEnhancedMenuItem = (item: HeaderMenuItem, key?: number) => (              
+    <MenuItem 
+      key={key}
+      className={classNames(classes.menuItem, item.props?.className || '')} 
+      onClick={() => onMenuItemClicked(item)}
+    >
+
+      {item.iconPath && (
+        <Image 
+          src={item.iconPath} 
+          width={22}
+          height={25}
+          alt={`${item.title}-image`}
+        />
+      )}
+
+      <Box sx={{ ml: item.iconPath ? 2 : 0, flexGrow: 1 }}>{item.title}</Box>
+
+      {item.suffix && <Box className={classes.suffix}>{item.suffix}</Box>}
+    </MenuItem>
+  );
+
   return (
     <>
       <Button
@@ -66,27 +98,19 @@ const BaseMenu: FC<Props> = (props) => {
           'aria-labelledby': 'menu-button',
         }}
       >
-        {data.items && data.items.map((item: HeaderMenuItem, index: number) => (
-          <Link href={item.link} passHref key={index}>
-            <a className={classes.menuLink}>
-              <MenuItem className={classes.menuItem} onClick={handleClose}>
+        {data.items && data.items.map((item: HeaderMenuItem, index: number) => {
+          if(item.link) {
+            return (          
+              <Link href={item.link} passHref key={index}>
+                <a className={classes.menuLink}>
+                  {renderEnhancedMenuItem(item)}
+                </a>
+              </Link>
+            );
+          }
 
-                {item.iconPath && (
-                  <Image 
-                    src={item.iconPath} 
-                    width={22}
-                    height={25}
-                    alt={`${item.title}-image`}
-                  />
-                )}
-
-                <Box sx={{ ml: item.iconPath ? 2 : 0, flexGrow: 1 }}>{item.title}</Box>
-
-                {item.suffix && <Box className={classes.suffix}>{item.suffix}</Box>}
-              </MenuItem>
-            </a>
-          </Link>
-        ))}
+          return renderEnhancedMenuItem(item, index);
+        })}
       </Menu>
     </>
   );

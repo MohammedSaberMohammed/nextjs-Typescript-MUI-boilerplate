@@ -1,6 +1,7 @@
 import { FC } from 'react';
 // Next 
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 // MUI
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -46,8 +47,12 @@ const Login: FC = () => {
   //   console.log('==================== Login ===================', {values});
     
   // };
-  const onLogin = () => {
-    
+  const onLogin = async (formValues: any) => {
+    const result = await signIn('credentials', { 
+      redirect: false,
+      formValues
+    });
+    console.log('onLogin', formValues, result);
   };
 
   return (

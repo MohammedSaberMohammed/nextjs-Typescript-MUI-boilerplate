@@ -2,6 +2,7 @@ import { FC, KeyboardEvent, MouseEvent, useEffect, useMemo, useState } from 'rea
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 // MUI
 import Box from '@mui/material/Box';
@@ -29,6 +30,7 @@ const Header: FC = () => {
   const { t } = useTranslation('common');
   const theme = useTheme();
   const isInSmallScreens = useMediaQuery(theme.breakpoints.down('md'));
+  const { status, data: profile } = useSession();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [categoriesMenu, setCategoriesMenu] = useState<HeaderMenu>({
     id: 'sections',
@@ -43,10 +45,11 @@ const Header: FC = () => {
           setCategoriesMenu(loadCategoryMenu(t, response.data));
         }
       });
-    
   }, []);
 
-  const headerMenus = useMemo(() => generateMenus(t), [t]);
+  console.log('status, data', status, profile);
+
+  const headerMenus = useMemo(() => generateMenus(t, profile), [t, profile]);
 
   const toggleDrawer = (open: boolean) =>
     (event: KeyboardEvent | MouseEvent) => {
@@ -68,7 +71,12 @@ const Header: FC = () => {
         open={isDrawerOpen}
         onClose={toggleDrawer(false)}
       >
-        <DrawerContent />
+        <DrawerContent 
+          headerMenus={{
+            ...headerMenus,
+            sections: categoriesMenu
+          }}
+        />
       </Drawer>
       
       <AppBar color='inherit' position="static" elevation={0} sx={{mb: '17px'}}>

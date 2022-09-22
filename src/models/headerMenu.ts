@@ -1,8 +1,14 @@
+interface HeaderMenuItemProps {
+  onClick?: () => void;
+  className?: string
+}
+
 export interface HeaderMenuItem {
   title: string,
-  link: string,
+  link?: string,
   iconPath?: string,
   suffix?: string | number,
+  props?: HeaderMenuItemProps
 }
 
 export interface HeaderMenu {

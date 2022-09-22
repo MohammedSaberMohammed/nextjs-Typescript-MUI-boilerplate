@@ -1,8 +1,9 @@
 
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 // MUI
 import Box from '@mui/material/Box';
@@ -23,10 +24,16 @@ import { generateMenus } from './utils';
 // Models
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
 
-const DrawerContent: FC =  () => {
+interface Props {
+  headerMenus: {
+    [key: string]: HeaderMenu
+  }
+}
+
+const DrawerContent: FC<Props> = (props) => {
   const theme = useTheme();
-  const isInExtraSmallScreens = useMediaQuery(theme.breakpoints.down('sm'));
   const { t } = useTranslation('common');
+  const isInExtraSmallScreens = useMediaQuery(theme.breakpoints.down('sm'));
   const [menusState, setMenusState] = useState<{ [key: string]: boolean}>({
     store: false,
     ads: false,
@@ -38,7 +45,39 @@ const DrawerContent: FC =  () => {
     setMenusState({...menusState, [id]: !menusState[id]});
   };
 
-  const headerMenus = useMemo(() => generateMenus(t), [t]);
+  const onMenuItemClicked = (item: HeaderMenuItem) => {
+    const { props } = item;
+    if(props && props.onClick) {
+      console.log('onMenuItemClicked', props);
+      props.onClick();
+    }
+  };
+
+  useEffect(() => console.log('props.headerMenus', props.headerMenus));
+
+  const renderEnhancedMenuItem = (menuItem: HeaderMenuItem, key?: string) => (
+    <Box             
+      key={key} 
+      className={menuItem.props?.className || ''} 
+      onClick={() => onMenuItemClicked(menuItem)} 
+      sx={{display: 'flex', alignItems: 'center', width: '100%'}}
+    >
+      {menuItem.iconPath && (
+        <ListItemIcon>
+          <Image 
+            src={menuItem.iconPath} 
+            width={23}
+            height={23}
+            alt={`${menuItem.title}-image`}
+          />
+        </ListItemIcon>
+      )}
+
+      <ListItemText primary={menuItem.title} sx={{ flexGrow: 1 }} />
+  
+      {menuItem.suffix && <Box className={classes.suffix}>{menuItem.suffix}</Box>}
+    </Box>
+  );
 
   return (
     <List
@@ -60,7 +99,7 @@ const DrawerContent: FC =  () => {
         </Link>
       </ListItemButton>
 
-      {Object.values(headerMenus).map((menu: HeaderMenu) => (
+      {props.headerMenus && Object.values(props.headerMenus).map((menu: HeaderMenu) => (
         <Box key={menu.id}>
           <ListItemButton onClick={() => onMenuClick(menu.id)}>
             <ListItemText primary={menu.title} />
@@ -70,24 +109,11 @@ const DrawerContent: FC =  () => {
             <List component="div" disablePadding>
               {menu.items.map((menuItem: HeaderMenuItem) => (
                 <ListItemButton key={menuItem.title} sx={{ pl: 4 }}>
-                  <Link href={menuItem.link}>
-                    <Box sx={{display: 'flex', alignItems: 'center', width: '100%'}}>
-                      {menuItem.iconPath && (
-                        <ListItemIcon>
-                          <Image 
-                            src={menuItem.iconPath} 
-                            width={23}
-                            height={23}
-                            alt={`${menuItem.title}-image`}
-                          />
-                        </ListItemIcon>
-                      )}
-
-                      <ListItemText primary={menuItem.title} sx={{ flexGrow: 1 }} />
-                    
-                      {menuItem.suffix && <Box className={classes.suffix}>{menuItem.suffix}</Box>}
-                    </Box>
-                  </Link>
+                  {menuItem.link ? (
+                    <Link href={menuItem.link || ''}>
+                      {renderEnhancedMenuItem(menuItem)}
+                    </Link>
+                  ) : renderEnhancedMenuItem(menuItem, menuItem.title)}
                 </ListItemButton>
               ))}
             </List>
@@ -109,6 +135,10 @@ const DrawerContent: FC =  () => {
 
     </List>
   );
+};
+
+DrawerContent.defaultProps = {
+  headerMenus: {}
 };
 
 export default DrawerContent;
