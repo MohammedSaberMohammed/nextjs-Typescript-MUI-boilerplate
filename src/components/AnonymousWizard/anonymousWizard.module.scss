@@ -1,7 +1,6 @@
 @import 'src/styles/variables.scss';
 
 .wizard {
-  // max-width: 774px;
   border-radius: 6px;
   border: 1px solid #F1F1F1;
   display: flex;
@@ -22,6 +21,12 @@
 
     &.fullWidth {
       flex-basis: 100%;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .contentWrapper {
+      padding: 25px
     }
   }
 }

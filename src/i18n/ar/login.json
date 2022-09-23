@@ -16,6 +16,7 @@
     "exactNumbersLength": "عدد الارقام يجب أن يكون {{length}}",
     "startWith": "يجب أن يبدأ ب {{char}}",
     "onlyAlphanumeric": "الرجاء ادخال حروف وارقام فقط",
-    "maxLength": "أكثر عدد للحروف مسموح به هو {{length}}"
+    "maxLength": "أكثر عدد للحروف مسموح به هو {{length}}",
+    "minLength": "أقل عدد للحروف مسموح به هو {{length}}"
   }
 }

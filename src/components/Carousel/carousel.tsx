@@ -7,7 +7,7 @@ import ArrowBack from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForward from '@mui/icons-material/ArrowForwardIosOutlined';
 // Components
 // Styles
-import classes from './styles.module.scss';
+import classes from './carousel.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // Models

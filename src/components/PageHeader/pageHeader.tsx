@@ -4,12 +4,13 @@ import Image from 'next/image';
 // MUI
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import { useTheme, useMediaQuery } from '@mui/material';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
 // Models
 import { PageHeaderProps } from './model';
 // styles
-import classes from './styles.module.scss';
+import classes from './pageHeader.module.scss';
 
 const PageHeader: FC<PageHeaderProps> = ({
   title,
@@ -19,6 +20,9 @@ const PageHeader: FC<PageHeaderProps> = ({
   prefixBackgroundSrc,
   prefixBackgroundAlt
 }) => {
+  const theme = useTheme();
+  const isInSmallScreens = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <section className={classes.pageHeader}>
       <div className={classes.headerMask} >
@@ -28,6 +32,7 @@ const PageHeader: FC<PageHeaderProps> = ({
           layout="fill"
           objectFit="cover"
           quality={100}
+          priority={true}
         />
       </div>
 
@@ -37,14 +42,16 @@ const PageHeader: FC<PageHeaderProps> = ({
           {subTitle && <p className={classes.subTitle}>{subTitle}</p>}
         </Box>
 
-        <div className={classes.imageWrapper}>
-          <Image 
-            src={prefixBackgroundSrc || ''} 
-            alt={prefixBackgroundAlt || ''}
-            width={100}
-            height={90}
-          />
-        </div>
+        {!isInSmallScreens && (
+          <div className={classes.imageWrapper}>
+            <Image 
+              src={prefixBackgroundSrc || ''} 
+              alt={prefixBackgroundAlt || ''}
+              width={100}
+              height={90}
+            />
+          </div>
+        )}
       </Container>
     </section>
   );
@@ -53,7 +60,7 @@ const PageHeader: FC<PageHeaderProps> = ({
 PageHeader.defaultProps = {
   title: '',
   subTitle: '',
-  backgroundSrc: '/images/motorcycle-standing-street.png',
+  backgroundSrc: '/images/webp/motorcycle-standing-street.webp',
   backgroundAlt: 'page header background',
   prefixBackgroundSrc: '/icons/section-dots.svg',
   prefixBackgroundAlt: 'page header icon background',

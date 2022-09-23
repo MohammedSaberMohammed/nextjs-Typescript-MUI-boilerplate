@@ -1,6 +1,6 @@
 import { signOut } from 'next-auth/react';
 // styles
-import classes from './styles.module.scss';
+import classes from './header.module.scss';
 // Models
 import { CategoryModel } from '@/models/categories';
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';

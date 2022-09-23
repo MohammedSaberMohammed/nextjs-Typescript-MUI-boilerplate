@@ -14,7 +14,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 // styles
 import classNames from 'classnames';
-import classes from './styles.module.scss';
+import classes from './footer.module.scss';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
 import { generateFooterLinks } from './utils';

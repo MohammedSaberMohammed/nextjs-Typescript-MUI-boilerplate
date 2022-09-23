@@ -12,7 +12,7 @@ import { useTranslation } from 'next-i18next';
 import { LookupOption } from '@/models/formControls';
 import { SelectAutocompleteValue } from '@/models/SelectAutocomplete';
 // styles
-import classes from './styles.module.scss';
+import classes from './formContols.module.scss';
 
 // eslint-disable-next-line no-unused-vars
 type onChangeType = (name: string, value: SelectAutocompleteValue) => void;

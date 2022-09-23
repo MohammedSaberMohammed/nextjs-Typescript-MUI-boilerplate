@@ -1,9 +1,8 @@
 
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 // MUI
 import Box from '@mui/material/Box';
@@ -18,9 +17,8 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 
 // styles
-import classes from './styles.module.scss';
+import classes from './header.module.scss';
 import classNames from 'classnames';
-import { generateMenus } from './utils';
 // Models
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
 

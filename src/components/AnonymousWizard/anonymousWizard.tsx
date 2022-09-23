@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Box from '@mui/material/Box';
 import { useTheme, useMediaQuery } from '@mui/material';
 // Styles
-import classes from './styles.module.scss';
+import classes from './anonymousWizard.module.scss';
 import classNames from 'classnames';
 
 interface Props {

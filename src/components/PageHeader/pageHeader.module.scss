@@ -18,6 +18,7 @@
   }
 
   .contentWrapper {
+    text-align: center;
     display: flex;
     height: 100%;
 
@@ -52,6 +53,18 @@
       overflow: hidden;
       height: 100%;
       flex-basis: 10%;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .contentWrapper {
+      .textWrapper {
+        flex-basis: 100%;
+        
+        .title {
+          font-size: 30px;
+        }
+      }
     }
   }
 }

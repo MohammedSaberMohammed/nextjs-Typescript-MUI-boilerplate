@@ -1,13 +1,18 @@
 {
-  "login": "Login",
-  "enter": "ُEnter",
-  "pageDescription": "To keep up with the new biker spare parts, log in to your account.",
+  "signup": "Signup",
+  "pageDescription": "Your first step into the world of motorcycle parts.",
+  "name": "Name",
   "phoneNumber": "Phone number",
+  "phonePlaceholder": "Example: 566844211",
   "password": "Password",
-  "rememberMe": "Remember me",
-  "didYouForgetPassword": "Did you forget password ?",
-  "youDoNotHaveAnAccount": "Don't have an account ?",
-  "createNewAccount": "create new account",
+  "passwordConfirmation": "Confirm password",
+  "agreeOn": "I agree on",
+  "termsAndConditions": "Terms and conditions",
+  "youHaveAnAccount": "You have an account ?",
+  "login": "Login",
+  "createAnAccount": "Create an account",
+  "shouldMatchPassword": "Should match password",
+  "pleaseAgreeOnTermsAndConditions": "Please agree on terms and conditions",
 
   "validations": {
     "required": "This field is required",
@@ -18,6 +23,5 @@
     "onlyAlphanumeric": "only chars and numbers allowed",
     "maxLength": "Maximum allowed chars length is {{length}}",
     "minLength": "Minimum allowed chars length is {{length}}"
-
   }
 }

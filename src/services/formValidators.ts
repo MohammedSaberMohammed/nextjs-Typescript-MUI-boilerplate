@@ -1,4 +1,4 @@
-export const isRequired = (value: string) => (value === null || value === undefined || isNaN(value)) ? false : `${value}`.trim().length > 0;
+export const isRequired = (value: string) => (value === null || value === undefined || isNaN(Number(value))) ? false : `${value}`.trim().length > 0;
 
 export const startsWith = (value: string, char: string) => {
   if(!value) {
@@ -23,12 +23,21 @@ export const onlyAlphanumeric = (value: string) => {
 
   return /^[a-zA-Z0-9]*$/ig.test(`${value}`);
 };
+
 export const maxLength = (value: string, length: number) => {
   if(!value) {
     return true;
   }
 
   return `${value}`.length <= length;
+};
+
+export const minLength = (value: string, length: number) => {
+  if(!value) {
+    return true;
+  }
+
+  return `${value}`.length >= length;
 };
 
 export const exactNumbersLength = (value: string, length: number) => {

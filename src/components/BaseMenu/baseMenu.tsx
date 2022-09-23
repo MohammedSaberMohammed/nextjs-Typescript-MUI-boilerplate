@@ -10,7 +10,7 @@ import Button, { ButtonProps } from '@mui/material/Button';
 // Models
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
 // styles
-import classes from './styles.module.scss';
+import classes from './baseMenu.module.scss';
 import classNames from 'classnames';
 
 interface Props extends ButtonProps {

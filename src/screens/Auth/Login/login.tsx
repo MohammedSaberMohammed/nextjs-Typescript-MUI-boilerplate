@@ -44,7 +44,7 @@ const Login: FC = () => {
       .test('onlyAlphanumeric', t('validations.onlyAlphanumeric'), value => onlyAlphanumeric(`${value}`))
   });
 
-  const onLogin = async (formValues: any) => {
+  const onLogin = async (formValues: LoginPayload) => {
     const result = await signIn('credentials', { 
       redirect: false,
       formValues

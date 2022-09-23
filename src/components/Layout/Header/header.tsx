@@ -24,7 +24,7 @@ import { generateMenus, loadCategoryMenu } from './utils';
 import DrawerContent from './drawerContent';
 import { LayoutSettings } from '@/configs/layout';
 // styles
-import classes from './styles.module.scss';
+import classes from './header.module.scss';
 import { HeaderMenu } from '@/models/headerMenu';
 
 const Header: FC = () => {
