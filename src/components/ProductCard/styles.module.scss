@@ -1,0 +1,166 @@
+@import 'src/styles/variables.scss';
+@import 'src/styles/mixins.scss';
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  .imageAndActionsWrapper {
+    overflow: hidden;
+    border: 1px solid $primary-color;
+    position: relative;
+    height: 200px;
+    max-height: 100%;
+    border-radius: 8px;
+
+    .actionsWrapper {
+      padding: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      background-color: rgba(0,0,0, .5);
+      transition: all .3s ease-in-out;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .favorite {
+        transition: all .3s ease-in-out;
+        transform: translateY(-100%);
+      }
+
+      .externalActionsWrapper {
+        width: 100%;
+        transition: all .3s ease-in-out;
+        transform: translateY(100%);
+
+        .addToBasketBtn {
+          @include whiteBtn;
+        }
+
+        &.advertisementMode {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 3%;
+
+          .chatBtn,
+          .callBtn {
+            margin-bottom: 5px
+          }
+
+          .chatBtn {
+            @include whiteBtn;
+
+            flex-grow: .9999;
+          }          
+          
+          .callBtn {
+            font-size: 15px;
+            font-weight: bold;
+            flex-grow: 1;
+          }
+        }
+      }
+
+      &.row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    } 
+
+    &:hover {
+      .actionsWrapper {
+        opacity: 1;
+
+        .favorite,
+        .externalActionsWrapper {
+          transform: unset;
+        }
+      }
+    }
+  }
+
+  .detailsWrapper {
+    margin-top: 30px;
+
+    .priceWrapper {
+      display: flex;
+      align-items: baseline;
+      
+      font-weight: bold;
+      color: $primary-color;
+
+      .price {
+        font-size: 20px;
+        margin: 0px 6px;
+
+        &.notAvailable {
+          margin: 0px;
+        }
+      }
+
+      .currency {
+        font-size: 14px;
+      }
+    }
+
+    .productName {
+      margin: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      flex: 1;
+    }
+
+    .advertisorChip {
+      border: none;
+      color: $grey;
+      
+      svg {
+        color: $grey;
+      }
+    }
+
+    .tagsWrapper {
+      display: flex;
+      align-items: center;
+      gap: 1%;
+      flex-wrap: wrap;
+
+      .cardTag {
+        @include lightPrimaryBtn;
+
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &.row {
+    .imageAndActionsWrapper {
+      height: 100%;
+    }
+
+    .detailsWrapper {
+      margin-top: 0;
+      border: 1px solid $grey;
+      border-radius: 8px;
+      padding: 10px 20px;
+    }
+  }
+
+  @media (max-width: 599px) {
+    &.row {
+      .imageAndActionsWrapper {
+        height: 200px;
+      }
+    }
+  }
+}

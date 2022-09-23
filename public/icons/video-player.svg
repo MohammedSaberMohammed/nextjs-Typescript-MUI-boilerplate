@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <g id="Group_28" data-name="Group 28" transform="translate(-822.908 -276)">
+    <g id="play-circle_bulk" data-name="play-circle/bulk" transform="translate(822.908 276)">
+      <g id="vuesax_bulk_play-circle" data-name="vuesax/bulk/play-circle">
+        <g id="play-circle">
+          <path id="Vector" d="M41.515,20.758A20.758,20.758,0,1,1,20.758,0,20.758,20.758,0,0,1,41.515,20.758Z" transform="translate(4.179 4.242)" fill="#b28e4d" opacity="0.4"/>
+          <path id="Vector-2" data-name="Vector" d="M13.491,4.21,7.339.668a4.826,4.826,0,0,0-4.9,0A4.846,4.846,0,0,0,0,4.91v7.106a4.888,4.888,0,0,0,4.879,4.9,4.79,4.79,0,0,0,2.439-.658l6.151-3.542a4.846,4.846,0,0,0,2.439-4.242A4.734,4.734,0,0,0,13.491,4.21Z" transform="translate(17.789 17.022)" fill="#b28e4d"/>
+          <path id="Vector-3" data-name="Vector" d="M0,0H50V50H0Z" fill="none" opacity="0"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

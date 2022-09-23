@@ -1,0 +1,16 @@
+<svg id="vuesax_bulk_arrow-circle-right" data-name="vuesax/bulk/arrow-circle-right" xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47">
+  <g id="arrow-circle-right">
+    <rect id="Rectangle_18" data-name="Rectangle 18" width="39.194" height="39.194" rx="6" transform="translate(4 4)" fill="#4d3c1c" opacity="0.2"/>
+    <path id="Vector" d="M0,0H47V47H0Z" fill="none" opacity="0"/>
+    <g id="Group_60" data-name="Group 60" transform="translate(1 -2)">
+      <g id="arrow-right_twotone" data-name="arrow-right/twotone" transform="translate(11 14)">
+        <g id="vuesax_twotone_arrow-right" data-name="vuesax/twotone/arrow-right">
+          <g id="arrow-right">
+            <path id="Vector-2" data-name="Vector" d="M0,15.84,6.52,9.32a1.986,1.986,0,0,0,0-2.8L0,0" transform="translate(8.91 4.08)" fill="none" stroke="#4d3c1c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path id="Vector-3" data-name="Vector" d="M0,0H24V24H0Z" transform="translate(24 24) rotate(180)" fill="none" opacity="0"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

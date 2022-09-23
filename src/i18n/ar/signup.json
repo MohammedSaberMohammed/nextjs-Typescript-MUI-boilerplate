@@ -1,0 +1,27 @@
+{
+  "signup": "حساب جديد",
+  "pageDescription": "خطوتك الأولى لدخول عالم قطع غيار الدراجات النارية",
+  "name": "الإسم",
+  "phoneNumber": "رقم الجوال",
+  "phonePlaceholder": "مثال : 566844211",
+  "password": "كلمة المرور",
+  "passwordConfirmation": " تأكيد كلمة المرور",
+  "agreeOn": "أنا أوافق على",
+  "termsAndConditions": "الشروط والأحكام",
+  "youHaveAnAccount":  " لديك حساب بالفعل ؟",
+  "login": "تسجيل الدخول",
+  "createAnAccount": "إنشاء حساب",
+  "shouldMatchPassword": "غير مطابق لكلمة المرور",
+  "pleaseAgreeOnTermsAndConditions": "الرجاء الموافقة على الشروط والأحكام",
+
+  "validations": {
+    "required": "هذا الحقل مطلوب",
+    "onlyIntegers": "الرجاء إدخال أرقام صحيحة فقط",
+    "onlyNumbers": "الرجاء إدخال أرقام فقط",
+    "exactNumbersLength": "عدد الارقام يجب أن يكون {{length}}",
+    "startWith": "يجب أن يبدأ ب {{char}}",
+    "onlyAlphanumeric": "الرجاء ادخال حروف وارقام فقط",
+    "maxLength": "أكثر عدد للحروف مسموح به هو {{length}}",
+    "minLength": "أقل عدد للحروف مسموح به هو {{length}}"
+  }
+}

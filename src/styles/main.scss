@@ -1,0 +1,50 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+@import './variables';
+@import './mixins';
+@import './packages-overrides';
+
+@font-face {
+  font-family: 'din-bold';
+  src: url('/fonts/DINNextLTArabic-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-display: swap
+}
+
+@font-face {
+  font-family: 'din-heavy';
+  src: url('/fonts/DINNextLTArabic-Heavy.ttf') format('truetype');
+  font-display: swap
+}
+
+@font-face {
+  font-family: 'din-medium';
+  src: url('/fonts/DINNextLTArabic-Medium.ttf') format('truetype');
+  font-display: swap
+}
+
+@font-face {
+  font-family: 'din-regular';
+  src: url('/fonts/DINNextLTArabic-Regular.ttf') format('truetype');
+  font-display: swap
+}
+
+@font-face {
+  font-family: 'din-light';
+  src: url('/fonts/DINNEXTLTARABIC-LIGHT.ttf') format('truetype');
+  font-display: swap
+}
+
+@font-face {
+  font-family: 'din-ultra-light';
+  src: url('/fonts/DINNextLTArabic-UltraLight.ttf') format('truetype');
+  font-display: swap
+}
+
+* {
+  font-family: $regular-font
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

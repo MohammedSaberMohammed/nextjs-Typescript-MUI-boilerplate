@@ -1,0 +1,7 @@
+<svg id="vuesax_bulk_message-add" data-name="vuesax/bulk/message-add" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="message-add">
+    <path id="Vector" d="M0,0H24V24H0Z" fill="none" opacity="0"/>
+    <path id="Vector-2" data-name="Vector" d="M14,0H6Q0,0,0,6V19a1,1,0,0,0,1,1H14q6,0,6-6V6Q20,0,14,0Z" transform="translate(2 2)" fill="#fff" opacity="0.4"/>
+    <path id="Vector-3" data-name="Vector" d="M7.75,3.5H5V.75a.75.75,0,0,0-1.5,0V3.5H.75A.75.75,0,0,0,.75,5H3.5V7.75a.75.75,0,0,0,1.5,0V5H7.75a.75.75,0,0,0,0-1.5Z" transform="translate(7.75 7.75)" fill="#fff"/>
+  </g>
+</svg>

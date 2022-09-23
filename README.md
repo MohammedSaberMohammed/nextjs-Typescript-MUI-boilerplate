@@ -1,3 +1,26 @@
+- [x] MUI
+- [x] TS
+- [x] Sass
+- [x] Eslint (Force code style)
+- [x] i18n
+- [-] Components
+  - [x] Form
+    - [x] Formik
+    - [x] Yup (validation)
+    - [ ] Controls
+      - [x] TextField
+      - [x] Select Autocomplete
+        - [x] Base select with form and form validation
+        - [x] Fancy option feature
+      - [ ] Attachment TextField
+        - [ ] in Profile
+        - [ ] in Advertisment
+  - [x] Layout (header - footer)
+  - [x] Product card
+  - [x] Image gallery
+  - [x] Carousel
+  - [ ] Pagination Layout
+=======
 # front-end
 
 
