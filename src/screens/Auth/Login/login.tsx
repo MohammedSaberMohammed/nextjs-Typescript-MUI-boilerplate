@@ -23,6 +23,7 @@ import { exactNumbersLength, maxLength, onlyAlphanumeric, onlyNumbers, startsWit
 import classes from './styles.module.scss';
 // Models
 import { LoginPayload } from '@/models/auth';
+import { Endpoints } from '@/services/apis';
 
 const Login: FC = () => {
   const { t } = useTranslation('login');
@@ -49,6 +50,8 @@ const Login: FC = () => {
       redirect: false,
       formValues
     });
+    const user = await Endpoints.auth.profile();
+    console.log('useruseruseruseruseruseruseruseruser', result);
     console.log('onLogin ---> result', result);
   };
 

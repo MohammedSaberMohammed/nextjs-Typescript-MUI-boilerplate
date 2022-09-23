@@ -11,11 +11,13 @@ const Auth = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUr
 
 // Middlewares
 new HttpMiddleware(Shared);
+new HttpMiddleware(Auth);
 
 // Endpoints
 const Endpoints = {
   auth: {
-    login: (payload: LoginPayload) => Auth.post<LoginResponse>('/login', payload)
+    login: (payload: LoginPayload) => Auth.post<LoginResponse>('/login', payload),
+    profile: () => Auth.get('/user')
   },
   lookups: {
     categories: () => Shared.get<CategoryModel[]>('/categories')

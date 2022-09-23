@@ -48,8 +48,6 @@ const Header: FC = () => {
       });
   }, []);
 
-  console.log('status, data', status, profile);
-
   const headerMenus = useMemo(() => generateMenus(t, profile), [t, profile]);
 
   const toggleDrawer = (open: boolean) =>

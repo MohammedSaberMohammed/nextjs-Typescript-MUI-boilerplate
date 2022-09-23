@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
+    "dev": "NODE_OPTIONS='--inspect'  next dev",
     "build": "NODE_TLS_REJECT_UNAUTHORIZED=0 next build",
     "start": " NODE_TLS_REJECT_UNAUTHORIZED=0 next start",
     "lint": "next lint"
@@ -16,6 +16,7 @@
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "apisauce": "^2.1.6",
+    "axios": "^0.27.2",
     "carousel": "^0.0.3",
     "classnames": "^2.3.1",
     "formik": "^2.2.9",

@@ -4,8 +4,8 @@ const msOf = (seconds: number) => seconds * 1000;
 
 const ApiConfigs: APIConfigsModel = {
   baseUrls: {
-    shared: process.env.NEXT_PUBLIC_BASE_URL || '',
-    auth: `${process.env.NEXT_PUBLIC_BASE_URL}/auth`
+    shared: `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1`,
+    auth: `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth`
   },
   configs: {
     timeout: msOf(50),
