@@ -1,6 +1,7 @@
 export interface APIConfigsModel {
   baseUrls: { 
-    shared: string 
+    shared: string;
+    auth: string;
   },
   configs: {
     timeout: number,
@@ -9,7 +10,6 @@ export interface APIConfigsModel {
       accept: string;
       xsrfHeaderName: string;
       'Content-Type': string;
-
     }
   }
 }

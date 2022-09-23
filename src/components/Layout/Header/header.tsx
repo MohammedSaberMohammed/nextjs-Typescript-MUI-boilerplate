@@ -1,4 +1,6 @@
 import { FC, KeyboardEvent, MouseEvent, useEffect, useMemo, useState } from 'react';
+// Apis
+import { Endpoints } from '@/services/apis';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
@@ -24,7 +26,6 @@ import { LayoutSettings } from '@/configs/layout';
 // styles
 import classes from './styles.module.scss';
 import { HeaderMenu } from '@/models/headerMenu';
-import endpoints from '@/services/apis';
 
 const Header: FC = () => {
   const { t } = useTranslation('common');
@@ -39,7 +40,7 @@ const Header: FC = () => {
   });
 
   useEffect(() => {
-    endpoints.lookups.categories()
+    Endpoints.lookups.categories()
       .then(response => {
         if(response.ok && response.data && response.data.length) {
           setCategoriesMenu(loadCategoryMenu(t, response.data));

@@ -6,53 +6,50 @@ import { signIn } from 'next-auth/react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
-import FormControlLabel from '@mui/material/FormControlLabel';
 // Forms - Validation
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 // Translations
 import { useTranslation } from 'next-i18next';
-// import { LoginPayload } from '@/models/login';
 // Components
 import { TextField } from '@/components/Form/Controls';
 import PageHeader from '@/components/PageHeader/pageHeader';
 import AnonymousWizard from '@/components/AnonymousWizard/anonymousWizard';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
+import { exactNumbersLength, maxLength, onlyAlphanumeric, onlyNumbers, startsWith } from '@/services/formValidators';
 // styles
 import classes from './styles.module.scss';
+// Models
+import { LoginPayload } from '@/models/auth';
 
 const Login: FC = () => {
   const { t } = useTranslation('login');
-  // const INITIAL_FORM_STATE: LoginPayload = {
-  const INITIAL_FORM_STATE: any = {
-    phoneNumber: '',
-    password: '',
-    rememberMe: false,
+
+  const INITIAL_FORM_STATE: LoginPayload = {
+    phone: '',
+    password: ''
   };
 
   const FORM_VALIDATION = Yup.object().shape({
-    phoneNumber: Yup.number()
+    phone: Yup.string()
       .required(t('validations.required'))
-      .integer(t('validations.onlyIntegers'))
-      .typeError(t('validations.onlyNumbers'))
-      .test('len', t('validations.exactNumbersLength', { length: 9 }), val => `${val}`.length === 9),
+      .test('onlyNumbers', t('validations.onlyNumbers'), val => onlyNumbers(`${val}`))
+      .test('startWith', t('validations.startWith', { char: '0' }), val => startsWith(`${val}`, '0'))
+      .test('len', t('validations.exactNumbersLength', { length: 10 }), val => exactNumbersLength(`${val}`, 10)),
     password: Yup.string()
       .required(t('validations.required'))
+      .test('maxLength', t('validations.maxLength', { length: 100 }), value => maxLength(`${value}`, 100))
+      .test('onlyAlphanumeric', t('validations.onlyAlphanumeric'), value => onlyAlphanumeric(`${value}`))
   });
 
-  // const onLogin = (values: LoginPayload) => {
-  //   console.log('==================== Login ===================', {values});
-    
-  // };
   const onLogin = async (formValues: any) => {
     const result = await signIn('credentials', { 
       redirect: false,
       formValues
     });
-    console.log('onLogin', formValues, result);
+    console.log('onLogin ---> result', result);
   };
 
   return (
@@ -72,15 +69,15 @@ const Login: FC = () => {
               validationSchema={FORM_VALIDATION}
               onSubmit={onLogin}
             >
-              {({values, handleChange}) => (
+              {() => (
                 <Form> 
                   <Container maxWidth={LayoutSettings.maxWidth} disableGutters sx={{padding: 0}}>
                     <Grid container spacing={2} px={0}>
-                      <Grid item  px={0} xs={12}>
+                      <Grid item px={0} xs={12}>
                         <TextField 
-                          name='phoneNumber' 
+                          name='phone' 
                           label={t('phoneNumber')}
-                          placeholder='5xxxxxxxx'
+                          placeholder='05xxxxxxxx'
                         />        
                       </Grid>                    
                       
@@ -93,30 +90,13 @@ const Login: FC = () => {
                       </Grid>                      
                       
                       <Grid item xs={12} mt={1}>
-                        <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='space-between'>
-                          <FormControlLabel
-                            label={t('rememberMe')}
-                            className={classes.rememberMe}
-                            control={
-                              <Checkbox
-                                color='secondary'
-                                name='rememberMe'
-                                value={values.rememberMe} 
-                                onChange={handleChange}
-                                inputProps={{
-                                  'aria-label': 'Remember Me',
-                                }}
-                              />
-                            }
-                          />
-
+                        <Box display='flex' alignItems='center' justifyContent='flex-end'>
                           <Link href='/forgot-password'>
                             <a className={classes.forgotPassword}>
                               {t('didYouForgetPassword')}
                             </a>
                           </Link>
                         </Box>
-
                       </Grid>
 
                       <Grid item xs={12} mt={2}>

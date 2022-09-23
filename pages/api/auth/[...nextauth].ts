@@ -1,5 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+// Apis
+import { Endpoints } from '@/services/apis';
 
 export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
@@ -9,11 +11,18 @@ export default NextAuth({
       credentials: {},
       async authorize(credentials) {
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: 55, token: 'jblkjglkjljkhljkhljhljkh', name: 'J Smith', email: 'jsmith@example.com' };
+        // console.log('===========================================', credentials.formValues.phoneNumber);
+        
+        // await fetch('https://biker.jadeer.co/sanctum/csrf-cookie');
+        const response = await Endpoints.auth.login({
+          phone: '0531437350',
+          password: 'fflxtoyhqkglo'
+        });
 
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
+        console.log({response});
+
+        if (response && response.ok) {
+          return response.data;
         }
         
         return null;
