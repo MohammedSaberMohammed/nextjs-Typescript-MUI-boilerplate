@@ -20,7 +20,6 @@ export default class HttpMiddleware {
       if (typeof window !== 'undefined') {
         const token = localStorage.getItem(DevelopmentEnv.appToken);
       
-        console.log('insideMiddddddddd', token);
         if(inDevelopment) {
   
           if(token) {

@@ -1,6 +1,9 @@
 import { FC, ReactNode, useEffect } from 'react';
 // Next
 import { useSession } from 'next-auth/react';
+// Notifications
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // MUI
 import Box from '@mui/material/Box';
 // Components
@@ -17,17 +20,28 @@ const Layout: FC<Props> = (props) => {
 
   useEffect(() => {
 
-    if(process.env.NODE_ENV === 'development') {
+    if(session &&process.env.NODE_ENV === 'development') {
       // @ts-ignore
       const userKey = (session && session.user && session.user.token) || '';
+
       localStorage.setItem(DevelopmentEnv.appToken, userKey);
     }
-    console.log('[IN Layout]', session);
     
   }, [session]);
 
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <ToastContainer 
+        rtl
+        draggable
+        newestOnTop
+        closeOnClick
+        pauseOnHover 
+        pauseOnFocusLoss
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+      />
       <Header />
 
       <main>{props.children}</main>

@@ -1,3 +1,4 @@
+import { LayoutSettings } from '@/configs/layout';
 import { getToken } from 'next-auth/jwt';
 import { NextResponse, NextRequest } from 'next/server';
 
@@ -7,28 +8,28 @@ export async function middleware(req: NextRequest) {
   const userSession = await getToken({req, secret: process.env.NEXTAUTH_SECRET});
 
   const currentPath = req.nextUrl.pathname;
-  console.log('currentPath', currentPath);
   const authenticatedRoutes = ['/profile'];
   const notAuthenticatedRoutes = ['/login', '/signup'];
   const inNotAuthenticatedRoutes = notAuthenticatedRoutes.includes(currentPath); 
   const inAuthenticatedRoutes = authenticatedRoutes.includes(currentPath); 
   
   if(userSession && inNotAuthenticatedRoutes) {
-    clonedUrl.pathname = '/';
+    clonedUrl.pathname = LayoutSettings.redirectPathIfAuthenticated;
     
     return NextResponse.redirect(clonedUrl);
   }
   
   if(!userSession && inAuthenticatedRoutes) {
-    clonedUrl.pathname = '/login';
+    clonedUrl.pathname = LayoutSettings.redirectPathIfNotAuthenticated;
     
     return NextResponse.redirect(clonedUrl);
   }
   
-  // if(isProduction) {
+  if(isProduction) {
   //   // ! todo: Call csrf
+    console.log('isProduction [Middleware]', isProduction);
   //   // const csrf = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/sanctum/csrf-cookie`);
-  // } 
+  } 
 
   return NextResponse.next();
 }

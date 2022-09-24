@@ -1,11 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 // Next 
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 // MUI
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Container from '@mui/material/Container';
 // Forms - Validation
 import * as Yup from 'yup';
@@ -17,16 +18,18 @@ import { TextField } from '@/components/Form/Controls';
 import PageHeader from '@/components/PageHeader/pageHeader';
 import AnonymousWizard from '@/components/AnonymousWizard/anonymousWizard';
 // Utils
+import { toast } from 'react-toastify';
 import { LayoutSettings } from '@/configs/layout';
 import { exactNumbersLength, maxLength, onlyAlphanumeric, onlyNumbers, startsWith } from '@/services/formValidators';
 // styles
 import classes from './styles.module.scss';
 // Models
 import { LoginPayload } from '@/models/auth';
-import { Endpoints } from '@/services/apis';
 
 const Login: FC = () => {
+  const router = useRouter();
   const { t } = useTranslation('login');
+  const [isLoading, setIsLoading]= useState(false);
 
   const INITIAL_FORM_STATE: LoginPayload = {
     phone: '',
@@ -45,14 +48,27 @@ const Login: FC = () => {
       .test('onlyAlphanumeric', t('validations.onlyAlphanumeric'), value => onlyAlphanumeric(`${value}`))
   });
 
-  const onLogin = async (formValues: LoginPayload) => {
+  const onLogin = async ({ phone, password }: LoginPayload) => {
+    setIsLoading(true);
+    
     const result = await signIn('credentials', { 
+      phone,
+      password,
       redirect: false,
-      formValues
     });
-    const user = await Endpoints.auth.profile();
-    console.log('useruseruseruseruseruseruseruseruser', result);
-    console.log('onLogin ---> result', result);
+
+    if(result) {
+      const isSuccessfull = result.ok;
+      const message = isSuccessfull ? t('loggedInSuccessfully') : t(`serverErrors.${result.error}`);
+  
+      toast(message, { type: isSuccessfull ? 'success' : 'error' });
+
+      setIsLoading(false);
+
+      if (isSuccessfull) {
+        router.push(LayoutSettings.redirectPathIfAuthenticated);
+      }
+    }
   };
 
   return (
@@ -103,8 +119,10 @@ const Login: FC = () => {
                       </Grid>
 
                       <Grid item xs={12} mt={2}>
-                        <Button 
+                        <LoadingButton 
                           fullWidth
+                          disabled={isLoading}
+                          loading={isLoading}
                           className={classes.submitButton}
                           sx={{py: 1, fontSize: 16, lineHeight: '30px'}} 
                           type='submit'
@@ -112,7 +130,7 @@ const Login: FC = () => {
                           variant='contained' 
                         >
                           {t('enter')}
-                        </Button>
+                        </LoadingButton>
                       </Grid>
 
                       <Grid item xs={12} mt={3} display='flex' alignItems='center' justifyContent='center'>
