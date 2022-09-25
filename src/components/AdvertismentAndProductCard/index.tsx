@@ -1,7 +1,8 @@
 import { FC, useMemo } from 'react';
-
+// Next
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 // MUI
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -24,13 +25,15 @@ import { PropsModel } from './model';
 // Styles
 import classNames from 'classnames';
 import classes from './styles.module.scss';
+import { AdsAndProductsCategoryModel } from '@/models/adsAndProducts';
 
 const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const { price, name, advertisor, tags, isFavorite } = product;
+  const { data: session } = useSession();
+  const { price, image, title, advertisor, categories, isFavorite } = product;
 
-  const isAuthenticated = useMemo(() => false, [/* Some Prop Here */]);
+  const isAuthenticated = useMemo(() => Boolean(session), [session]);
 
   // const isFavoriteCard = useMemo(() => {}, [isFavorite, markAsFavorite])
 
@@ -82,7 +85,14 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
             variant="outlined"
             onClick={onChat}
             className={classes.chatBtn} 
-            startIcon={<QuestionAnswerOutlinedIcon />}
+            startIcon={(
+              <Image 
+                src='/icons/white-chat.svg' 
+                width={24} 
+                height={24} 
+                alt='chat with advertisor' 
+              />
+            )}
           >
             {t('chat')}
           </Button>
@@ -91,7 +101,14 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
             variant="contained"
             onClick={onCall} 
             className={classes.callBtn} 
-            startIcon={<PhoneEnabledOutlinedIcon />}
+            startIcon={(
+              <Image 
+                src='/icons/call.svg' 
+                width={24} 
+                height={24} 
+                alt='advertisor call' 
+              />
+            )}
           >
             {t('call')}
           </Button>
@@ -105,7 +122,14 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
         variant="outlined" 
         onClick={onAddToBasket}
         className={classes.addToBasketBtn} 
-        startIcon={<AddShoppingCartIcon />}
+        startIcon={(
+          <Image 
+            src='/icons/basket.svg' 
+            width={24} 
+            height={24} 
+            alt='add to basket' 
+          />
+        )}
       >
         {t('addToBasket')}
       </Button>
@@ -123,10 +147,10 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
           <Grid item sx={{padding: 0}} xs={12} sm={row ? 5 : 12} md={row ? 4 : 12}>
             <Box className={classes.imageAndActionsWrapper}>
               <Image 
-                src='/images/seat.png' 
+                src={image.large} 
                 layout='fill'
-                objectFit='contain'  
-                alt={name} 
+                objectFit='cover'  
+                alt={title} 
               />
 
               <Box className={classNames(classes.actionsWrapper, {[classes.row]: row})}>
@@ -136,11 +160,18 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
                     className={classes.favorite} 
                     onClick={onClickFavorite}
                   >
-                    { isFavorite ? <FavoriteOutlinedIcon style={{ color: 'red' }} /> : <FavoriteBorderIcon style={{ color: 'white' }}/>}
+                    { isFavorite ? <FavoriteOutlinedIcon style={{ color: 'red' }} /> : (
+                      <Image 
+                        src='/icons/white-heart.svg' 
+                        width={24} 
+                        height={24} 
+                        alt='not favorite' 
+                      />
+                    )}
                   </IconButton>
                 )}
 
-                <Box className={classNames(classes.externalActionsWrapper, { [classes.advertisementMode]: advertisor })}>{getExternalAction}</Box>
+                <Box className={classNames(classes.externalActionsWrapper, { [classes.advertisementMode]: !advertisor })}>{getExternalAction}</Box>
               </Box>
             </Box>
           </Grid>           
@@ -167,7 +198,7 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
                 )}
               </Box>
 
-              <p className={classes.productName}>{name || t('priceIsNotAvailable')}</p>
+              <p className={classes.productName}>{title || t('notAvailable')}</p>
 
               {advertisor && (
                 <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: 'wrap' }}>
@@ -176,15 +207,15 @@ const ProductCard: FC<PropsModel> = ({ row, product }: PropsModel) =>  {
                 </Stack>
               )}
 
-              {tags && (
+              {categories && (
                 <Box className={classes.tagsWrapper}>
-                  {tags.map((tag: string, index: number) => (
+                  {categories.map((category: AdsAndProductsCategoryModel) => (
                     <Button 
-                      key={index} 
+                      key={category.id} 
                       variant='outlined'
                       className={classes.cardTag}
                     >
-                      {tag}
+                      {category.title.ar}
                     </Button>
                   ))}
                 </Box>

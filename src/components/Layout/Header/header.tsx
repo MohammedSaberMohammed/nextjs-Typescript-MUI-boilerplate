@@ -31,7 +31,7 @@ const Header: FC = () => {
   const { t } = useTranslation('common');
   const theme = useTheme();
   const isInSmallScreens = useMediaQuery(theme.breakpoints.down('md'));
-  const { status, data: profile } = useSession();
+  const { data: profile } = useSession();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [categoriesMenu, setCategoriesMenu] = useState<HeaderMenu>({
     id: 'sections',

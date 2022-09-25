@@ -28,7 +28,7 @@ const Signup: FC = () => {
         <div className={classes.formWrapper}>
 
           <AnonymousWizard>
-            {!registeredData ? (
+            {registeredData ? (
               <VerifyOTPForm data={registeredData} />
             ) : (
               <RegisterForm  onRegister={onRegister} />

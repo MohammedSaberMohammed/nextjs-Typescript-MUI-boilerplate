@@ -2,8 +2,11 @@ import apisauce from 'apisauce';
 import { ApiConfigs } from '@/configs/apis';
 import HttpMiddleware from './HttpMiddleware';
 // Models
+import { BrandModel } from '@/models/brands';
 import { CategoryModel } from '@/models/categories';
 import { LoginPayload, LoginResponse, SignupPayload, SignupResponse } from '@/models/auth';
+import { serializeQueryParams } from '@/utils/global';
+import { AdsAndProductsModel, AdsAndProductsQueryModel } from '@/models/adsAndProducts';
 
 // List of all baseURL(s)
 const Shared = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUrls.shared });
@@ -22,7 +25,9 @@ const Endpoints = {
   },
   lookups: {
     categories: () => Shared.get<CategoryModel[]>('/categories')
-  }
+  },
+  brands: () => Shared.get<BrandModel[]>('/brands'),
+  adsAndProducts: (query: AdsAndProductsQueryModel = {}) => Shared.get<AdsAndProductsModel[]>(`/ads${serializeQueryParams(query)}`)
 };
 
 export {

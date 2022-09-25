@@ -49,7 +49,7 @@ const cacheLtr = createCache({
 function MyApp(props: MyAppProps) {
   const { i18n } = useTranslation();
 
-  const { Component, pageProps: { session, pageProps } } = props;
+  const { Component, pageProps: { session, ...pageProps } } = props;
   
   // ! To be revisited
   useEffect(() => {
