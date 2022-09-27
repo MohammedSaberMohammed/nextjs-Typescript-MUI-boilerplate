@@ -1,96 +1,68 @@
-
+import { FC } from 'react';
+// Next
+import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
+// MUI
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 // Components
-
-// import ImageGallery from '@/components/ImageGallery';
-import ProductCard from '@/components/AdvertismentAndProductCard';
-import Carousel from '@/components/Carousel/carousel';
+import AdvertismentAndProductCard from '@/components/AdvertismentAndProductCard';
 // Models
-import { HomeProps } from '@/models/pages/home';
-// import {  Container } from '@mui/material';
+import { AdsAndProductsModel } from '@/models/adsAndProducts';
+// Utils
+import { LayoutSettings } from '@/configs/layout';
+// Styles
+import classes from './mostVisitedAds.module.scss';
 
-const HomePage = (props: HomeProps) => {
-  console.log('Home Component', props);
+interface Props {
+  ads: AdsAndProductsModel[]
+}
+
+const MostVisitedAds: FC<Props>  = ({ ads }) => {
+  const { t } = useTranslation('home');
 
   return (
-    <>
-      {/* <Box sx={{maxWidth: 500, padding: 5, display: 'block'}}>
-        <ImageGallery items={images} />
-      </Box> */}
-      {/* <FeaturedPosts />*/}
-      <LanguageSwitcher /> 
-      
-      <Carousel >
-        {[1,1,1,1,1,1,1,1].map((item: number, index: number) => (
+    <section className={classes.wrapper}>
+      <Container maxWidth={LayoutSettings.maxWidth}>
+        <Box mb={5} display='flex' alignItems='center' justifyContent='space-between'>
+          <h3 className={classes.title}> {t('mostVisitedAds')}</h3>
+          
+          <div>
+            <Button 
+              fullWidth
+              color='secondary'
+              variant="contained" 
+              className={classes.btn}
+              endIcon={(
+                <Image 
+                  src='/icons/arrow-square-left.svg' 
+                  width={26} 
+                  height={26} 
+                  alt='add to basket' 
+                />
+              )}
+            >
+              {t('seeAll')}
+            </Button>
+          </div>
+        </Box>
 
-          <ProductCard
-            key={item}
-            product={{
-              isFavorite: false,
-              name: 'رسم دراجة نارية لباس علوي تانك',
-              price: '42 - ' + index,
-              tags: ['قفازات', 'حوامل', 'إضافات'],
-              advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-            }}
-          />
-        ))}
-      </Carousel>
-      {/* dasd */}
-      {/* <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              row
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              row
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>
+        <Grid container spacing={2}>
+          {ads.map((ad: AdsAndProductsModel) => (
+            <Grid item key={ad.id} xs={12} md={6}>
+              <AdvertismentAndProductCard
+                row
+                product={ad}
+              />
+            </Grid>
+          ))}
+        </Grid>
 
-        </Grid> 
-      </Container>*/}
-    </>
+      </Container>
+    </section>
   );
 };
 
-export default HomePage;
+export default MostVisitedAds;

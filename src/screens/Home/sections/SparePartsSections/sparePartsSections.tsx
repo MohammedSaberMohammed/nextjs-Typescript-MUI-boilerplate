@@ -1,96 +1,75 @@
-
+import { FC, useMemo } from 'react';
+// Next
+import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
+// MUI
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 // Components
-
-// import ImageGallery from '@/components/ImageGallery';
-import ProductCard from '@/components/AdvertismentAndProductCard';
 import Carousel from '@/components/Carousel/carousel';
 // Models
-import { HomeProps } from '@/models/pages/home';
-// import {  Container } from '@mui/material';
+import { CategoryModel } from '@/models/categories';
+// Utils
+import { LayoutSettings } from '@/configs/layout';
+import { getRandomNumber } from '@/utils/global';
+import { RandomColors } from '@/services/staticLookups';
+// Styles
+import classes from './sparePartsSections.module.scss';
 
-const HomePage = (props: HomeProps) => {
-  console.log('Home Component', props);
+interface Props {
+  categories: CategoryModel[]
+}
+
+const SparePartsSections: FC<Props>  = ({ categories }) => {
+  const { t } = useTranslation('home');
+  
+  const getCategoryColor = () => {
+    const randomNumber = getRandomNumber(0, RandomColors.length);
+
+    return RandomColors[randomNumber] || '';
+  };
+
+  const initialSlidesToShow = useMemo(() => {
+    const { maxShownSpareParts } = LayoutSettings;
+
+    return maxShownSpareParts > categories.length ? categories.length : maxShownSpareParts;
+  }, [LayoutSettings, categories]);
+
+  const carouselSettings = useMemo(() => ({
+    showCustomPaging: false,
+    slidesToShow: initialSlidesToShow,
+    slidesToScroll: initialSlidesToShow,
+  }), [categories]);
 
   return (
-    <>
-      {/* <Box sx={{maxWidth: 500, padding: 5, display: 'block'}}>
-        <ImageGallery items={images} />
-      </Box> */}
-      {/* <FeaturedPosts />*/}
-      <LanguageSwitcher /> 
-      
-      <Carousel >
-        {[1,1,1,1,1,1,1,1].map((item: number, index: number) => (
+    <section className={classes.wrapper}>
+      <Container maxWidth={LayoutSettings.maxWidth}>
+        <Box mb={5} display='flex' alignItems='center' justifyContent='space-between'>
+          <h3 className={classes.title}> {t('sparePartsSections')}</h3>
+        </Box>
 
-          <ProductCard
-            key={item}
-            product={{
-              isFavorite: false,
-              name: 'رسم دراجة نارية لباس علوي تانك',
-              price: '42 - ' + index,
-              tags: ['قفازات', 'حوامل', 'إضافات'],
-              advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-            }}
-          />
-        ))}
-      </Carousel>
-      {/* dasd */}
-      {/* <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              row
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              row
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>
+        <Carousel { ...carouselSettings }>
+          {categories.map((category: CategoryModel) => (
+            <Box
+              key={category.id}
+              bgcolor={getCategoryColor()}
+              className={classes.categoryWrapper}
+            >
+              <Image 
+                src={category.icon.large} 
+                width={50} 
+                height={60} 
+                alt='category image' 
+              />
 
-        </Grid> 
-      </Container>*/}
-    </>
+              <p className={classes.categoryName}>{category.title.ar}</p>
+            </Box>
+          ))}
+        </Carousel>
+
+      </Container>
+    </section>
   );
 };
 
-export default HomePage;
+export default SparePartsSections;

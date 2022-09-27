@@ -1,5 +1,5 @@
 import { ReactNode, useContext, useRef } from 'react';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
 // MUi
 import Box from '@mui/material/Box';
 import { useMediaQuery } from '@mui/material';
@@ -13,8 +13,9 @@ import 'slick-carousel/slick/slick-theme.css';
 // Models
 import { LayoutContext } from '@/context/layout';
 
-interface CarouselProps {
-  children: ReactNode
+interface CarouselProps extends Settings {
+  children: ReactNode;
+  showCustomPaging?: boolean
 }
 
 const Carousel = (props: CarouselProps) => {
@@ -30,19 +31,19 @@ const Carousel = (props: CarouselProps) => {
 
   const slickNext = () => {
     if(carouselRef.current) {
-      carouselRef.current.slickNext();
+      (carouselRef.current as typeof Slider & { slickNext: () => void }).slickNext();
     }
   };
 
   const slickPrev = () => {
     if(carouselRef.current) {
-      carouselRef.current.slickPrev();
+      (carouselRef.current as typeof Slider & { slickPrev: () => void }).slickPrev();
     }
   };
 
   return (
     <>
-      {isBelowExtraLarge && (
+      {isBelowExtraLarge && props.showCustomPaging && (
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
           <Box className={classes.action} onClick={isRTL ? slickNext : slickPrev}>
             {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
@@ -55,7 +56,7 @@ const Carousel = (props: CarouselProps) => {
       )}
 
       <Box sx={{ position: 'relative' }}>
-        {!isBelowExtraLarge && (
+        {!isBelowExtraLarge && props.showCustomPaging && (
           <>
             <Box 
               onClick={isRTL ? slickPrev : slickNext}
@@ -76,10 +77,10 @@ const Carousel = (props: CarouselProps) => {
         )}
 
         <Slider
+          // @ts-ignore
           ref={carouselRef}
           {...settings}
           {...props}
-          
         >
           {props.children}
         </Slider>
@@ -94,6 +95,7 @@ Carousel.defaultProps = {
   arrows: false,
   infinite: true,
   autoplay: false,
+  showCustomPaging: true,
 
   speed: 500,
   slidesToShow: 4,

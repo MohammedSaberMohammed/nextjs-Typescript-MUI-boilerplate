@@ -9,5 +9,5 @@ export interface HomeProps {
   newAds: AdsAndProductsModel[],
   newestProducts: AdsAndProductsModel[],
   mostViewedAds: AdsAndProductsModel[],
-  bestSellerProducts: AdsAndProductsModel[],
+  bestSellingProducts: AdsAndProductsModel[],
 }

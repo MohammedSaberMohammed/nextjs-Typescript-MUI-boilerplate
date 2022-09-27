@@ -1,9 +1,10 @@
-import { ContainerProps} from '@mui/material/Container';
+import { ContainerProps } from '@mui/material/Container';
 
 interface LayoutSettingsModel extends ContainerProps {
   anonymousPath: string;
   redirectPathIfAuthenticated: string;
   redirectPathIfNotAuthenticated: string;
+  maxShownSpareParts: number
 }
 
 const LayoutSettings: LayoutSettingsModel = {
@@ -11,6 +12,7 @@ const LayoutSettings: LayoutSettingsModel = {
   anonymousPath: '/',
   redirectPathIfAuthenticated: '/',
   redirectPathIfNotAuthenticated: '/login',
+  maxShownSpareParts: 6
 };
 
 export {

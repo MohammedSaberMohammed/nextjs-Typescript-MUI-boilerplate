@@ -1,3 +1,5 @@
+import { LoginResponse } from './auth';
+
  interface AdsAndProductsImage {
   id: number,
   uuid: string,
@@ -50,7 +52,8 @@ export interface AdsAndProductsModel {
   updated_at: string,
   isFavorite: false,
   image: AdsAndProductsImage,
-  categories?: Category[]
+  categories: AdsAndProductsCategoryModel[],
+  user?: LoginResponse
 }
 
 export interface AdsAndProductsQueryModel {

@@ -4,30 +4,30 @@ import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 // MUI
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 // Components
-import Carousel from '@/components/Carousel/carousel';
 import AdvertismentAndProductCard from '@/components/AdvertismentAndProductCard';
 // Models
 import { AdsAndProductsModel } from '@/models/adsAndProducts';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
 // Styles
-import classes from './newAds.module.scss';
+import classes from './bestSellingProducts.module.scss';
 
 interface Props {
-  ads: AdsAndProductsModel[]
+  products: AdsAndProductsModel[]
 }
 
-const NewestAds: FC<Props>  = ({ ads }) => {
+const BestSellingProducts: FC<Props>  = ({ products }) => {
   const { t } = useTranslation('home');
 
   return (
     <section className={classes.wrapper}>
       <Container maxWidth={LayoutSettings.maxWidth}>
         <Box mb={5} display='flex' alignItems='center' justifyContent='space-between'>
-          <h3 className={classes.title}> {t('newAds')}</h3>
+          <h3 className={classes.title}> {t('bestSellingProducts')}</h3>
           
           <div>
             <Button 
@@ -40,7 +40,7 @@ const NewestAds: FC<Props>  = ({ ads }) => {
                   src='/icons/arrow-square-left.svg' 
                   width={26} 
                   height={26} 
-                  alt='browse new ads' 
+                  alt='add to basket' 
                 />
               )}
             >
@@ -49,17 +49,20 @@ const NewestAds: FC<Props>  = ({ ads }) => {
           </div>
         </Box>
 
-        <Carousel>
-          {ads.map((ad: AdsAndProductsModel) => (
-            <AdvertismentAndProductCard
-              key={ad.id}
-              product={ad}
-            />
+        <Grid container spacing={2}>
+          {products.map((product: AdsAndProductsModel) => (
+            <Grid item key={product.id} xs={12} md={6}>
+              <AdvertismentAndProductCard
+                row
+                product={product}
+              />
+            </Grid>
           ))}
-        </Carousel>
+        </Grid>
+
       </Container>
     </section>
   );
 };
 
-export default NewestAds;
+export default BestSellingProducts;

@@ -4,7 +4,7 @@ import Search from './sections/Search/search';
 import Intro from './sections/Intro/intro';
 import Brief from './sections/Brief/brief';
 import NewestProducts from './sections/NewestProducts/newestProducts';
-import BestSellerProducts from './sections/BestSellerProducts/bestSellerProducts';
+import BestSellingProducts from './sections/BestSellingProducts/bestSellerProducts';
 import NewAds from './sections/NewAds/newAds';
 import Advertise from './sections/Advertise/advertise';
 import MostVisitedAds from './sections/MostVisitedAds/mostVisitedAds';
@@ -15,7 +15,7 @@ import Partners from './sections/Partners/partners';
 import { HomeProps } from '@/models/pages/home';
 
 const HomePage = ({
-  bestSellerProducts,
+  bestSellingProducts,
   brands,
   categories,
   mostViewedAds,
@@ -23,7 +23,7 @@ const HomePage = ({
   newestProducts
 }: HomeProps) => {
   console.log({
-    bestSellerProducts,
+    bestSellingProducts,
     brands,
     categories,
     mostViewedAds,
@@ -36,12 +36,12 @@ const HomePage = ({
       <Intro />
       <Brief />
       <NewestProducts products={newestProducts} />
-      {/* <BestSellerProducts products={bestSellerProducts}/>
+      <BestSellingProducts products={bestSellingProducts}/>
       <NewAds ads={newAds} />
       <Advertise />
       <MostVisitedAds ads={mostViewedAds} />
       <SparePartsSections categories={categories} />
-      <Brands brands={brands} />
+      {/*<Brands brands={brands} />
       <Partners /> */}
     </>
   );

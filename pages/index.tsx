@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   let categories: CategoryModel[] = [];
   let newAds: AdsAndProductsModel[] = [];
   let mostViewedAds: AdsAndProductsModel[] = [];  
-  let bestSellerProducts: AdsAndProductsModel[] = [];
+  let bestSellingProducts: AdsAndProductsModel[] = [];
   let newestProducts: AdsAndProductsModel[] = [];
 
   const brandsRes = await Endpoints.brands();
@@ -25,14 +25,14 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   const newAdsResponse = await Endpoints.adsAndProducts({ type: 'ad', orderBy: 'created_at', limit: 12 });
   const mostViewedAdsRes = await Endpoints.adsAndProducts({ type: 'ad', orderBy: 'mostvisited', limit: 4 });
   const newestProductsRes = await Endpoints.adsAndProducts({ type: 'product', orderBy: 'created_at', limit: 12 });
-  const bestSellerProductsRes = await Endpoints.adsAndProducts({ type: 'product', orderBy: 'bestseller', limit: 4 });
+  const bestSellingProductsRes = await Endpoints.adsAndProducts({ type: 'product', orderBy: 'bestseller', limit: 4 });
 
   brands = (brandsRes.ok && brandsRes.data) ? brandsRes.data : brands;
   categories = (categoriesRes.ok && categoriesRes.data) ? categoriesRes.data : categories;
   newAds = (newAdsResponse.ok && newAdsResponse.data) ? newAdsResponse.data : newAds;
   newestProducts = (newestProductsRes.ok && newestProductsRes.data) ? newestProductsRes.data : newestProducts;
   mostViewedAds = (mostViewedAdsRes.ok && mostViewedAdsRes.data) ? mostViewedAdsRes.data : mostViewedAds;
-  bestSellerProducts = (bestSellerProductsRes.ok && bestSellerProductsRes.data) ? bestSellerProductsRes.data : bestSellerProducts;
+  bestSellingProducts = (bestSellingProductsRes.ok && bestSellingProductsRes.data) ? bestSellingProductsRes.data : bestSellingProducts;
 
   return {
     props: {
@@ -41,8 +41,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       categories,
       mostViewedAds,
       newestProducts,
-      bestSellerProducts,
-      ...(await serverSideTranslations(locale || 'ar', ['common'])),
+      bestSellingProducts,
+      ...(await serverSideTranslations(locale || 'ar', ['common', 'home'])),
     },
     revalidate: 1800
   };
