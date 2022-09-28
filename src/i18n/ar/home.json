@@ -4,6 +4,9 @@
   "bestSellingProducts": "المنتجات الأكثر مبيعا",
   "newAds": "إعلانات جديدة",
   "mostVisitedAds": "إعلانات أكثر زيارة",
-  "sparePartsSections": "أقسام قطع الغيار"
-
+  "sparePartsSections": "أقسام قطع الغيار",
+  "sections" : "الأقسام",
+  "addAdvertisment": "أضف إعلان",
+  "platformSearch": "بحث في المنصة",
+  "search": "بحث"
 }

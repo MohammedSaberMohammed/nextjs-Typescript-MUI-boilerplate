@@ -4,5 +4,9 @@
   "bestSellingProducts": "Best selling products",
   "newAds": "New ads",
   "mostVisitedAds": "Most visited ads",
-  "sparePartsSections": "Spare parts sections"
+  "sparePartsSections": "Spare parts sections",
+  "sections": "Sections",
+  "addAdvertisment": "add an advertisment",
+  "platformSearch": "Search in platform",
+  "search": "Search"
 }
