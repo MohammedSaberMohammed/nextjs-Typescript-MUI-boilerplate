@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useRef } from 'react';
+import React, { forwardRef, ReactNode, useContext, useImperativeHandle, useMemo, useRef } from 'react';
 import Slider, { Settings } from 'react-slick';
 // MUi
 import Box from '@mui/material/Box';
@@ -12,20 +12,23 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // Models
 import { LayoutContext } from '@/context/layout';
+import classNames from 'classnames';
 
 interface CarouselProps extends Settings {
   children: ReactNode;
-  showCustomPaging?: boolean
+  showCustomPaging?: boolean,
+  customControlClass?: string,
+  customControlsWrapperClass?: string
 }
 
-const Carousel = (props: CarouselProps) => {
+const Carousel = forwardRef((props: CarouselProps, ref) => {
   const carouselRef = useRef<typeof Slider | null>(null);
   const {isRTL} = useContext(LayoutContext);
   const isBelowExtraLarge = useMediaQuery('(max-width: 1592px)');
 
   const settings = {
     customPaging: (i: number) => (
-      <div className={classes.dot}>{i + 1}</div>
+      <div className={classNames(classes.dot, {[classes.hidden]: !props.dots})}>{i + 1}</div>
     )
   };
 
@@ -41,19 +44,25 @@ const Carousel = (props: CarouselProps) => {
     }
   };
 
+  const cutomControls = useMemo(() => (
+    <Box className={props.customControlsWrapperClass} sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+      <Box className={classNames(classes.action, props.customControlClass)} onClick={isRTL ? slickNext : slickPrev}>
+        {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
+      </Box>
+
+      <Box className={classNames(classes.action, props.customControlClass)} mx={2} onClick={isRTL ? slickPrev : slickNext}>
+        {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
+      </Box>
+    </Box>
+  ), [isRTL, slickPrev, slickNext]);
+
+  useImperativeHandle(ref, () => ({
+    cutomControls
+  }));  
+
   return (
     <>
-      {isBelowExtraLarge && props.showCustomPaging && (
-        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-          <Box className={classes.action} onClick={isRTL ? slickNext : slickPrev}>
-            {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
-          </Box>
-
-          <Box className={classes.action} mx={2} onClick={isRTL ? slickPrev : slickNext}>
-            {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
-          </Box>
-        </Box>
-      )}
+      {isBelowExtraLarge && props.showCustomPaging && cutomControls}
 
       <Box sx={{ position: 'relative' }}>
         {!isBelowExtraLarge && props.showCustomPaging && (
@@ -88,9 +97,13 @@ const Carousel = (props: CarouselProps) => {
       </Box>
     </>
   );
-};
+});
+
+Carousel.displayName = 'base carousel';
 
 Carousel.defaultProps = {
+  customControlClass: '',
+  customControlsWrapperClass: '',
   dots: true,
   arrows: false,
   infinite: true,

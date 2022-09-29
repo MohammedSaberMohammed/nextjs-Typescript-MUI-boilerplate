@@ -41,8 +41,8 @@ const HomePage = ({
       <Advertise />
       <MostVisitedAds ads={mostViewedAds} />
       <SparePartsSections categories={categories} />
-      {/*<Brands brands={brands} />
-      <Partners /> */}
+      <Brands brands={brands} />
+      <Partners /> 
     </>
   );
 };

@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface PageHeaderProps {
   title?: string;
   subTitle?: string;
@@ -5,4 +7,7 @@ export interface PageHeaderProps {
   backgroundAlt?: string;  
   prefixBackgroundSrc?: string;
   prefixBackgroundAlt?: string;
+  wrapperClassName?: string;
+  showPrefix?: boolean;
+  renderAction?: () => ReactNode;
 }

@@ -30,7 +30,7 @@ const SparePartsSections: FC<Props>  = ({ categories }) => {
   };
 
   const initialSlidesToShow = useMemo(() => {
-    const { maxShownSpareParts } = LayoutSettings;
+    const { home: { maxShownSpareParts } } = LayoutSettings;
 
     return maxShownSpareParts > categories.length ? categories.length : maxShownSpareParts;
   }, [LayoutSettings, categories]);

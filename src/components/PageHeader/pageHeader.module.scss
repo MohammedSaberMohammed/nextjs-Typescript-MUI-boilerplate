@@ -43,6 +43,10 @@
         font-size: 16px;
         opacity: .7;
       }
+
+      &.fullWidth {
+        flex-basis: 100%;
+      }
     }
 
     .imageWrapper {
