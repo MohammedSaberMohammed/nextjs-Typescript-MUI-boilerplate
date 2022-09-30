@@ -13,6 +13,16 @@
   "createAnAccount": "إنشاء حساب",
   "shouldMatchPassword": "غير مطابق لكلمة المرور",
   "pleaseAgreeOnTermsAndConditions": "الرجاء الموافقة على الشروط والأحكام",
+  "accountRegiseredSuccessfully": "تم إنشاء الحساب بنجاح",
+  "activateYourAccount": "تفعيل حسابك",
+  "enterOtpSentToYourPhone": "أدخل الكود المرسل على جوالك لتفعيل الحساب الخاص بك",
+  "activateMyAccount": "تفعيل حسابي",
+  "enterYourAccountVerificationCode": "أدخل كود تفعيل حسابك",
+  "enterOtpSentToPhoneNumber": "أدخل كود التفعيل المرسل على رقم",
+  "verificationCode": "كود التحقق",
+  "didNotRecieve": "لم يصلك ؟",
+  "resendTheCode": "أعد إرسال الكود",
+  "remainingTime": "الوقت المتبقي {{seconds}} : {{minutes}}",
 
   "validations": {
     "required": "هذا الحقل مطلوب",

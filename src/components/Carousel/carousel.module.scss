@@ -5,6 +5,10 @@
   top: -10px;
   width: 100%;
   opacity: 0;
+
+  &.hidden {
+    display: none;
+  }
 }
 
 .action {

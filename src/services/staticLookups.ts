@@ -1,16 +1,19 @@
+export const OTPCounterTypes = {
+  minutes: 'm',
+  seconds: 's',
+};
 
-export const Countries= [
-  { id: 'AD', label: 'i18n?.t' },
-  { id: 'AE', label: 'United Arab Emirates' },
-  { id: 'AF', label: 'Afghanistan' },
-  { id: 'AG', label: 'Antigua and Barbuda' },
-  { id: 'AI', label: 'Anguilla' },
-  { id: 'AL', label: 'Albania' },
-  { id: 'AM', label: 'Armenia' },
-  { id: 'AO', label: 'Angola' },
-  { id: 'AQ', label: 'Antarctica' },
-  { id: 'AR', label: 'Argentina' },
-  { id: 'AS', label: 'American Samoa' },
-  { id: 'AT', label: 'Austria' },
-  { id: 'AU', label: 'Australia'},
-];
+export const AdOrProductTypes = {
+  product: 'product',
+  ad: 'ad'
+};
+
+export const RandomColors = ['#B28E4D0F', '#2B50DE0F', '#4D3C1C0F', '#2DB84D0F', '#26A2C90F', '#5E65510F'];
+
+export const AdsAndProductsFilters = {
+  newest: 'created_at',
+  mostvisited: 'mostvisited',
+  bestseller: 'bestseller'
+};
+
+export const AdsAndProductsFiltersIds = Object.values(AdsAndProductsFilters);

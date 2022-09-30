@@ -8,6 +8,7 @@
   "didYouForgetPassword": "هل نسيت كلمة المرور ؟",
   "youDoNotHaveAnAccount":  "ليس لديك حساب ؟",
   "createNewAccount": " انشاء حساب جديد ",
+  "loggedInSuccessfully": "تم تسجيل الدخول بنجاح",
 
   "validations": {
     "required": "هذا الحقل مطلوب",
@@ -18,5 +19,9 @@
     "onlyAlphanumeric": "الرجاء ادخال حروف وارقام فقط",
     "maxLength": "أكثر عدد للحروف مسموح به هو {{length}}",
     "minLength": "أقل عدد للحروف مسموح به هو {{length}}"
+  },
+
+  "serverErrors": {
+    "INVALID_CREDENTIALS": "البيانات المدخلة غير صحيحة"
   }
 }

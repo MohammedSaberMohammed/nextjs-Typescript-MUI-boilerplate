@@ -13,6 +13,17 @@
   "createAnAccount": "Create an account",
   "shouldMatchPassword": "Should match password",
   "pleaseAgreeOnTermsAndConditions": "Please agree on terms and conditions",
+  "loggedInSuccessfully": "Logged in successfully",
+  "accountRegiseredSuccessfully": "Account regisered successfully",
+  "activateYourAccount": "Activate your account",
+  "enterOtpSentToYourPhone": "Please enter the otp sent to your phone",
+  "activateMyAccount": "Activate my account",
+  "enterYourAccountVerificationCode": "",
+  "enterOtpSentToPhoneNumber": "Enter otp sent to phone number",
+  "verificationCode": "Verification code",
+  "didNotRecieve": "didn't recieve ?",
+  "resendTheCode": "Resend the code",
+  "remainingTime": "Remaining time {{seconds}} : {{minutes}}",
 
   "validations": {
     "required": "This field is required",
@@ -23,5 +34,9 @@
     "onlyAlphanumeric": "only chars and numbers allowed",
     "maxLength": "Maximum allowed chars length is {{length}}",
     "minLength": "Minimum allowed chars length is {{length}}"
+  },
+
+  "serverErrors": {
+    "INVALID_CREDENTIALS": "Invalid credentials"
   }
 }

@@ -1,3 +1,4 @@
+import { DevelopmentEnv } from '@/configs/development';
 import { ApisauceInstance } from 'apisauce';
 
 // import ResponseErrorMiddleware from './ResponseErrorMiddleware';
@@ -13,7 +14,23 @@ export default class HttpMiddleware {
   }
 
   handleRequest() {
-    this.api.addRequestTransform(request => request);
+    this.api.addRequestTransform(request => {
+      const inDevelopment = process.env.NODE_ENV === 'development';
+      
+      if (typeof window !== 'undefined') {
+        const token = localStorage.getItem(DevelopmentEnv.appToken);
+      
+        if(inDevelopment) {
+  
+          if(token) {
+  
+            request.headers.Authorization=  `Bearer ${token}`;
+          }
+        }
+      }
+
+      return request;
+    });
   }
 
   handleResponse() {

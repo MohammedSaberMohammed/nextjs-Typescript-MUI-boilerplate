@@ -5,6 +5,15 @@ import { Endpoints } from '@/services/apis';
 // Models
 import { LoginResponse } from '@/models/auth';
 
+interface Credentials {
+  callbackUrl: string;
+  csrfToken: string;
+  json: string;
+  password: string;
+  phone: string;
+  redirect: string
+}
+
 export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
 
@@ -12,20 +21,22 @@ export default NextAuth({
     CredentialsProvider({
       credentials: {},
       // @ts-ignore
-      async authorize(credentials) {
-        // Add logic here to look up the user from the credentials supplied
-        // console.log('===========================================', credentials.formValues.phoneNumber);
-        
+      async authorize(credentials: Credentials) {        
         // await fetch('https://biker.jadeer.co/sanctum/csrf-cookie');
         const response = await Endpoints.auth.login({
-          phone: '0531437350',
-          password: 'fflxtoyhqkglo'
+          // phone: '0531437350',
+          // password: 'fflxtoyhqkglo'         
+          phone: credentials.phone,
+          password: credentials.password
         });
-
-        console.log({response, credentials});
 
         if (response && response.ok) {
           return response.data as LoginResponse;
+        }
+
+        if(response && !response.ok) {
+
+          throw new Error('INVALID_CREDENTIALS');
         }
         
         return null;

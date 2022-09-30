@@ -1,5 +1,5 @@
-import { ReactNode, useContext, useRef } from 'react';
-import Slider from 'react-slick';
+import React, { forwardRef, ReactNode, useContext, useImperativeHandle, useMemo, useRef } from 'react';
+import Slider, { Settings } from 'react-slick';
 // MUi
 import Box from '@mui/material/Box';
 import { useMediaQuery } from '@mui/material';
@@ -12,50 +12,60 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // Models
 import { LayoutContext } from '@/context/layout';
+import classNames from 'classnames';
 
-interface CarouselProps {
-  children: ReactNode
+interface CarouselProps extends Settings {
+  children: ReactNode;
+  showCustomPaging?: boolean,
+  customControlClass?: string,
+  customControlsWrapperClass?: string
 }
 
-const Carousel = (props: CarouselProps) => {
+const Carousel = forwardRef((props: CarouselProps, ref) => {
   const carouselRef = useRef<typeof Slider | null>(null);
   const {isRTL} = useContext(LayoutContext);
   const isBelowExtraLarge = useMediaQuery('(max-width: 1592px)');
 
   const settings = {
     customPaging: (i: number) => (
-      <div className={classes.dot}>{i + 1}</div>
+      <div className={classNames(classes.dot, {[classes.hidden]: !props.dots})}>{i + 1}</div>
     )
   };
 
   const slickNext = () => {
     if(carouselRef.current) {
-      carouselRef.current.slickNext();
+      (carouselRef.current as typeof Slider & { slickNext: () => void }).slickNext();
     }
   };
 
   const slickPrev = () => {
     if(carouselRef.current) {
-      carouselRef.current.slickPrev();
+      (carouselRef.current as typeof Slider & { slickPrev: () => void }).slickPrev();
     }
   };
 
+  const cutomControls = useMemo(() => (
+    <Box className={props.customControlsWrapperClass} sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+      <Box className={classNames(classes.action, props.customControlClass)} onClick={isRTL ? slickNext : slickPrev}>
+        {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
+      </Box>
+
+      <Box className={classNames(classes.action, props.customControlClass)} mx={2} onClick={isRTL ? slickPrev : slickNext}>
+        {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
+      </Box>
+    </Box>
+  ), [isRTL, slickPrev, slickNext]);
+
+  useImperativeHandle(ref, () => ({
+    cutomControls
+  }));  
+
   return (
     <>
-      {isBelowExtraLarge && (
-        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-          <Box className={classes.action} onClick={isRTL ? slickNext : slickPrev}>
-            {isRTL ? <ArrowForward color='secondary' /> : <ArrowBack color='secondary' />}
-          </Box>
-
-          <Box className={classes.action} mx={2} onClick={isRTL ? slickPrev : slickNext}>
-            {isRTL ? <ArrowBack color='secondary' /> : <ArrowForward color='secondary' />} 
-          </Box>
-        </Box>
-      )}
+      {isBelowExtraLarge && props.showCustomPaging && cutomControls}
 
       <Box sx={{ position: 'relative' }}>
-        {!isBelowExtraLarge && (
+        {!isBelowExtraLarge && props.showCustomPaging && (
           <>
             <Box 
               onClick={isRTL ? slickPrev : slickNext}
@@ -76,10 +86,10 @@ const Carousel = (props: CarouselProps) => {
         )}
 
         <Slider
+          // @ts-ignore
           ref={carouselRef}
           {...settings}
           {...props}
-          
         >
           {props.children}
         </Slider>
@@ -87,13 +97,18 @@ const Carousel = (props: CarouselProps) => {
       </Box>
     </>
   );
-};
+});
+
+Carousel.displayName = 'base carousel';
 
 Carousel.defaultProps = {
+  customControlClass: '',
+  customControlsWrapperClass: '',
   dots: true,
   arrows: false,
   infinite: true,
   autoplay: false,
+  showCustomPaging: true,
 
   speed: 500,
   slidesToShow: 4,

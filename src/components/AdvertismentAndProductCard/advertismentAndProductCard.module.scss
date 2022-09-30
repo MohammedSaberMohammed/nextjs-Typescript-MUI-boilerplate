@@ -32,13 +32,13 @@
 
       .favorite {
         transition: all .3s ease-in-out;
-        transform: translateY(-100%);
+        transform: translateY(-150%);
       }
 
       .externalActionsWrapper {
         width: 100%;
         transition: all .3s ease-in-out;
-        transform: translateY(100%);
+        transform: translateY(150%);
 
         .addToBasketBtn {
           @include whiteBtn;
@@ -74,23 +74,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-    } 
 
-    &:hover {
-      .actionsWrapper {
-        opacity: 1;
-
-        .favorite,
         .externalActionsWrapper {
-          transform: unset;
+
+          transform: translateY(280%);
         }
       }
-    }
+    } 
   }
 
   .detailsWrapper {
     margin-top: 30px;
+    background-color: #fff;
 
     .priceWrapper {
       display: flex;
@@ -114,7 +109,7 @@
     }
 
     .productName {
-      margin: 10px 0;
+      margin: 16px 0 19px;
       font-size: 18px;
       font-weight: bold;
       flex: 1;
@@ -143,6 +138,19 @@
     }
   }
 
+  &:hover {
+    .imageAndActionsWrapper {
+      .actionsWrapper {
+        opacity: 1;
+  
+        .favorite,
+        .externalActionsWrapper {
+          transform: unset;
+        }
+      }
+    }
+  }
+
   &.row {
     .imageAndActionsWrapper {
       height: 100%;
@@ -150,7 +158,7 @@
 
     .detailsWrapper {
       margin-top: 0;
-      border: 1px solid $grey;
+      border: 1px solid #B28E4D1A;
       border-radius: 8px;
       padding: 10px 20px;
     }

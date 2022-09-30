@@ -24,9 +24,15 @@ export interface SignupPayload {
 }
 
 export interface SignupResponse {
-  id: number;
-  name: string;
-  phone: string;
-  updated_at: string;
-  created_at: boolean
+  id?: number;
+  name?: string;
+  phone?: string;
+  updated_at?: string;
+  created_at?: boolean;
+  errors?: { [key: string]: string[] };
+  message?: string
+}
+
+export interface VerifyAccountOTP {
+  otp: string
 }

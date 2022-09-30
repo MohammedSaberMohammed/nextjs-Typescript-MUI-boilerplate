@@ -1,112 +1,48 @@
-// import ImageGallery from '@/components/ImageGallery';
-import LanguageSwitcher from '@/components/languageSwitcher';
-import ProductCard from '@/components/ProductCard';
-import Carousel from '@/components/Carousel/carousel';
-// import {  Container } from '@mui/material';
-// import FeaturedPosts from './FeaturedPosts';
-// import Hero from './Hero';
 
-const HomePage = () => {
-  // const images = [
-  //   {
-  //     original: 'https://picsum.photos/id/1018/1000/600/',
-  //     thumbnail: 'https://picsum.photos/id/1018/250/150/',
-  //   },
-  //   {
-  //     original: 'https://picsum.photos/id/1015/1000/600/',
-  //     thumbnail: 'https://picsum.photos/id/1015/250/150/',
-  //   },
-  //   {
-  //     original: 'https://picsum.photos/id/1019/1000/600/',
-  //     thumbnail: 'https://picsum.photos/id/1019/250/150/',
-  //   },{
-  //     original: 'https://picsum.photos/id/1015/1000/600/',
-  //     thumbnail: 'https://picsum.photos/id/1015/250/150/',
-  //   },
-  //   {
-  //     original: 'https://picsum.photos/id/1019/1000/600/',
-  //     thumbnail: 'https://picsum.photos/id/1019/250/150/',
-  //   },
-  // ];
+// Components
+import Search from './sections/Search/search';
+import Intro from './sections/Intro/intro';
+import Brief from './sections/Brief/brief';
+import NewestProducts from './sections/NewestProducts/newestProducts';
+import BestSellingProducts from './sections/BestSellingProducts/bestSellerProducts';
+import NewAds from './sections/NewAds/newAds';
+import Advertise from './sections/Advertise/advertise';
+import MostVisitedAds from './sections/MostVisitedAds/mostVisitedAds';
+import SparePartsSections from './sections/SparePartsSections/sparePartsSections';
+import Brands from './sections/Brands/brands';
+import Partners from './sections/Partners/partners';
+// Models
+import { HomeProps } from '@/models/pages/home';
 
+const HomePage = ({
+  bestSellingProducts,
+  brands,
+  categories,
+  mostViewedAds,
+  newAds,
+  newestProducts
+}: HomeProps) => {
+  console.log({
+    bestSellingProducts,
+    brands,
+    categories,
+    mostViewedAds,
+    newAds,
+    newestProducts
+  });
   return (
     <>
-      {/* <Box sx={{maxWidth: 500, padding: 5, display: 'block'}}>
-        <ImageGallery items={images} />
-      </Box> */}
-      {/* <FeaturedPosts />*/}
-      <LanguageSwitcher /> 
-      
-      <Carousel >
-        {[1,1,1,1,1,1,1,1].map((item: number, index: number) => (
-
-          <ProductCard
-            key={item}
-            product={{
-              isFavorite: false,
-              name: 'رسم دراجة نارية لباس علوي تانك',
-              price: '42 - ' + index,
-              tags: ['قفازات', 'حوامل', 'إضافات'],
-              advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-            }}
-          />
-        ))}
-      </Carousel>
-      {/* dasd */}
-      {/* <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              row
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              row
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>          
-          
-          <Grid item xs={12} md={6}>
-            <ProductCard
-              product={{
-                isFavorite: false,
-                name: 'رسم دراجة نارية لباس علوي تانك',
-                price: 42,
-                tags: ['قفازات', 'حوامل', 'إضافات'],
-                advertisor: {date: '15/03/1995', name: 'محمود عماد'}
-              }}
-            />
-          </Grid>
-
-        </Grid> 
-      </Container>*/}
+      <Search categories={categories} />
+      <Intro />
+      <Brief />
+      <NewestProducts products={newestProducts} />
+      <BestSellingProducts products={bestSellingProducts}/>
+      <NewAds ads={newAds} />
+      <Advertise />
+      <MostVisitedAds ads={mostViewedAds} />
+      <SparePartsSections categories={categories} />
+      <Brands brands={brands} />
+      <Partners /> 
     </>
   );
 };

@@ -28,6 +28,32 @@
         margin: 0 5px;
         color: $primary-color;
         font-family: $medium-font;
+
+        &.resend {
+          cursor: pointer;
+        }
+
+        &.counting {
+          color: $grey
+        }
+      }
+    }
+
+    .formTitle {
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 20px;
+      font-family: $heavy-font;
+    }
+
+    .formSubTitle {
+      font-size: 16px;
+      margin: 0 5px;
+      color: #ccc;
+
+
+      &.phone {
+        color: $primary-color
       }
     }
 

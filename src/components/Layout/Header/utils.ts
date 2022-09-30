@@ -1,12 +1,18 @@
 import { signOut } from 'next-auth/react';
+// Next
+import Router from 'next/router';
 // styles
 import classes from './header.module.scss';
+// Utils
+import { LayoutSettings } from '@/configs/layout';
 // Models
 import { CategoryModel } from '@/models/categories';
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
+import { DevelopmentEnv } from '@/configs/development';
+import { AdsAndProductsFilters } from '@/services/staticLookups';
 
 const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
-  console.log('profile', profile);
+
   if (profile) {
     return [
       { title: t('myOrders'), link: '/', iconPath: '/icons/book.svg', suffix: 12 },
@@ -21,8 +27,13 @@ const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
         iconPath: '/icons/logout.svg',
         link: '',
         props: { 
-          onClick: () => signOut({ redirect: false }), 
-          className: classes.logout 
+          className: classes.logout, 
+          onClick: () => {
+            signOut({ redirect: false });
+            
+            Router.push(LayoutSettings.anonymousPath);
+            localStorage.setItem(DevelopmentEnv.appToken, '');
+          }, 
         }
       },
     ];
@@ -40,8 +51,8 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
     title: t('store'),
     items: [
       { title: t('allProducts') as string, link: '/products' },
-      { title: t('newestProducts') as string, link: '/products?type=newest' },
-      { title: t('bestSeller') as string, link: '/products?type=best-seller' },
+      { title: t('newestProducts') as string, link: `/products/${AdsAndProductsFilters.newest}` },
+      { title: t('bestSeller') as string, link: `/products/${AdsAndProductsFilters.bestseller}` },
     ]
   },
 
@@ -50,8 +61,8 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
     title: t('advertisments'),
     items: [
       { title: t('allAds') as string, link: '/advertisments' },
-      { title: t('newAds') as string, link: '/advertisments?type=new' },
-      { title: t('mostViewed') as string, link: '/advertisments?type=most-viewed' },
+      { title: t('newAds') as string, link: `/advertisments/${AdsAndProductsFilters.newest}` },
+      { title: t('mostViewed') as string, link: `/advertisments/${AdsAndProductsFilters.mostvisited}` },
     ]
   },  
 
