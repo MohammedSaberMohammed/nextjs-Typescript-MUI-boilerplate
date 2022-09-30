@@ -8,6 +8,7 @@
     - [x] Formik
     - [x] Yup (validation)
     - [ ] Controls
+      - [x] StaticLookupSelect
       - [x] TextField
       - [x] Select Autocomplete
         - [x] Base select with form and form validation
@@ -15,11 +16,18 @@
       - [ ] Attachment TextField
         - [ ] in Profile
         - [ ] in Advertisment
+      - [ ] Map
   - [x] Layout (header - footer)
   - [x] Product card
   - [x] Image gallery
   - [x] Carousel
   - [ ] Pagination Layout
+- [ ] Pages
+  - [ ] Auth
+    - [x] Login
+    - [-] Signup (otp remains)
+    - [ ] Reset Password
+  - [x] Home
 =======
 # front-end
 

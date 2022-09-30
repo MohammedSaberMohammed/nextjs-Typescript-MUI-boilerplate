@@ -11,32 +11,10 @@ import { AdsAndProductsFiltersIds } from '@/services/staticLookups';
 // Models
 import { AdsAndProductsResponse } from '@/models/adsAndProducts';
 import { ProductsProps } from '@/models/pages/productsAndAds';
+import { CategoryModel } from '@/models/categories';
+import { CityLookupModel } from '@/models/lookups';
 
-export const getStaticPaths: GetStaticPaths = () => { 
-  return {
-    paths: AdsAndProductsFiltersIds.map((filter: string) => ({ params: { filter } })),
-    fallback: false
-  };
-}; 
-
-export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStaticPropsContext) => {
-  const filter = params?.filter || '';
-  const response = await Endpoints.adsAndProducts({ type: 'product', orderBy: filter as string, perPage: LayoutSettings.adsAndProducts.initialPerPage });
-  
-  const products: AdsAndProductsResponse = (response.ok && response.data) ? response.data as AdsAndProductsResponse : {} as AdsAndProductsResponse;
-  const pageTitle = filter;
-
-  return {
-    props: {
-      ...(await serverSideTranslations(locale || 'ar', ['common', 'products'])),
-      products,
-      pageTitle
-    },
-    revalidate: 1
-  };
-};
-
-const FilteredProducts: InferGetStaticPropsType<typeof getStaticProps> = ({ pageTitle, products }: ProductsProps) => {
+const FilteredProducts: InferGetStaticPropsType<typeof getStaticProps> = ({ pageTitle, products, categories, cities }: ProductsProps) => {
   const { t } = useTranslation('products');
 
   return (
@@ -46,9 +24,46 @@ const FilteredProducts: InferGetStaticPropsType<typeof getStaticProps> = ({ page
         <meta name='description' content={t(pageTitle)} />
       </Head>
 
-      <Products products={products} pageTitle={pageTitle} />
+      <Products 
+        products={products} 
+        pageTitle={pageTitle}
+        categories={categories}
+        cities={cities}
+      />
     </>
   );
 };
+
+export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStaticPropsContext) => {
+  const filter = params?.filter || '';
+
+  const categoriesResponse = await Endpoints.lookups.categories();
+  const citiesResponse = await Endpoints.lookups.cities();
+  const productsResponse = await Endpoints.adsAndProducts({ type: 'product', orderBy: filter as string, perPage: LayoutSettings.initialPerPage });
+  
+  const pageTitle = filter;
+  const cities: CityLookupModel[] = (citiesResponse.ok && citiesResponse.data) ? citiesResponse.data : [];
+  const products: AdsAndProductsResponse = (productsResponse.ok && productsResponse.data) ? productsResponse.data as AdsAndProductsResponse : {} as AdsAndProductsResponse;
+  const categories: CategoryModel[] = (categoriesResponse.ok && categoriesResponse.data) ? categoriesResponse.data : [];
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'ar', ['common', 'products'])),
+      products,
+      pageTitle,
+      cities,
+      categories,
+      key: pageTitle
+    },
+    revalidate: 1
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = () => { 
+  return {
+    paths: AdsAndProductsFiltersIds.map((filter: string) => ({ params: { filter } })),
+    fallback: false
+  };
+}; 
 
 export default FilteredProducts;

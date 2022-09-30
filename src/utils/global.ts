@@ -2,8 +2,12 @@ export const serializeQueryParams = (obj :{[key: string]: any}) => {
   let generatedQuery: string[] = [];
 
   Object.entries(obj).forEach(([key, value]) => {
-    if (value) {
+    if ((typeof value === 'string' && value) || typeof value === 'number') {
       generatedQuery.push(`${key}=${value}`);
+    }
+
+    if(Array.isArray(value) && value.length) {
+      value.forEach((param: any) => generatedQuery.push(`${key}=${param}`));
     }
   });
 

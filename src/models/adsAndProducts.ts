@@ -1,4 +1,5 @@
 import { LoginResponse } from './auth';
+import { PaginationResponse } from './Pagination';
 
  interface AdsAndProductsImage {
   id: number,
@@ -39,12 +40,6 @@ export interface AdsAndProductsCategoryModel {
   },
 }
 
-interface PaginationLink {
-  url: string,
-  label: string,
-  active: string
-}
-
 export interface AdsAndProductsModel {
   id: number,
   user_id: number,
@@ -62,20 +57,8 @@ export interface AdsAndProductsModel {
   user?: LoginResponse
 }
 
-export interface AdsAndProductsResponse {
-  current_page: number,
+export interface AdsAndProductsResponse extends PaginationResponse {
   data: AdsAndProductsModel[],
-  first_page_url: string,
-  from: number,
-  last_page: number,
-  last_page_url: string,
-  links: PaginationLink[],
-  next_page_url: string
-  path: string, 
-  per_page: string,
-  prev_page_url: string,
-  to: number,
-  total: number
 }
 
 export interface AdsAndProductsQueryModel {
@@ -84,5 +67,9 @@ export interface AdsAndProductsQueryModel {
   orderBy?: string,
   limit?: number, 
   perPage?: number,
-  page?: number
+  page?: number,
+  city_id?: number | string,
+  cities?: (string | number)[],  
+  category_id?: number | string,
+  categories?: (string | number)[],
 }
