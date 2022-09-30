@@ -11,6 +11,7 @@ import { BrandModel } from '@/models/brands';
 import { HomeProps } from '@/models/pages/home';
 import { CategoryModel } from '@/models/categories';
 import { AdsAndProductsModel } from '@/models/adsAndProducts';
+import { AdsAndProductsFilters } from '@/services/staticLookups';
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   let brands: BrandModel[] = [];
@@ -22,17 +23,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 
   const brandsRes = await Endpoints.brands();
   const categoriesRes = await Endpoints.lookups.categories();
-  const newAdsResponse = await Endpoints.adsAndProducts({ type: 'ad', orderBy: 'created_at', limit: 12 });
-  const mostViewedAdsRes = await Endpoints.adsAndProducts({ type: 'ad', orderBy: 'mostvisited', limit: 4 });
-  const newestProductsRes = await Endpoints.adsAndProducts({ type: 'product', orderBy: 'created_at', limit: 12 });
-  const bestSellingProductsRes = await Endpoints.adsAndProducts({ type: 'product', orderBy: 'bestseller', limit: 4 });
+  const newAdsResponse = await Endpoints.adsAndProducts({ type: 'ad', orderBy: AdsAndProductsFilters.newest, limit: 12 });
+  const mostViewedAdsRes = await Endpoints.adsAndProducts({ type: 'ad', orderBy: AdsAndProductsFilters.mostvisited, limit: 4 });
+  const newestProductsRes = await Endpoints.adsAndProducts({ type: 'product', orderBy: AdsAndProductsFilters.newest, limit: 12 });
+  const bestSellingProductsRes = await Endpoints.adsAndProducts({ type: 'product', orderBy: AdsAndProductsFilters.bestseller, limit: 4 });
 
   brands = (brandsRes.ok && brandsRes.data) ? brandsRes.data : brands;
   categories = (categoriesRes.ok && categoriesRes.data) ? categoriesRes.data : categories;
-  newAds = (newAdsResponse.ok && newAdsResponse.data) ? newAdsResponse.data : newAds;
-  newestProducts = (newestProductsRes.ok && newestProductsRes.data) ? newestProductsRes.data : newestProducts;
-  mostViewedAds = (mostViewedAdsRes.ok && mostViewedAdsRes.data) ? mostViewedAdsRes.data : mostViewedAds;
-  bestSellingProducts = (bestSellingProductsRes.ok && bestSellingProductsRes.data) ? bestSellingProductsRes.data : bestSellingProducts;
+  newAds = (newAdsResponse.ok && newAdsResponse.data) ? (newAdsResponse.data as AdsAndProductsModel[]) : newAds;
+  newestProducts = (newestProductsRes.ok && newestProductsRes.data) ? (newestProductsRes.data as AdsAndProductsModel[]) : newestProducts;
+  mostViewedAds = (mostViewedAdsRes.ok && mostViewedAdsRes.data) ? (mostViewedAdsRes.data as AdsAndProductsModel[]) : mostViewedAds;
+  bestSellingProducts = (bestSellingProductsRes.ok && bestSellingProductsRes.data) ? (bestSellingProductsRes.data as AdsAndProductsModel[]) : bestSellingProducts;
 
   return {
     props: {

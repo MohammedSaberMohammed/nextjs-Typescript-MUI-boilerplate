@@ -5,11 +5,16 @@ interface Home {
   maxShownBrands: number,
 }
 
+interface AdsAndProducts {
+  initialPerPage: number
+}
+
 interface LayoutSettingsModel extends ContainerProps {
   anonymousPath: string;
   redirectPathIfAuthenticated: string;
   redirectPathIfNotAuthenticated: string;
-  home: Home
+  home: Home,
+  adsAndProducts: AdsAndProducts
 }
 
 const LayoutSettings: LayoutSettingsModel = {
@@ -17,6 +22,9 @@ const LayoutSettings: LayoutSettingsModel = {
   anonymousPath: '/',
   redirectPathIfAuthenticated: '/',
   redirectPathIfNotAuthenticated: '/login',
+  adsAndProducts: {
+    initialPerPage: 10
+  },
   home: {
     maxShownBrands: 4,
     maxShownSpareParts: 6

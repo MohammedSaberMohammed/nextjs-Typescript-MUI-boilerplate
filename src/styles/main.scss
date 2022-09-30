@@ -48,3 +48,13 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.enabled-breadcrumb,
+.disabled-breadcrumb {
+  color: #fff;
+  font-size: 16px;
+}
+
+.enabled-breadcrumb {
+  opacity: .7
+}

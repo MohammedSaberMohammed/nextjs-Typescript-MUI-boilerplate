@@ -9,6 +9,7 @@ import { LayoutSettings } from '@/configs/layout';
 import { CategoryModel } from '@/models/categories';
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
 import { DevelopmentEnv } from '@/configs/development';
+import { AdsAndProductsFilters } from '@/services/staticLookups';
 
 const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
 
@@ -50,8 +51,8 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
     title: t('store'),
     items: [
       { title: t('allProducts') as string, link: '/products' },
-      { title: t('newestProducts') as string, link: '/products?type=newest' },
-      { title: t('bestSeller') as string, link: '/products?type=best-seller' },
+      { title: t('newestProducts') as string, link: `/products/${AdsAndProductsFilters.newest}` },
+      { title: t('bestSeller') as string, link: `/products/${AdsAndProductsFilters.bestseller}` },
     ]
   },
 
@@ -60,8 +61,8 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
     title: t('advertisments'),
     items: [
       { title: t('allAds') as string, link: '/advertisments' },
-      { title: t('newAds') as string, link: '/advertisments?type=new' },
-      { title: t('mostViewed') as string, link: '/advertisments?type=most-viewed' },
+      { title: t('newAds') as string, link: `/advertisments/${AdsAndProductsFilters.newest}` },
+      { title: t('mostViewed') as string, link: `/advertisments/${AdsAndProductsFilters.mostvisited}` },
     ]
   },  
 

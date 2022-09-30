@@ -6,7 +6,7 @@ import { BrandModel } from '@/models/brands';
 import { CategoryModel } from '@/models/categories';
 import { LoginPayload, LoginResponse, SignupPayload, SignupResponse } from '@/models/auth';
 import { serializeQueryParams } from '@/utils/global';
-import { AdsAndProductsModel, AdsAndProductsQueryModel } from '@/models/adsAndProducts';
+import { AdsAndProductsModel, AdsAndProductsQueryModel, AdsAndProductsResponse } from '@/models/adsAndProducts';
 
 // List of all baseURL(s)
 const Shared = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUrls.shared });
@@ -27,7 +27,7 @@ const Endpoints = {
     categories: () => Shared.get<CategoryModel[]>('/categories')
   },
   brands: () => Shared.get<BrandModel[]>('/brands'),
-  adsAndProducts: (query: AdsAndProductsQueryModel = {}) => Shared.get<AdsAndProductsModel[]>(`/ads${serializeQueryParams(query)}`)
+  adsAndProducts: (query: AdsAndProductsQueryModel = {}) => Shared.get<AdsAndProductsModel[] | AdsAndProductsResponse>(`/ads${serializeQueryParams(query)}`)
 };
 
 export {
