@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 // Next
 import Head from 'next/head';
-import { useSession } from 'next-auth/react';
 import { GetServerSideProps, InferGetServerSidePropsType, GetServerSidePropsContext  } from 'next';
 // i18n 
 import { useTranslation } from 'next-i18next';
@@ -21,9 +19,6 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
 const Login: InferGetServerSidePropsType<typeof getServerSideProps> = () => {
   const { t } = useTranslation('login');
-  const { data: session, status } = useSession();
-
-  useEffect(() => console.log({ status, session}), []);
 
   return (
     <>

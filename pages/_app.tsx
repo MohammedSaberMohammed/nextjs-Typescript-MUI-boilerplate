@@ -48,10 +48,9 @@ const cacheLtr = createCache({
 
 function MyApp(props: MyAppProps) {
   const { i18n } = useTranslation();
-
+  // @ts-ignore
   const { Component, pageProps: { session, ...pageProps } } = props;
   
-  // ! To be revisited
   useEffect(() => {
     // ? Change Layout direction
     document.body.dir = i18n.dir();

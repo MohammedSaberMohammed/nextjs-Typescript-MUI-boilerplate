@@ -3,30 +3,30 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 // Components
-import Products from '@/screens/Products/products';
+import Advertisments from '@/screens/Advertisments/advertisments';
 // Services
 import { Endpoints } from '@/services/apis';
 import { LayoutSettings } from '@/configs/layout';
 // Models
 import { AdsAndProductsResponse } from '@/models/adsAndProducts';
-import { ProductsProps } from '@/models/pages/productsAndAds';
+import { AdsProps } from '@/models/pages/productsAndAds';
 import { CategoryModel } from '@/models/categories';
 import { CityLookupModel } from '@/models/lookups';
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   const categoriesResponse = await Endpoints.lookups.categories();
   const citiesResponse = await Endpoints.lookups.cities();
-  const productsResponse = await Endpoints.adsAndProducts({ type: 'product', perPage: LayoutSettings.initialPerPage });
+  const adsResponse = await Endpoints.adsAndProducts({ type: 'ad', perPage: LayoutSettings.initialPerPage });
   
-  const pageTitle = 'allProducts';
+  const pageTitle = 'allAdvertisments';
   const cities: CityLookupModel[] = (citiesResponse.ok && citiesResponse.data) ? citiesResponse.data : [];
-  const products: AdsAndProductsResponse = (productsResponse.ok && productsResponse.data) ? productsResponse.data as AdsAndProductsResponse : {} as AdsAndProductsResponse;
+  const ads: AdsAndProductsResponse = (adsResponse.ok && adsResponse.data) ? adsResponse.data as AdsAndProductsResponse : {} as AdsAndProductsResponse;
   const categories: CategoryModel[] = (categoriesResponse.ok && categoriesResponse.data) ? categoriesResponse.data : [];
 
   return {
     props: {
       ...(await serverSideTranslations(locale || 'ar', ['common', 'productsAndAds'])),
-      products,
+      ads,
       pageTitle,
       cities,
       categories,
@@ -36,7 +36,12 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   };
 };
 
-const AllProducts: InferGetStaticPropsType<typeof getStaticProps> = ({ pageTitle, products, categories, cities }: ProductsProps) => {
+const AllAdvertisments: InferGetStaticPropsType<typeof getStaticProps> = ({ 
+  ads, 
+  cities,
+  pageTitle, 
+  categories, 
+}: AdsProps) => {
   const { t } = useTranslation('productsAndAds');
 
   return (
@@ -46,8 +51,8 @@ const AllProducts: InferGetStaticPropsType<typeof getStaticProps> = ({ pageTitle
         <meta name='description' content={t(pageTitle)} />
       </Head>
 
-      <Products 
-        products={products} 
+      <Advertisments 
+        ads={ads}
         pageTitle={pageTitle}
         categories={categories}
         cities={cities}
@@ -56,4 +61,4 @@ const AllProducts: InferGetStaticPropsType<typeof getStaticProps> = ({ pageTitle
   );
 };
 
-export default AllProducts;
+export default AllAdvertisments;

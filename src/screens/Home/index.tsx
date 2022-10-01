@@ -22,14 +22,7 @@ const HomePage = ({
   newAds,
   newestProducts
 }: HomeProps) => {
-  console.log({
-    bestSellingProducts,
-    brands,
-    categories,
-    mostViewedAds,
-    newAds,
-    newestProducts
-  });
+
   return (
     <>
       <Search categories={categories} />
