@@ -1,0 +1,21 @@
+{
+  "home": "الرئيسية",
+  "store": "المتجر",
+  "allProducts": "كل المنتجات",
+  "created_at": "أحدث المنتجات",
+  "mostvisited": "المنتجات الأكثر مشاهدة",
+  "bestseller": "المنتجات الأكثر مبيعاً",
+  "filterProducts": "تصفية المنتجات",
+  "categories": "الأقسام",
+  "cities": "المدن",
+  "orderBy": "الترتيب حسب",
+  "price": "السعر",
+  "fromNewestToOldest": "من الأحدث للأقدم",
+  "fromOldestToNewest": "من الأقدم للأحدث",
+  "highestPrice": "الأغلى سعراً",
+  "lowestPrice": "الأقل سعرا",
+  "theAdvertisments": "الإعلانات",
+  "allAdvertisments": "كل الإعلانات",
+  "created_atAds": "إعلانات جديدة",
+  "mostvisitedAds": "الإعلانات الأكثر مشاهدة"
+}

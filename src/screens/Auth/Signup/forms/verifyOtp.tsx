@@ -1,6 +1,4 @@
 import { FC, useState } from 'react';
-// Next 
-import Link from 'next/link';
 // MUI
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,8 +13,6 @@ import { useTranslation } from 'next-i18next';
 // Components
 import { TextField } from '@/components/Form/Controls';
 // Utils
-import { toast } from 'react-toastify';
-import { Endpoints } from '@/services/apis';
 import { LayoutSettings } from '@/configs/layout';
 import { onlyAlphanumeric } from '@/services/formValidators';
 // styles
@@ -33,7 +29,7 @@ interface Props {
   data: SignupPayload
 }
 
-const VerifyOTP: FC<Props> = (props) => {
+const VerifyOTP: FC<Props> = () => {
   const { t } = useTranslation('signup');
   const [isLoading, setIsLoading] = useState(false);
   const [errorsList, setErrorsList] = useState<string[] | null>(null);

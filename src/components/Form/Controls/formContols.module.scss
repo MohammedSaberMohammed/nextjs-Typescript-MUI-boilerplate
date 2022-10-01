@@ -1,4 +1,7 @@
+@import 'src/styles/variables.scss';
+
 .fancyOptionsWrapper {
+  margin-top: 10px;
   display: flex;
   align-items: center;
   gap: 2%;
@@ -35,6 +38,20 @@
         transform: translateY(0);
 
       }
+    }
+  }
+}
+
+// staticLookupRadio
+.staticLookupRadioWrapper {
+  width: 100%;
+
+  .labelWrapper {
+    height: 30px;
+
+    .label {
+      font-size: 20px;
+      font-family: $bold-font
     }
   }
 }

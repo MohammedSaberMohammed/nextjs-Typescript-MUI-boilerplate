@@ -12,13 +12,13 @@ import Skeleton from './skeleton';
 import AdvertismentAndProductCard from '@/components/AdvertismentAndProductCard';
 import AdsAndProductsListing from '@/components/Layout/AdsAndProductsListing/adsAndProductsListing';
 // Models
-import { ProductsProps } from '@/models/pages/productsAndAds';
+import { AdsProps } from '@/models/pages/productsAndAds';
 import PageHeader from '@/components/PageHeader/pageHeader';
 import { AdsAndProductsModel } from '@/models/adsAndProducts';
-// Styles
+// Services
 import { Endpoints } from '@/services/apis';
 
-const Products: FC<ProductsProps> = ({ products, orderBy, pageTitle, categories, cities }) =>  {
+const Advertisments: FC<AdsProps> = ({ ads, pageTitle, categories, cities, orderBy }) =>  {
   const { t } = useTranslation('productsAndAds');
 
   return (
@@ -40,8 +40,8 @@ const Products: FC<ProductsProps> = ({ products, orderBy, pageTitle, categories,
             <Link href="/">
               <a className='enabled-breadcrumb'>{t('home')}</a>
             </Link>
-            <Link href="/products">
-              <a className='enabled-breadcrumb'>{t('store')}</a>
+            <Link href="/advertisments">
+              <a className='enabled-breadcrumb'>{t('theAdvertisments')}</a>
             </Link>
             <Typography className='disabled-breadcrumb'>{t(pageTitle)}</Typography>
           </Breadcrumbs>
@@ -49,10 +49,10 @@ const Products: FC<ProductsProps> = ({ products, orderBy, pageTitle, categories,
       />
 
       <AdsAndProductsListing
-        type='product'
+        type='ad'
         cities={cities}
+        initialData={ads}
         categories={categories}
-        initialData={products}
         orderBy={orderBy || ''}
         showOrderByFilter={!orderBy}
         callback={Endpoints.adsAndProducts}
@@ -74,4 +74,4 @@ const Products: FC<ProductsProps> = ({ products, orderBy, pageTitle, categories,
   );
 };
 
-export default Products;
+export default Advertisments;

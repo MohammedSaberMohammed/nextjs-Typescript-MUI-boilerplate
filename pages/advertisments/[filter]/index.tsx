@@ -3,16 +3,16 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType, GetStaticPaths } from 'next';
 // Components
-import Products from '@/screens/Products/products';
+import Advertisments from '@/screens/Advertisments/advertisments';
 // Services
 import { Endpoints } from '@/services/apis';
 import { LayoutSettings } from '@/configs/layout';
 import { AdsAndProductsFiltersIds } from '@/services/staticLookups';
 // Models
-import { AdsAndProductsResponse } from '@/models/adsAndProducts';
-import { ProductsProps } from '@/models/pages/productsAndAds';
-import { CategoryModel } from '@/models/categories';
 import { CityLookupModel } from '@/models/lookups';
+import { CategoryModel } from '@/models/categories';
+import { AdsProps } from '@/models/pages/productsAndAds';
+import { AdsAndProductsResponse } from '@/models/adsAndProducts';
 
 export const getStaticPaths: GetStaticPaths = () => { 
   return {
@@ -26,19 +26,20 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStat
 
   const categoriesResponse = await Endpoints.lookups.categories();
   const citiesResponse = await Endpoints.lookups.cities();
-  const productsResponse = await Endpoints.adsAndProducts({ type: 'product', orderBy: filter as string, perPage: LayoutSettings.initialPerPage });
+  const adsResponse = await Endpoints.adsAndProducts({ type: 'ad', orderBy: filter as string, perPage: LayoutSettings.initialPerPage });
   
-  const pageTitle = filter;
+  const orderBy = filter;
+  const pageTitle = `${filter}Ads`;
   const cities: CityLookupModel[] = (citiesResponse.ok && citiesResponse.data) ? citiesResponse.data : [];
-  const products: AdsAndProductsResponse = (productsResponse.ok && productsResponse.data) ? productsResponse.data as AdsAndProductsResponse : {} as AdsAndProductsResponse;
+  const ads: AdsAndProductsResponse = (adsResponse.ok && adsResponse.data) ? adsResponse.data as AdsAndProductsResponse : {} as AdsAndProductsResponse;
   const categories: CategoryModel[] = (categoriesResponse.ok && categoriesResponse.data) ? categoriesResponse.data : [];
 
   return {
     props: {
       ...(await serverSideTranslations(locale || 'ar', ['common', 'productsAndAds'])),
-      products,
+      ads,
+      orderBy,
       pageTitle,
-      orderBy: pageTitle,
       cities,
       categories,
       key: pageTitle
@@ -47,13 +48,13 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStat
   };
 };
 
-const FilteredProducts: InferGetStaticPropsType<typeof getStaticProps> = ({ 
+const FilteredAdvertisments: InferGetStaticPropsType<typeof getStaticProps> = ({ 
+  ads, 
   cities,
   orderBy, 
-  products, 
   pageTitle, 
   categories, 
-}: ProductsProps) => {
+}: AdsProps) => {
   const { t } = useTranslation('productsAndAds');
 
   return (
@@ -63,9 +64,9 @@ const FilteredProducts: InferGetStaticPropsType<typeof getStaticProps> = ({
         <meta name='description' content={t(pageTitle)} />
       </Head>
 
-      <Products
+      <Advertisments 
+        ads={ads}
         orderBy={orderBy}
-        products={products} 
         pageTitle={pageTitle}
         categories={categories}
         cities={cities}
@@ -74,4 +75,4 @@ const FilteredProducts: InferGetStaticPropsType<typeof getStaticProps> = ({
   );
 };
 
-export default FilteredProducts;
+export default FilteredAdvertisments;

@@ -1,5 +1,5 @@
 
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
@@ -46,12 +46,9 @@ const DrawerContent: FC<Props> = (props) => {
   const onMenuItemClicked = (item: HeaderMenuItem) => {
     const { props } = item;
     if(props && props.onClick) {
-      console.log('onMenuItemClicked', props);
       props.onClick();
     }
   };
-
-  useEffect(() => console.log('props.headerMenus', props.headerMenus));
 
   const renderEnhancedMenuItem = (menuItem: HeaderMenuItem, key?: string) => (
     <Box             

@@ -4,9 +4,11 @@ import HttpMiddleware from './HttpMiddleware';
 // Models
 import { BrandModel } from '@/models/brands';
 import { CategoryModel } from '@/models/categories';
+import { CityLookupModel } from '@/models/lookups';
 import { LoginPayload, LoginResponse, SignupPayload, SignupResponse } from '@/models/auth';
-import { serializeQueryParams } from '@/utils/global';
 import { AdsAndProductsModel, AdsAndProductsQueryModel, AdsAndProductsResponse } from '@/models/adsAndProducts';
+// Models
+import { serializeQueryParams } from '@/utils/global';
 
 // List of all baseURL(s)
 const Shared = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUrls.shared });
@@ -24,6 +26,7 @@ const Endpoints = {
     profile: () => Auth.get('/user')
   },
   lookups: {
+    cities: () => Shared.get<CityLookupModel[]>('/cities'),
     categories: () => Shared.get<CategoryModel[]>('/categories')
   },
   brands: () => Shared.get<BrandModel[]>('/brands'),

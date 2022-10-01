@@ -1,0 +1,21 @@
+{
+  "home": "Home",
+  "store": "Store",
+  "allProducts": "All products",
+  "created_at": "Newest products",
+  "mostvisited": "Most visited products",
+  "bestseller": "best selling products",
+  "filterProducts": "Filter products",
+  "categories": "Categories",
+  "cities": "Cities",
+  "orderBy": "Order by",
+  "price": "Price",
+  "fromNewestToOldest": "From newest to oldest",
+  "fromOldestToNewest": "From oldest to newest",
+  "highestPrice": "Highest price",
+  "lowestPrice": "Lowest price",
+  "theAdvertisments": "Advertisments",
+  "allAdvertisments": "All advertisments",
+  "created_atAds": "New Advertisments",
+  "mostvisitedAds": "Most viewed ads"
+}

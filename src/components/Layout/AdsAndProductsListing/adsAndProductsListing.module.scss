@@ -1,0 +1,21 @@
+@import 'src/styles/variables.scss';
+
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+  .searchHeader {
+    display: flex;
+    align-items: center;
+
+    .title {
+      margin: 0 11px;
+      font-size: 18px;
+      font-family: $heavy-font;
+    }
+
+  }
+  .filterWrapper {
+    margin-top: 33px
+  }
+}
