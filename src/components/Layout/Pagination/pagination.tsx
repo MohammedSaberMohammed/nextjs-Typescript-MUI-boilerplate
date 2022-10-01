@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 // Models
 import { PaginationExportedDataModel, PaginationResponse } from '@/models/Pagination';
-// Styles
+// Utils
 import { LayoutSettings } from '@/configs/layout';
 
 interface Props {

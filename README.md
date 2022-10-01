@@ -36,7 +36,6 @@
     - [x] All Advertisments
     - [x] New Advertisments
     - [x] Mostvisited Advertisments
-=======
 # front-end
 
 

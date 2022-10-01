@@ -15,7 +15,7 @@ import AdsAndProductsListing from '@/components/Layout/AdsAndProductsListing/ads
 import { ProductsProps } from '@/models/pages/productsAndAds';
 import PageHeader from '@/components/PageHeader/pageHeader';
 import { AdsAndProductsModel } from '@/models/adsAndProducts';
-// Services
+// Styles
 import { Endpoints } from '@/services/apis';
 
 const Products: FC<ProductsProps> = ({ products, orderBy, pageTitle, categories, cities }) =>  {
