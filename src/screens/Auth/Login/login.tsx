@@ -110,7 +110,7 @@ const Login: FC = () => {
                       
                       <Grid item xs={12} mt={1}>
                         <Box display='flex' alignItems='center' justifyContent='flex-end'>
-                          <Link href='/forgot-password'>
+                          <Link href='/reset-password'>
                             <a className={classes.forgotPassword}>
                               {t('didYouForgetPassword')}
                             </a>

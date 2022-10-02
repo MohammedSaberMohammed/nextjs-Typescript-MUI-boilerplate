@@ -36,3 +36,37 @@ export interface SignupResponse {
 export interface VerifyAccountOTP {
   otp: string
 }
+
+// Reset Password 
+
+export interface ResetPasswordSendOTPPayload {
+  phone: string
+}
+
+export interface ResetPasswordSendOTPResponse {
+  message: string;
+  errors?: { [key: string]: string[] };
+}
+
+export interface ResetPasswordValidateOTPPayload {
+  code: string;
+  phone: string
+}
+
+export interface ResetPasswordValidateOTPResponse {
+  message: string;
+  result?: string;
+  errors?: { [key: string]: string[] };
+}
+
+export interface ResetPasswordPayload {
+  code: string;
+  phone: string;
+  password: string;
+  password_confirmation?: string
+}
+
+export interface ResetPasswordResponse {
+  message: string;
+  errors?: { [key: string]: string[] };
+}

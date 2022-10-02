@@ -5,7 +5,7 @@ import HttpMiddleware from './HttpMiddleware';
 import { BrandModel } from '@/models/brands';
 import { CategoryModel } from '@/models/categories';
 import { CityLookupModel } from '@/models/lookups';
-import { LoginPayload, LoginResponse, SignupPayload, SignupResponse } from '@/models/auth';
+import { LoginPayload, LoginResponse, ResetPasswordPayload, ResetPasswordResponse, ResetPasswordSendOTPPayload, ResetPasswordSendOTPResponse, ResetPasswordValidateOTPPayload, ResetPasswordValidateOTPResponse, SignupPayload, SignupResponse } from '@/models/auth';
 import { AdsAndProductsModel, AdsAndProductsQueryModel, AdsAndProductsResponse } from '@/models/adsAndProducts';
 // Models
 import { serializeQueryParams } from '@/utils/global';
@@ -23,7 +23,12 @@ const Endpoints = {
   auth: {
     login: (payload: LoginPayload) => Auth.post<LoginResponse>('/login', payload),
     register: (payload: SignupPayload) => Auth.post<SignupResponse>('/register', payload),
-    profile: () => Auth.get('/user')
+    profile: () => Auth.get('/user'),
+    resetPassword: {
+      sendOTP: (payload: ResetPasswordSendOTPPayload) => Auth.post<ResetPasswordSendOTPResponse>('/forgot-password', payload),
+      validateOTP: (payload: ResetPasswordValidateOTPPayload) => Auth.post<ResetPasswordValidateOTPResponse>('/verify-code', payload),
+      reset: (payload: ResetPasswordPayload) => Auth.post<ResetPasswordResponse>('/reset-password', payload),
+    }
   },
   lookups: {
     cities: () => Shared.get<CityLookupModel[]>('/cities'),
