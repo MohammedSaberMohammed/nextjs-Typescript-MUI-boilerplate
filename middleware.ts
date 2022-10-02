@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
 
   const currentPath = req.nextUrl.pathname;
   const authenticatedRoutes = ['/profile'];
-  const notAuthenticatedRoutes = ['/login', '/signup'];
+  const notAuthenticatedRoutes = ['/login', '/signup', '/reset-password'];
   const inNotAuthenticatedRoutes = notAuthenticatedRoutes.includes(currentPath); 
   const inAuthenticatedRoutes = authenticatedRoutes.includes(currentPath); 
   

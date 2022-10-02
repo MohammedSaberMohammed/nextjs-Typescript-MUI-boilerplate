@@ -3,7 +3,7 @@
 - [x] Sass
 - [x] Eslint (Force code style)
 - [x] i18n
-- [-] Components
+- [ ] Components
   - [x] Form
     - [x] Formik
     - [x] Yup (validation)
@@ -21,12 +21,12 @@
   - [x] Product card
   - [x] Image gallery
   - [x] Carousel
-  - [ ] Pagination Layout
+  - [x] Pagination Layout
 - [ ] Pages
   - [ ] Auth
     - [x] Login
     - [-] Signup (otp remains)
-    - [ ] Reset Password
+    - [x] Reset Password
   - [x] Home
   - [x] Products
     - [x] All Products
