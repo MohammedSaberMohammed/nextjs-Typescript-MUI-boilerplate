@@ -25,11 +25,11 @@ import {
 // styles
 import classes from '../resetPassword.module.scss';
 // Models
-import { ResetPasswordSendOTPPayload } from '@/models/auth';
+import { SendOTPCodePayload } from '@/models/auth';
 
 interface Props {
   // eslint-disable-next-line no-unused-vars
-  onValidate?: (data: ResetPasswordSendOTPPayload) => void
+  onValidate?: (data: SendOTPCodePayload) => void
 }
 
 const PhoneVerificationForm: FC<Props> = (props) => {
@@ -37,8 +37,9 @@ const PhoneVerificationForm: FC<Props> = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorsList, setErrorsList] = useState<string[] | null>(null);
 
-  const INITIAL_FORM_STATE: ResetPasswordSendOTPPayload = {
+  const INITIAL_FORM_STATE: SendOTPCodePayload = {
     phone: '',
+    action: 'reset-password'
   };
 
   const FORM_VALIDATION = Yup.object().shape({
@@ -49,11 +50,11 @@ const PhoneVerificationForm: FC<Props> = (props) => {
       .test('len', t('validations.exactNumbersLength', { length: 10 }), val => exactNumbersLength(`${val}`, 10)),
   });
 
-  const onVerifyMobileNumber = async (formValues: ResetPasswordSendOTPPayload) => {
+  const onVerifyMobileNumber = async (formValues: SendOTPCodePayload) => {
     setIsLoading(true);
     setErrorsList(null);
 
-    const { ok, data } = await Endpoints.auth.resetPassword.sendOTP(formValues);
+    const { ok, data } = await Endpoints.otp.send(formValues);
 
     if(ok) {
       toast(data?.message, { type: 'success' });

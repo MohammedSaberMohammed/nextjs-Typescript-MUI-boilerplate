@@ -20,11 +20,12 @@ const useOTPCounter = (configs?: OTPHooksConfigs) =>  {
   const [minutes, setMinutes] = useState('00');
   const [seconds, setseconds] = useState('00');
   const [isCounting, setIsCounting] = useState(false);
-  const { loadOnMount, counterType, initialPeriod } = configs || {
+  const { loadOnMount, counterType, initialPeriod } = {
     loadOnMount: true, 
     counterType: otpConfigs.counterType, 
     initialPeriod: otpConfigs.defaultInterval, 
-  };
+    ...configs
+  } as OTPHooksConfigs;
   
   const startCounter = () => {
     setIsCounting(true);

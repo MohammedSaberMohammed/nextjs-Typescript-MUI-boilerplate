@@ -1,23 +1,26 @@
 import { useContext, useMemo } from 'react';
 // Components
 import Gallery, {ReactImageGalleryItem, ReactImageGalleryProps} from 'react-image-gallery';
+// Utils
 import { LayoutContext } from '@/context/layout';
-const ImageGallery = (props: ReactImageGalleryProps) => {
+
+const ImageGallery = ({ items, ...props }: ReactImageGalleryProps) => {
   const { isRTL } = useContext(LayoutContext);
 
-  const items = useMemo(() => props.items.map((item: ReactImageGalleryItem) => ({
+  const enhancedItems = useMemo(() => (items && items.length) ? items.map((item: ReactImageGalleryItem) => ({
     ...item, 
     thumbnailClass: 'base-thumbnail',
     originalClass: 'base-previewed-image',
-  })) as ReactImageGalleryItem[], [props.items]);
+  })) as ReactImageGalleryItem[] : [], [items]);
 
   return (
     <Gallery 
       showPlayButton={false}
       showFullscreenButton={false}
       {...props}
-      items={items}
+      items={enhancedItems}
       isRTL={isRTL}
+      thumbnailPosition={isRTL ? 'left' : 'right'}
       lazyLoad
     />
   );

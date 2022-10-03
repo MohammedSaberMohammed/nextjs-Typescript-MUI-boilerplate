@@ -16,6 +16,7 @@ import { useTranslation } from 'next-i18next';
 // Components
 import Message from '@/components/Message';
 import { TextField } from '@/components/Form/Controls';
+import { BaseDialog } from '@/components/Dialog/dialog';
 // Utils
 import { toast } from 'react-toastify';
 import { Endpoints } from '@/services/apis';
@@ -25,7 +26,6 @@ import { maxLength, minLength, onlyAlphanumeric } from '@/services/formValidator
 import classes from '../resetPassword.module.scss';
 // Models
 import { ResetPasswordPayload } from '@/models/auth';
-import { BaseDialog } from '@/components/Dialog/dialog';
 
 interface Props {
   phone: string,

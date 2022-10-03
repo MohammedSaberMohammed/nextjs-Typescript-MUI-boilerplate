@@ -23,6 +23,9 @@
   "didNotRecieve": "لم يصلك ؟",
   "resendTheCode": "أعد إرسال الكود",
   "remainingTime": "الوقت المتبقي {{seconds}} : {{minutes}}",
+  "otpVerifiedSuccessfully": "تم التحقق من الرمز بنجاح",
+  "yourAccountActivatedSuccessfully": "تم تفعيل حسابك بنجاح",
+  "enjoyBikerFeatures": "يمكنك إستخدام Biker والتمتع بكل مميزاته",
 
   "validations": {
     "required": "هذا الحقل مطلوب",

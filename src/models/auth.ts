@@ -39,21 +39,23 @@ export interface VerifyAccountOTP {
 
 // Reset Password 
 
-export interface ResetPasswordSendOTPPayload {
-  phone: string
+export interface SendOTPCodePayload {
+  phone: string;
+  action: 'reset-password' | 'verify-phone'
 }
 
-export interface ResetPasswordSendOTPResponse {
+export interface SendOTPCodeRespnse {
   message: string;
   errors?: { [key: string]: string[] };
 }
 
-export interface ResetPasswordValidateOTPPayload {
+export interface ValidateOTPPayload {
   code: string;
-  phone: string
+  phone: string;
+  action: 'reset-password' | 'verify-phone'
 }
 
-export interface ResetPasswordValidateOTPResponse {
+export interface ValidateOTPResponse {
   message: string;
   result?: string;
   errors?: { [key: string]: string[] };

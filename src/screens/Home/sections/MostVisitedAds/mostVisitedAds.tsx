@@ -1,5 +1,6 @@
 import { FC } from 'react';
 // Next
+import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 // MUI
@@ -13,6 +14,7 @@ import AdvertismentAndProductCard from '@/components/AdvertismentAndProductCard'
 import { AdsAndProductsModel } from '@/models/adsAndProducts';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
+import { AdsAndProductsFilters } from '@/services/staticLookups';
 // Styles
 import classes from './mostVisitedAds.module.scss';
 
@@ -30,22 +32,24 @@ const MostVisitedAds: FC<Props>  = ({ ads }) => {
           <h3 className={classes.title}> {t('mostVisitedAds')}</h3>
           
           <div>
-            <Button 
-              fullWidth
-              color='secondary'
-              variant="contained" 
-              className={classes.btn}
-              endIcon={(
-                <Image 
-                  src='/icons/arrow-square-left.svg' 
-                  width={26} 
-                  height={26} 
-                  alt='add to basket' 
-                />
-              )}
-            >
-              {t('seeAll')}
-            </Button>
+            <Link href={`/advertisments?type=${AdsAndProductsFilters.mostvisited}`} passHref>
+              <Button 
+                fullWidth
+                color='secondary'
+                variant="contained" 
+                className={classes.btn}
+                endIcon={(
+                  <Image 
+                    src='/icons/arrow-square-left.svg' 
+                    width={26} 
+                    height={26} 
+                    alt='add to basket' 
+                  />
+                )}
+              >
+                {t('seeAll')}
+              </Button>
+            </Link>
           </div>
         </Box>
 

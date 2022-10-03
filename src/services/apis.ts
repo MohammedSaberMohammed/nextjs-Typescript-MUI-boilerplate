@@ -5,8 +5,8 @@ import HttpMiddleware from './HttpMiddleware';
 import { BrandModel } from '@/models/brands';
 import { CategoryModel } from '@/models/categories';
 import { CityLookupModel } from '@/models/lookups';
-import { LoginPayload, LoginResponse, ResetPasswordPayload, ResetPasswordResponse, ResetPasswordSendOTPPayload, ResetPasswordSendOTPResponse, ResetPasswordValidateOTPPayload, ResetPasswordValidateOTPResponse, SignupPayload, SignupResponse } from '@/models/auth';
-import { AdsAndProductsModel, AdsAndProductsQueryModel, AdsAndProductsResponse } from '@/models/adsAndProducts';
+import { LoginPayload, LoginResponse, ResetPasswordPayload, ResetPasswordResponse, ValidateOTPPayload, ValidateOTPResponse, SendOTPCodePayload, SendOTPCodeRespnse, SignupPayload, SignupResponse } from '@/models/auth';
+import { AdsAndProductsDetailsResponse, AdsAndProductsModel, AdsAndProductsQueryModel, AdsAndProductsResponse } from '@/models/adsAndProducts';
 // Models
 import { serializeQueryParams } from '@/utils/global';
 
@@ -24,18 +24,22 @@ const Endpoints = {
     login: (payload: LoginPayload) => Auth.post<LoginResponse>('/login', payload),
     register: (payload: SignupPayload) => Auth.post<SignupResponse>('/register', payload),
     profile: () => Auth.get('/user'),
+    
     resetPassword: {
-      sendOTP: (payload: ResetPasswordSendOTPPayload) => Auth.post<ResetPasswordSendOTPResponse>('/forgot-password', payload),
-      validateOTP: (payload: ResetPasswordValidateOTPPayload) => Auth.post<ResetPasswordValidateOTPResponse>('/verify-code', payload),
       reset: (payload: ResetPasswordPayload) => Auth.post<ResetPasswordResponse>('/reset-password', payload),
     }
+  },
+  otp: {
+    send: (payload: SendOTPCodePayload) => Auth.post<SendOTPCodeRespnse>('/send-code', payload),
+    validate: (payload: ValidateOTPPayload) => Auth.post<ValidateOTPResponse>('/verify-code', payload),
   },
   lookups: {
     cities: () => Shared.get<CityLookupModel[]>('/cities'),
     categories: () => Shared.get<CategoryModel[]>('/categories')
   },
   brands: () => Shared.get<BrandModel[]>('/brands'),
-  adsAndProducts: (query: AdsAndProductsQueryModel = {}) => Shared.get<AdsAndProductsModel[] | AdsAndProductsResponse>(`/ads${serializeQueryParams(query)}`)
+  adsAndProducts: (query: AdsAndProductsQueryModel = {}) => Shared.get<AdsAndProductsModel[] | AdsAndProductsResponse>(`/ads${serializeQueryParams(query)}`),
+  adDetails: (id: string) => Shared.get<AdsAndProductsDetailsResponse>(`/ads/${id}`)
 };
 
 export {

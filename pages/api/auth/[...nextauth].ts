@@ -25,7 +25,7 @@ export default NextAuth({
         // await fetch('https://biker.jadeer.co/sanctum/csrf-cookie');
         const response = await Endpoints.auth.login({
           // phone: '0531437350',
-          // password: 'fflxtoyhqkglo'         
+          // password: 'Aa123456'         
           phone: credentials.phone,
           password: credentials.password
         });

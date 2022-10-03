@@ -1,5 +1,6 @@
 import { FC } from 'react';
 // Next
+import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 // MUI
@@ -18,10 +19,6 @@ const Intro: FC = () => {
 
   const onPlayVideo = () => {
     console.log('video played');
-  };
-
-  const onAddAdvertisment = () => {
-    console.log('onAddAdvertisment');
   };
 
   return (
@@ -55,22 +52,23 @@ const Intro: FC = () => {
 
               <p className={classes.subTitle}>{t('introSubTitle')}</p>
 
-              <Button
-                variant="contained"
-                color='primary'
-                onClick={onAddAdvertisment}
-                className={classes.addBtn} 
-                startIcon={(
-                  <Image 
-                    src='/icons/add.svg' 
-                    width={26} 
-                    height={26} 
-                    alt='create an advertisment' 
-                  />
-                )}
-              >
-                {t('addAdvertisment')}
-              </Button>
+              <Link href='/advertise' passHref>
+                <Button
+                  variant="contained"
+                  color='primary'
+                  className={classes.addBtn} 
+                  startIcon={(
+                    <Image 
+                      src='/icons/add.svg' 
+                      width={26} 
+                      height={26} 
+                      alt='create an advertisment' 
+                    />
+                  )}
+                >
+                  {t('addAdvertisment')}
+                </Button>
+              </Link>
             </Box>
           </Grid>                    
                       

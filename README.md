@@ -23,9 +23,9 @@
   - [x] Carousel
   - [x] Pagination Layout
 - [ ] Pages
-  - [ ] Auth
+  - [x] Auth
     - [x] Login
-    - [-] Signup (otp remains)
+    - [x] Signup (otp remains)
     - [x] Reset Password
   - [x] Home
   - [x] Products
