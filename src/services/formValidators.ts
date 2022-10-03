@@ -32,12 +32,35 @@ export const maxLength = (value: string, length: number) => {
   return `${value}`.length <= length;
 };
 
-export const minLength = (value: string, length: number) => {
+export const maxValue = (value: number, valueToCompareWith: number) => {
   if(!value) {
     return true;
   }
 
-  return `${value}`.length >= length;
+  return value <= valueToCompareWith;
+};
+
+export const minLength = (value: string | (string | number)[], length: number) => {
+  const isValueAnArray = Array.isArray(value);
+  console.log({minLength, value, length});
+
+  if(!value && !isValueAnArray) {
+    return true;
+  }
+
+  if(isValueAnArray) {
+    return value.length >= length;
+  }
+
+  return value.length >= length;
+};
+
+export const minValue = (value: number, valueToCompareWith: number) => {
+  if(!value) {
+    return true;
+  }
+
+  return value >= valueToCompareWith;
 };
 
 export const exactNumbersLength = (value: string, length: number) => {
