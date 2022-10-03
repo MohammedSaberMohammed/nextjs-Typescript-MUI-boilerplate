@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 // Next
+import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 // Mui
@@ -24,10 +25,6 @@ const Search: FC<Props> = ({ categories }) => {
   const { t } = useTranslation('home');
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<CategoryModel | null>(null);
-
-  const onAddAdvertisment = () => {
-    console.log('onAddAdvertisment');
-  };
 
   const onChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value);
 
@@ -79,23 +76,24 @@ const Search: FC<Props> = ({ categories }) => {
         </div>
       
         <div className={classes.advertiseLink}>
-          <Button 
-            fullWidth
-            variant="contained"
-            color='primary'
-            onClick={onAddAdvertisment}
-            className={classes.addBtn} 
-            startIcon={(
-              <Image 
-                src='/icons/add.svg' 
-                width={26} 
-                height={26} 
-                alt='create an advertisment' 
-              />
-            )}
-          >
-            {t('addAdvertisment')}
-          </Button>
+          <Link href='/advertise' passHref>
+            <Button 
+              fullWidth
+              variant="contained"
+              color='primary'
+              className={classes.addBtn} 
+              startIcon={(
+                <Image 
+                  src='/icons/add.svg' 
+                  width={26} 
+                  height={26} 
+                  alt='create an advertisment' 
+                />
+              )}
+            >
+              {t('addAdvertisment')}
+            </Button>
+          </Link>
         </div>
       </Container>
     </section>

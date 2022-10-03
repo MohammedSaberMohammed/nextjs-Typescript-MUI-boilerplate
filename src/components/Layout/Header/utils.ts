@@ -51,8 +51,8 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
     title: t('store'),
     items: [
       { title: t('allProducts') as string, link: '/products' },
-      { title: t('newestProducts') as string, link: `/products/${AdsAndProductsFilters.newest}` },
-      { title: t('bestSeller') as string, link: `/products/${AdsAndProductsFilters.bestseller}` },
+      { title: t('newestProducts') as string, link: `/products?type=${AdsAndProductsFilters.newest}` },
+      { title: t('bestSeller') as string, link: `/products?type=${AdsAndProductsFilters.bestseller}` },
     ]
   },
 
@@ -61,8 +61,8 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
     title: t('advertisments'),
     items: [
       { title: t('allAds') as string, link: '/advertisments' },
-      { title: t('newAds') as string, link: `/advertisments/${AdsAndProductsFilters.newest}` },
-      { title: t('mostViewed') as string, link: `/advertisments/${AdsAndProductsFilters.mostvisited}` },
+      { title: t('newAds') as string, link: `/advertisments?type=${AdsAndProductsFilters.newest}` },
+      { title: t('mostViewed') as string, link: `/advertisments?type=${AdsAndProductsFilters.mostvisited}` },
     ]
   },  
 

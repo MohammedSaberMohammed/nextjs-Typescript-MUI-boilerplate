@@ -73,3 +73,8 @@ export interface AdsAndProductsQueryModel {
   category_id?: number | string,
   categories?: (string | number)[],
 }
+
+export interface AdsAndProductsDetailsResponse extends AdsAndProductsModel {
+  city_id: number,
+  media: AdsAndProductsImage[]
+}

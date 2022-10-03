@@ -10,17 +10,16 @@ import AnonymousWizard from '@/components/AnonymousWizard/anonymousWizard';
 // styles
 import classes from './resetPassword.module.scss';
 // Models
-import { ResetPasswordSendOTPPayload, ResetPasswordValidateOTPPayload, SignupPayload } from '@/models/auth';
+import { SendOTPCodePayload, ValidateOTPPayload } from '@/models/auth';
 
 const ResetPassword: FC = () => {
   const { t } = useTranslation('reset-password');
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
-  const [registeredData, setRegisteredData] = useState<SignupPayload | null>(null);
 
-  const onValidatePhoneNumber = (data: ResetPasswordSendOTPPayload) => setPhone(data.phone);
+  const onValidatePhoneNumber = (data: SendOTPCodePayload) => setPhone(data.phone);
   
-  const onValidateOTP = (data: ResetPasswordValidateOTPPayload) => setCode(data.code);
+  const onValidateOTP = (data: ValidateOTPPayload) => setCode(data.code);
 
   const visibleViews = useMemo(() => ({
     phoneForm: !phone, 

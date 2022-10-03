@@ -23,7 +23,8 @@ const Transition = forwardRef(function Transition(
 interface Props {
   title?: string;
   subTitle?: string;
-  renderActions?: () => ReactNode
+  // eslint-disable-next-line no-unused-vars
+  renderActions?: (actionClassName: string) => ReactNode
 }
 
 const BaseDialog: FC<Props> = ({ title, subTitle, renderActions }) => {
@@ -54,7 +55,7 @@ const BaseDialog: FC<Props> = ({ title, subTitle, renderActions }) => {
       </DialogContent>
 
       {renderActions && (
-        <DialogActions className={classes.actionsWrapper}>{renderActions()}</DialogActions>
+        <DialogActions className={classes.actionsWrapper}>{renderActions(classes.action)}</DialogActions>
       )}
     </Dialog>
   );

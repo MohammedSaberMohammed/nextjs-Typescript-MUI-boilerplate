@@ -2327,10 +2327,10 @@ react-i18next@^11.18.4:
     "@babel/runtime" "^7.14.5"
     html-parse-stringify "^3.0.1"
 
-react-image-gallery@^1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/react-image-gallery/-/react-image-gallery-1.2.9.tgz#35d90b9e2bf53b8e9ddbb8e3cd6aa89814ddb173"
-  integrity sha512-19Wvp5MiDvS4jAmTWIfTRJR71Cnk5541/iBUW2VEjLI+uSd+HhQStVdIYy4PWYSxRa+G/97U2f7ac+WRkOGszg==
+react-image-gallery@^1.2.10:
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/react-image-gallery/-/react-image-gallery-1.2.10.tgz#c12e671f902b48179b94e8b348c0f34e8bc731fe"
+  integrity sha512-AXgaHRBk7t7ORCLh/yOjJcndWSsdKYvVMkTymVq3j0BAdQWCjV+zjpqyZFviEtU87FlSdk1Sym+3WrB3U2EwVQ==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

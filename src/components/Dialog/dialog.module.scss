@@ -36,5 +36,16 @@
 
   .actionsWrapper {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2%;
+  
+    .action {
+      margin-top: 10px;
+      font-size: 16px;
+      font-family: $medium-font;
+    }
   }
 }

@@ -24,6 +24,9 @@
   "didNotRecieve": "didn't recieve ?",
   "resendTheCode": "Resend the code",
   "remainingTime": "Remaining time {{seconds}} : {{minutes}}",
+  "otpVerifiedSuccessfully": "Otp verified successfully",
+  "yourAccountActivatedSuccessfully": "Your account activated successfully",
+  "enjoyBikerFeatures": "You can use Biker and all its features",
 
   "validations": {
     "required": "This field is required",
