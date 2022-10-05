@@ -14,7 +14,7 @@ import { Form, Formik, Field, FieldProps } from 'formik';
 // Translations
 import { useTranslation } from 'next-i18next';
 // Components
-import { SelectAutocompleteField, TextField } from '@/components/Form/Controls';
+import { AttachmentField, SelectAutocompleteField, TextField } from '@/components/Form/Controls';
 import PageHeader from '@/components/PageHeader/pageHeader';
 // Utils
 import { toast } from 'react-toastify';
@@ -22,11 +22,12 @@ import { LayoutSettings } from '@/configs/layout';
 import { minValue, maxValue, maxLength, minLength, onlyNumbers} from '@/services/formValidators';
 // styles
 import classes from './advertise.module.scss';
+import { AdvertisePageModel } from '@/models/pages/advertise';
 // Models
 
-const Advertise: FC = () => {
-  const router = useRouter();
+const Advertise: FC<AdvertisePageModel> = ({ cities, categories }) => {
   const { t } = useTranslation('advertise');
+  const router = useRouter();
   const [isLoading, setIsLoading]= useState(false);
   // ! payload
   const INITIAL_FORM_STATE: any = {
@@ -45,14 +46,14 @@ const Advertise: FC = () => {
       .test('maxLength', t('validations.maxLength', { length: 200 }), value => maxLength(`${value}`, 200)),
     categories: Yup.array()
       .required(t('validations.required'))
-      .test('minLength', t('validations.minLength', { length: 1 }), value => minLength(value, 1)),
+      .test('minLength', t('validations.minArrayLength', { length: 1 }), value => minLength(value as number[], 1)),
     city_id: Yup.string()
       .required(t('validations.required')),    
     price: Yup.string()
       .required(t('validations.required'))
       .test('onlyNumbers', t('validations.onlyNumbers'), val => onlyNumbers(`${val}`))
-      .test('minValue', t('validations.minValue', { length: 1 }), value => minValue(Number(value), 1))
-      .test('maxValue', t('validations.maxValue', { length: 1000000000 }), value => maxValue(Number(value), 1000000000)),
+      .test('minValue', t('validations.minValue', { value: 1 }), value => minValue(Number(value), 1))
+      .test('maxValue', t('validations.maxValue', { value: 1000000000 }), value => maxValue(Number(value), 1000000000)),
     description: Yup.string()
       .required(t('validations.required'))
       .test('minLength', t('validations.minLength', { length: 20 }), value => minLength(`${value}`, 20))
@@ -81,7 +82,7 @@ const Advertise: FC = () => {
               <Form> 
                 <Container maxWidth={LayoutSettings.maxWidth} disableGutters sx={{padding: 0}}>
                   <Grid container spacing={2} px={0}>
-                    <Grid item px={0} xs={12}>
+                    {/* <Grid item px={0} xs={12}>
                       <TextField 
                         name='title' 
                         label={t('title')}
@@ -92,10 +93,11 @@ const Advertise: FC = () => {
                       <Field name='categories'>
                         {(fieldProps: FieldProps) => (
                           <SelectAutocompleteField
+                            multiple
                             name='categories' 
                             label={t('categories')}
-                            lookup={[]}
-                            multiple
+                            lookup={categories}
+                            labelTargetKey='title.ar'
                             fieldProps={fieldProps}
                             value={fieldProps.field.value}
                             onChange={(name: string, value: any) => fieldProps.form.setFieldValue(name, value)}
@@ -108,12 +110,13 @@ const Advertise: FC = () => {
                       <Field name='city_id'>
                         {(fieldProps: FieldProps) => (
                           <SelectAutocompleteField
-                            name='city_id' 
+                            name='city_id'
                             label={t('city')}
-                            lookup={[]}
+                            labelTargetKey='name'
+                            lookup={cities}
                             fieldProps={fieldProps}
                             value={fieldProps.field.value}
-                            onChange={(name: string, value: any) => fieldProps.form.setFieldValue(name, value)}
+                            onChange={(name: string, value: any) => fieldProps.form.setFieldValue(name, value || '')}
                           />
                         )}
                       </Field>
@@ -133,16 +136,11 @@ const Advertise: FC = () => {
                         multiline
                         rows={5}
                       />      
-                    </Grid>
+                    </Grid> */}
 
                     <Grid item px={0} xs={12}>
                       Attachments here
-                      {/* <TextField 
-                        name='description' 
-                        label={t('description')}
-                        multiline
-                        rows={5}
-                      />       */}
+                      <AttachmentField />
                     </Grid>
 
                     <Grid item xs={12} mt={2}>

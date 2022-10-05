@@ -46,5 +46,8 @@
   "siteSections": "Site sections",
   "successPartners": "Success partners",
   "allRightsReserveredFor": "All rights reserved to the platform",
-  "sitePurpose": "for bicycle spare parts @ 2022"
+  "sitePurpose": "for bicycle spare parts @ 2022",
+  "maxFileSizeExceeded": "Max file size exceeded",
+  "maxFilesSizeExceeded": "Max files size exceeded",
+  "invalidFileType": "Invalid file type"
 }

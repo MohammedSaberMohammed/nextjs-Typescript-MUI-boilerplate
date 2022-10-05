@@ -1,0 +1,22 @@
+{
+  "advertise": "Advertise",
+  "pageDescription": "Add your advertisment on Biker",
+  "title": "Title",
+  "categories": "Categories",
+  "city": "City",
+  "price": "Price",
+  "description": "Description",
+  "attachments": "Attachments",
+  "publishAd": "Publish Ad",
+  "cancel": "Cancel",
+
+  "validations": {
+    "required": "This field is required",
+    "onlyNumbers": "Please enter numbers only",
+    "minArrayLength": "Minimum length is {{value}}",
+    "minValue": "Minimum value is {{value}}",
+    "maxValue": "Maximum value is {{value}}",
+    "maxLength": "Maximum allowed chars length is {{length}}",
+    "minLength": "Minimum allowed chars length is {{length}}"
+  }
+}

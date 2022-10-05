@@ -47,5 +47,8 @@
   "siteSections": "أقسام المنصة",
   "footerDescription": "أحصل على قطع غيار أصلية لكل أنواع الدراجات النارية في كبرى الشركات من حولك",
   "allRightsReserveredFor": "جميع الحقوق محفوظة لمنصة ",
-  "sitePurpose": " لقطع غيار الدراجات @ 2022 "
+  "sitePurpose": " لقطع غيار الدراجات @ 2022 ",
+  "maxFileSizeExceeded": "حجم الملف كبير",
+  "maxFilesSizeExceeded": "تم تجاوز الحد الأقصى لحجم للمرفقات",
+  "invalidFileType": "نوع الملف غير مدعوم"
 }

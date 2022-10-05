@@ -1,0 +1,22 @@
+{
+  "advertise": "أضف إعلان",
+  "pageDescription": "Biker قم بإضافة إعلانك الآن على",
+  "title": "عنوان الإعلان",
+  "categories": "القسم",
+  "city": "المدينة",
+  "price": "سعر الإعلان",
+  "description": "تفاصيل الإعلان",
+  "attachments": "صور الإعلان",
+  "publishAd": "نشر الإعلان",
+  "cancel": "إلغاء",
+
+  "validations": {
+    "required": "هذا الحقل مطلوب",
+    "minArrayLength": "الرجاء إختيار {{length}} قيمة على الأقل",
+    "onlyNumbers": "الرجاء إدخال أرقام فقط",
+    "maxLength": "أكثر عدد للحروف مسموح به هو {{length}}",
+    "minLength": "أقل عدد للحروف مسموح به هو {{length}}",
+    "maxValue": "أكثر قيمة هي {{value}}",
+    "minValue": "أقل قيمة هي {{value}}"
+  }
+}
