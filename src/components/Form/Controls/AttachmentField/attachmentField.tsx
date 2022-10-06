@@ -14,13 +14,11 @@ import { toast } from 'react-toastify';
 import { isValidFile } from '@/utils/files';
 import { FilesConfigs } from '@/configs/files';
 import classNames from 'classnames';
-
-interface FileModel {
-  isPrimary: boolean;
-  file: File | null
-}
+import { FileModel } from '@/models/files';
 
 interface Props {
+  name: string,
+  label?: string,
   accept?: string,
   maxAttachments?: number;
   maxFileSizeInMega?: number;
@@ -28,10 +26,12 @@ interface Props {
   isMultiple?: boolean,
   validateOnSingleFileSize?: boolean;
   // eslint-disable-next-line no-unused-vars
-  onChange?: (selectedFiles: FileModel[]) => void 
+  onChange?: (name:string, selectedFiles: FileModel[]) => void 
 }
 
 const AttachmentField: FC<Props> = ({
+  name,
+  label,
   accept,
   onChange,
   isMultiple,
@@ -53,10 +53,10 @@ const AttachmentField: FC<Props> = ({
 
     setSelectedFiles(models);
   }, [maxAttachments]);
-
+  
   useEffect(() => {
     // ? Update parent
-    onChange && onChange(selectedFiles);
+    onChange && onChange(name, selectedFiles);
   }, [selectedFiles]);
 
   const onSelectFile = (index: number) => {
@@ -118,22 +118,25 @@ const AttachmentField: FC<Props> = ({
   };
 
   const onSelectPrimaryFile = (index: number) => {
-    setSelectedFiles(prevFiles => {
-      // Reset All isPrimary Fields
-      const currentFiles = [...prevFiles.map((file: FileModel) => ({ 
-        ...file,
-        isPrimary: false
-      }))];
-
-      const clickedFile = currentFiles[index];
-
-      currentFiles[index] = {
-        ...clickedFile,
-        isPrimary: true
-      };
-
-      return currentFiles;
-    });
+    // ! Only update in case of different primary is selected 
+    if(!selectedFiles[index].isPrimary) {
+      setSelectedFiles(prevFiles => {
+        // Reset All isPrimary Fields
+        const currentFiles = [...prevFiles.map((file: FileModel) => ({ 
+          ...file,
+          isPrimary: false
+        }))];
+  
+        const clickedFile = currentFiles[index];
+  
+        currentFiles[index] = {
+          ...clickedFile,
+          isPrimary: true
+        };
+  
+        return currentFiles;
+      });
+    }
   };
 
   const onDeleteSelectedFile = (index: number) => {
@@ -159,6 +162,8 @@ const AttachmentField: FC<Props> = ({
         className={classes.input}
         onChange={onSelectAttachment}
       />
+
+      <p className={classes.label}>{label}</p>
 
       <div className={classes.imagesWrapper}>
         {selectedFiles.map(({ file, isPrimary }: FileModel, index) => (
@@ -193,7 +198,7 @@ const AttachmentField: FC<Props> = ({
                   onClick={() => onSelectPrimaryFile(index)}
                   className={classNames(classes.mainPicAction, {[classes.primary]: isPrimary})} 
                 >
-                  صورة الغلاف
+                  {t('coverPhoto')}
                 </Button>
 
                 <IconButton
@@ -219,6 +224,7 @@ const AttachmentField: FC<Props> = ({
 };
 
 AttachmentField.defaultProps = {
+  label: '',
   accept: 'image/*',
   
   maxAttachments: 5,

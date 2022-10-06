@@ -50,5 +50,6 @@
   "sitePurpose": " لقطع غيار الدراجات @ 2022 ",
   "maxFileSizeExceeded": "حجم الملف كبير",
   "maxFilesSizeExceeded": "تم تجاوز الحد الأقصى لحجم للمرفقات",
-  "invalidFileType": "نوع الملف غير مدعوم"
+  "invalidFileType": "نوع الملف غير مدعوم",
+  "coverPhoto": "صورة الغلاف"
 }

@@ -9,6 +9,7 @@ import { LoginPayload, LoginResponse, ResetPasswordPayload, ResetPasswordRespons
 import { AdsAndProductsDetailsResponse, AdsAndProductsModel, AdsAndProductsQueryModel, AdsAndProductsResponse } from '@/models/adsAndProducts';
 // Models
 import { serializeQueryParams } from '@/utils/global';
+import { CreateAdPayload } from '@/models/adsCrud';
 
 // List of all baseURL(s)
 const Shared = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUrls.shared });
@@ -39,7 +40,15 @@ const Endpoints = {
   },
   brands: () => Shared.get<BrandModel[]>('/brands'),
   adsAndProducts: (query: AdsAndProductsQueryModel = {}) => Shared.get<AdsAndProductsModel[] | AdsAndProductsResponse>(`/ads${serializeQueryParams(query)}`),
-  adDetails: (id: string) => Shared.get<AdsAndProductsDetailsResponse>(`/ads/${id}`)
+  adDetails: (id: string) => Shared.get<AdsAndProductsDetailsResponse>(`/ads/${id}`),
+  ads: {
+    create: (payload: FormData) => Shared.post<AdsAndProductsModel>('/ads', payload, 
+      { 
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        } 
+      }),
+  }
 };
 
 export {

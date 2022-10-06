@@ -1,3 +1,5 @@
+import { FileModel } from '@/models/files';
+
 export const isRequired = (value: string) => (value === null || value === undefined || isNaN(Number(value))) ? false : `${value}`.trim().length > 0;
 
 export const startsWith = (value: string, char: string) => {
@@ -42,7 +44,6 @@ export const maxValue = (value: number, valueToCompareWith: number) => {
 
 export const minLength = (value: string | (string | number)[], length: number) => {
   const isValueAnArray = Array.isArray(value);
-  console.log({minLength, value, length});
 
   if(!value && !isValueAnArray) {
     return true;
@@ -69,4 +70,12 @@ export const exactNumbersLength = (value: string, length: number) => {
   }
 
   return `${value}`.length === length;
+};
+
+export const coverPhoto = (selectedFiles: FileModel[]) => {
+  if(!selectedFiles.length) {
+    return true;
+  }
+  console.log('coverPhoto', selectedFiles, selectedFiles.some((file: FileModel) => file.isPrimary));
+  return selectedFiles.some((file: FileModel) => file.isPrimary);
 };

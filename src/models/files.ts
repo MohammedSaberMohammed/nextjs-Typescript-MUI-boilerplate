@@ -1,3 +1,8 @@
+export interface FileModel {
+  isPrimary: boolean;
+  file: File | null
+}
+
 export interface ValidateFileModel {
   file: File,
   accept: string,

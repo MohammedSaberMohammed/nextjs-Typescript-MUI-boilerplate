@@ -56,8 +56,10 @@ const SelectAutocomplete: FC<Props> = ({
   };
   
   const enhancedValue = useMemo(() => {
+
     if(multiple) {
-      return value ? lookup.filter((item: any) => (value as (string | number)[]).some((val: number | string) => val == item.id)) : [];
+      const isValidValue = value && Array.isArray(value);
+      return isValidValue ? lookup.filter((item: any) => (value as (string | number)[]).some((val: number | string) => val == item.id)) : [];
     }
 
     return lookup.find((item: any) => item.id == value) || null;
@@ -72,10 +74,9 @@ const SelectAutocomplete: FC<Props> = ({
     };
 
     if(fieldProps) {
-      const { meta: { error } } = fieldProps;
+      const { meta: { error, touched } } = fieldProps;
 
-      // if(touched && error) {
-      if(error) {
+      if(touched && error) {
         initialConfigs.helperText = error;
         initialConfigs.error = true;
       }

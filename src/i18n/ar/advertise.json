@@ -9,7 +9,8 @@
   "attachments": "صور الإعلان",
   "publishAd": "نشر الإعلان",
   "cancel": "إلغاء",
-
+  "brand": "الماركة",
+  
   "validations": {
     "required": "هذا الحقل مطلوب",
     "minArrayLength": "الرجاء إختيار {{length}} قيمة على الأقل",
@@ -17,6 +18,8 @@
     "maxLength": "أكثر عدد للحروف مسموح به هو {{length}}",
     "minLength": "أقل عدد للحروف مسموح به هو {{length}}",
     "maxValue": "أكثر قيمة هي {{value}}",
-    "minValue": "أقل قيمة هي {{value}}"
+    "minValue": "أقل قيمة هي {{value}}",
+    "selectCoverPhoto": "الرجاء إختيار صورة الغلاف",
+    "selectOnePhotoAtLeast": "الرجاء إختيار صورة واحدة ع الأقل"
   }
 }

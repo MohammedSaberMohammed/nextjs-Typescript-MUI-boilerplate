@@ -14,15 +14,18 @@ import { CategoryModel } from '@/models/categories';
 import { AdvertisePageModel } from '@/models/pages/advertise';
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+  const brandsRes = await Endpoints.brands();
   const citiesResponse = await Endpoints.lookups.cities();
   const categoriesResponse = await Endpoints.lookups.categories();
 
   const cities: CityLookupModel[] = (citiesResponse.ok && citiesResponse.data) ? citiesResponse.data : [];
   const categories: CategoryModel[] = (categoriesResponse.ok && categoriesResponse.data) ? categoriesResponse.data : [];
-  
+  const brands = (brandsRes.ok && brandsRes.data) ? brandsRes.data : [];
+
   return {
     props: {
       cities,
+      brands,
       categories,
       ...(await serverSideTranslations(context.locale || 'ar', ['common', 'advertise'])),
     },
