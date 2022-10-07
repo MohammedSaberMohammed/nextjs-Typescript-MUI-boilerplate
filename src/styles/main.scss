@@ -44,6 +44,10 @@
   font-family: $regular-font
 }
 
+body {
+  background-color: #fcfcfc;
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -63,15 +67,36 @@ a {
   margin: 0;
 }
 
+.dialog-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2%;
+
+  .action {
+    margin-top: 10px;
+    font-size: 16px;
+    font-family: $medium-font;
+  }
+}
+
 .base-helper-text {
   font-family: din-regular,Roboto,Arial;
-    font-weight: 400;
-    font-size: 0.75rem;
-    line-height: 1.66;
-    text-align: right;
-    margin-top: 3px;
-    margin-left: 14px;
-    margin-bottom: 0;
-    margin-right: 14px;
-    color: red;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  text-align: right;
+  margin-top: 3px;
+  margin-left: 14px;
+  margin-bottom: 0;
+  margin-right: 14px;
+  color: red;
+}
+
+.light-primary-color {
+  font-family: $medium-font;
+  background-color: $light-primary-color;
+  border: 1px solid $light-primary-color;
 }

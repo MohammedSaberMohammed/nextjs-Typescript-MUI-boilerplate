@@ -38,7 +38,6 @@ export interface VerifyAccountOTP {
 }
 
 // Reset Password 
-
 export interface SendOTPCodePayload {
   phone: string;
   action: 'reset-password' | 'verify-phone'

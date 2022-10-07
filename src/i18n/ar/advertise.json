@@ -10,7 +10,12 @@
   "publishAd": "نشر الإعلان",
   "cancel": "إلغاء",
   "brand": "الماركة",
-  
+  "publish": "نشر الإعلان",
+  "adIsSuccessfullyPublished": "تم نشر الإعلان بنجاح",
+  "yourAdIsSuccessfullyPublished": "تم نشر إعلانك بنجاح على المنصة",
+  "browseYourAds": "تصفح إعلاناتك",
+  "addNewAd": "أضف إعلان جديد",
+
   "validations": {
     "required": "هذا الحقل مطلوب",
     "minArrayLength": "الرجاء إختيار {{length}} قيمة على الأقل",

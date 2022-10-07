@@ -20,6 +20,7 @@ interface Props {
   name: string,
   label?: string,
   accept?: string,
+  value?: FileModel[],
   maxAttachments?: number;
   maxFileSizeInMega?: number;
   maxFilesSizeInMega?: number;
@@ -31,6 +32,7 @@ interface Props {
 
 const AttachmentField: FC<Props> = ({
   name,
+  value,
   label,
   accept,
   onChange,
@@ -45,14 +47,28 @@ const AttachmentField: FC<Props> = ({
   const [selectedFiles, setSelectedFiles] = useState<FileModel[]>([]);
   const [clickedAttachmentIndex, setClickedAttachmentIndex] = useState<number>(0);
 
-  useEffect(() => {
+  const loadInitialAttachments = () => {
     const models = range(maxAttachments || 1).map(() => ({
       file: null,
       isPrimary: false
     } as FileModel));
 
     setSelectedFiles(models);
+  };
+
+  useEffect(() => {
+    loadInitialAttachments();
   }, [maxAttachments]);
+
+  const isValidSelectedAttachments = useMemo(() => selectedFiles.some((file: FileModel) => Boolean(file)), [selectedFiles]);
+
+  useEffect(() => {
+    const isEmptyValueAndSelectedFiles = (value && !value.length);
+
+    if(isEmptyValueAndSelectedFiles && isValidSelectedAttachments) {
+      loadInitialAttachments();
+    }
+  }, [value, isValidSelectedAttachments]);
   
   useEffect(() => {
     // ? Update parent
@@ -71,6 +87,13 @@ const AttachmentField: FC<Props> = ({
       
       return file ? acc + file.size : acc;
     }, 0);
+  }, [selectedFiles]);
+
+  const computedSelectedFiles = useMemo(() => {
+    return selectedFiles.map((selectedFile: FileModel) => ({ 
+      ...selectedFile,
+      previewedFile: selectedFile.file ? URL?.createObjectURL(selectedFile.file) : null
+    }));
   }, [selectedFiles]);
 
   const onSelectAttachment = () => {
@@ -145,7 +168,8 @@ const AttachmentField: FC<Props> = ({
 
       currentFiles[index] = {
         file: null,
-        isPrimary: false
+        isPrimary: false,
+        previewedFile:null,
       };
 
       return currentFiles;
@@ -166,7 +190,7 @@ const AttachmentField: FC<Props> = ({
       <p className={classes.label}>{label}</p>
 
       <div className={classes.imagesWrapper}>
-        {selectedFiles.map(({ file, isPrimary }: FileModel, index) => (
+        {computedSelectedFiles.map(({ file, isPrimary, previewedFile }: FileModel, index) => (
           <div 
             key={index} 
             className={classes.imagePlaceholder} 
@@ -187,9 +211,9 @@ const AttachmentField: FC<Props> = ({
                 onClick={onPreviewedImageClicked}
               >
                 <Image 
-                  src={URL.createObjectURL(file)} 
-                  width={100}
-                  height={100}
+                  src={previewedFile} 
+                  layout='fill'
+                  objectFit='cover'
                   alt={`${file.name} icon`} 
                 />
 
@@ -227,6 +251,8 @@ AttachmentField.defaultProps = {
   label: '',
   accept: 'image/*',
   
+  value: [],
+
   maxAttachments: 5,
   maxFileSizeInMega: 1,
   maxFilesSizeInMega: 10,

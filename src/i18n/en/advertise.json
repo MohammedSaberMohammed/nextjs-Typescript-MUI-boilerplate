@@ -10,6 +10,11 @@
   "publishAd": "Publish Ad",
   "cancel": "Cancel",
   "brand": "Brand",
+  "publish": "Publish",
+  "adIsSuccessfullyPublished": "Ad is successfully published",
+  "yourAdIsSuccessfullyPublished": "Your ad is successfully published",
+  "browseYourAds": "Browse your ads",
+  "addNewAd": "Add new ad",
 
   "validations": {
     "required": "This field is required",

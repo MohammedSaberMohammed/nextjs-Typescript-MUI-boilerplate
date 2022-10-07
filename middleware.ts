@@ -5,10 +5,10 @@ import { NextResponse, NextRequest } from 'next/server';
 export async function middleware(req: NextRequest) {
   const clonedUrl = req.nextUrl.clone();
   const isProduction = process.env.NODE_ENV === 'production';
-  const userSession = await getToken({req, secret: process.env.NEXTAUTH_SECRET});
+  const userSession = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   const currentPath = req.nextUrl.pathname;
-  const authenticatedRoutes = ['/profile'];
+  const authenticatedRoutes = ['/profile', '/advertise', '/my-ads'];
   const notAuthenticatedRoutes = ['/login', '/signup', '/reset-password'];
   const inNotAuthenticatedRoutes = notAuthenticatedRoutes.includes(currentPath); 
   const inAuthenticatedRoutes = authenticatedRoutes.includes(currentPath); 

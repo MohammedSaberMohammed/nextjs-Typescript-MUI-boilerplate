@@ -1,7 +1,8 @@
 export interface APIConfigsModel {
   baseUrls: { 
-    shared: string;
     auth: string;
+    shared: string;
+    baseOnly: string;
   },
   configs: {
     timeout: number,

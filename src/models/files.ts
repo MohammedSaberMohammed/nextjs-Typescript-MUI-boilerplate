@@ -1,6 +1,7 @@
 export interface FileModel {
   isPrimary: boolean;
-  file: File | null
+  file: File | null,
+  previewedFile?: any
 }
 
 export interface ValidateFileModel {

@@ -57,7 +57,7 @@ export const minLength = (value: string | (string | number)[], length: number) =
 };
 
 export const minValue = (value: number, valueToCompareWith: number) => {
-  if(!value) {
+  if(!value && typeof value !== 'number') {
     return true;
   }
 
@@ -76,6 +76,6 @@ export const coverPhoto = (selectedFiles: FileModel[]) => {
   if(!selectedFiles.length) {
     return true;
   }
-  console.log('coverPhoto', selectedFiles, selectedFiles.some((file: FileModel) => file.isPrimary));
+
   return selectedFiles.some((file: FileModel) => file.isPrimary);
 };

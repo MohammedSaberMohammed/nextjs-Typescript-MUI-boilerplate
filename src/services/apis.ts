@@ -9,9 +9,10 @@ import { LoginPayload, LoginResponse, ResetPasswordPayload, ResetPasswordRespons
 import { AdsAndProductsDetailsResponse, AdsAndProductsModel, AdsAndProductsQueryModel, AdsAndProductsResponse } from '@/models/adsAndProducts';
 // Models
 import { serializeQueryParams } from '@/utils/global';
-import { CreateAdPayload } from '@/models/adsCrud';
+import { CreateAdResponse } from '@/models/adsCrud';
 
 // List of all baseURL(s)
+const WithBaseOnly = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUrls.baseOnly });
 const Shared = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUrls.shared });
 const Auth = apisauce.create({ ...ApiConfigs.configs, baseURL: ApiConfigs.baseUrls.auth });
 
@@ -22,6 +23,7 @@ new HttpMiddleware(Auth);
 // Endpoints
 const Endpoints = {
   auth: {
+    csrfToken: () => WithBaseOnly.get(`/${process.env.NEXT_PUBLIC_CSRF_BASE}`),
     login: (payload: LoginPayload) => Auth.post<LoginResponse>('/login', payload),
     register: (payload: SignupPayload) => Auth.post<SignupResponse>('/register', payload),
     profile: () => Auth.get('/user'),
@@ -42,7 +44,7 @@ const Endpoints = {
   adsAndProducts: (query: AdsAndProductsQueryModel = {}) => Shared.get<AdsAndProductsModel[] | AdsAndProductsResponse>(`/ads${serializeQueryParams(query)}`),
   adDetails: (id: string) => Shared.get<AdsAndProductsDetailsResponse>(`/ads/${id}`),
   ads: {
-    create: (payload: FormData) => Shared.post<AdsAndProductsModel>('/ads', payload, 
+    create: (payload: FormData) => Shared.post<CreateAdResponse>('/ads', payload, 
       { 
         headers: {
           'Content-Type': 'multipart/form-data'

@@ -23,6 +23,8 @@ export default NextAuth({
       // @ts-ignore
       async authorize(credentials: Credentials) {        
         // await fetch('https://biker.jadeer.co/sanctum/csrf-cookie');
+        // ? Get the token first
+        await  Endpoints.auth.csrfToken();
         const response = await Endpoints.auth.login({
           // phone: '0531437350',
           // password: 'Aa123456'         

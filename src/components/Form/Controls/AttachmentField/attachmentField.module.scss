@@ -25,8 +25,9 @@
       position: relative;
       overflow: hidden;
       height: 100px;
-      width: 100px;
+      min-width: 100px;
       display: flex;
+      flex: 1;
       align-items: center;
       justify-content: center;
       cursor: pointer;
@@ -43,16 +44,16 @@
         z-index: 1;
 
         .mainPicAction {
+          --width: 80px;
           @include whiteBtn;
 
-          width: 80px;
+          width: var(--width);
           padding: 3px;
           padding-top: 1px;
           position: absolute;
           bottom: 10px;
-          left: 0;
+          left: calc(50% - (var(--width) / 2));
           font-size: 12px;
-          margin: 0 10px;
           transition: all .2s ease-in-out;
 
           &.primary {

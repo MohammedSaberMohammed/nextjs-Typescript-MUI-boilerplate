@@ -1,5 +1,6 @@
 import { DevelopmentEnv } from '@/configs/development';
 import { ApisauceInstance } from 'apisauce';
+import { Endpoints } from './apis';
 
 // import ResponseErrorMiddleware from './ResponseErrorMiddleware';
 
@@ -19,11 +20,13 @@ export default class HttpMiddleware {
       
       if (typeof window !== 'undefined') {
         const token = localStorage.getItem(DevelopmentEnv.appToken);
-      
+
+        if(!inDevelopment && request.method?.toLocaleLowerCase() === 'post') {
+          Endpoints.auth.csrfToken();
+        }
+
         if(inDevelopment) {
-  
           if(token) {
-  
             request.headers.Authorization=  `Bearer ${token}`;
           }
         }
