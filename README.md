@@ -39,7 +39,7 @@
     - [x] Mostvisited Advertisments
   - [x] Advertise
   - [x] Sections
-  - [ ] Search
+  - [x] Search
   - [ ] Product details
   - [ ] Ad details
   - Anonymous user

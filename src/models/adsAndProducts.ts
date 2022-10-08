@@ -65,6 +65,7 @@ export interface AdsAndProductsQueryModel {
   order?: 'asc' | 'desc',
   type?: 'ad' | 'product',
   orderBy?: string,
+  search?: string,
   limit?: number, 
   perPage?: number,
   page?: number,

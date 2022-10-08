@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useMemo, useState } from 'react';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
@@ -28,10 +28,10 @@ const Search: FC<Props> = ({ categories }) => {
 
   const onChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value);
 
-  const onSearch = () => {
-    // Todo: search Functionality
-    console.log(searchText, selectedCategory);
-  };
+  const searchLink = useMemo(() => {
+    return `/search?text=${searchText}${selectedCategory ? `&categoryId=${selectedCategory.id}` : ''}`;
+
+  }, [ searchText, selectedCategory ]);
 
   return (
     <section>
@@ -60,14 +60,15 @@ const Search: FC<Props> = ({ categories }) => {
               endAdornment: (
                 <InputAdornment sx={{ cursor: 'pointer' }} position="start">
                   {searchText && (
-                    <Button 
-                      fullWidth
-                      sx={{ fontWeight: 'bold', fontSize: '16px', padding: 0, minWidth: 'auto' }}
-                      color='primary'
-                      onClick={onSearch}
-                    >
-                      {t('search')}
-                    </Button>
+                    <Link href={searchLink} passHref>
+                      <Button 
+                        fullWidth
+                        sx={{ fontWeight: 'bold', fontSize: '16px', padding: 0, minWidth: 'auto' }}
+                        color='primary'
+                      >
+                        {t('search')}
+                      </Button>
+                    </Link>
                   )}
                 </InputAdornment>
               ),

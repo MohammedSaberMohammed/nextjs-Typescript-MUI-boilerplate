@@ -14,7 +14,7 @@ import { AdsAndProductsResponse } from '@/models/adsAndProducts';
 
 export const getServerSideProps: GetServerSideProps = async ({ locale, params }: GetServerSidePropsContext) => {
   const categoryId = Number(params?.id) || 0;
-  console.log({ params });
+
   let categories: CategoryModel[] = [];
   let ads: AdsAndProductsResponse = {} as AdsAndProductsResponse;  
   let products: AdsAndProductsResponse = {} as AdsAndProductsResponse;
