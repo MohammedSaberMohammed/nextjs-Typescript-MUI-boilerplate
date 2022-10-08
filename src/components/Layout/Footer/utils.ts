@@ -1,3 +1,4 @@
+import { AdsAndProductsFilters } from '@/services/staticLookups';
 import { FooterLink } from '@/models/footer';
 
 interface FooterLinks {
@@ -9,13 +10,13 @@ const generateFooterLinks = (t: any): FooterLinks => ({
   sections: [
     {title: t('home'), link: '/'},
     {title: t('successPartners'), link: '/'},
-    {title: t('newestProducts'), link: '/'},
+    {title: t('newestProducts'), link: `/products?type=${AdsAndProductsFilters.newest}`},
     {title: t('basket'), link: '/'},
-    {title: t('bestSeller'), link: '/'},
-    {title: t('addYourAd'), link: '/'},
-    {title: t('moreVisitedAds'), link: '/'},
+    {title: t('bestSeller'), link: `/products?type=${AdsAndProductsFilters.bestseller}`},
+    {title: t('addYourAd'), link: '/advertise'},
+    {title: t('moreVisitedAds'), link: `/advertisments?type=${AdsAndProductsFilters.mostvisited}`},
     {title: t('contactUs'), link: '/'},
-    {title: t('sparePartsSections'), link: '/'},
+    {title: t('sparePartsSections'), link: '/categories'},
   ],
   important: [
     { title: t('privacyPolicy'), link: '/' },

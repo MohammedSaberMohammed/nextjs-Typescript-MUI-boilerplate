@@ -15,13 +15,14 @@
         - [x] Fancy option feature
       - [ ] Attachment TextField
         - [ ] in Profile
-        - [ ] in Advertisment
+        - [x] in Advertisment
       - [ ] Map
   - [x] Layout (header - footer)
   - [x] Product card
   - [x] Image gallery
   - [x] Carousel
   - [x] Pagination Layout
+  - [x] Tabs
 - [ ] Pages
   - [x] Auth
     - [x] Login
@@ -36,6 +37,25 @@
     - [x] All Advertisments
     - [x] New Advertisments
     - [x] Mostvisited Advertisments
+  - [x] Advertise
+  - [x] Sections
+  - [ ] Search
+  - [ ] Product details
+  - [ ] Ad details
+  - Anonymous user
+    - [ ] Terms And conditions
+    - [ ] Privacy policy
+    - [ ] Return Policy
+    - [ ] Contact us  
+  - [ ] LoggedIn user
+    - [ ] Profile
+    - [ ] Favorite
+    - [ ] My Adresses
+    - [ ] My Ads
+    - [ ] My Orders
+    - [ ] My Chats
+    - [ ] Checkout
+    - [ ] Basket
 # front-end
 
 

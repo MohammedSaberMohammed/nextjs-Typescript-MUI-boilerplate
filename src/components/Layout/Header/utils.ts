@@ -3,13 +3,14 @@ import { signOut } from 'next-auth/react';
 import Router from 'next/router';
 // styles
 import classes from './header.module.scss';
+// Services
+import { AdsAndProductsFilters } from '@/services/staticLookups';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
+import { DevelopmentEnv } from '@/configs/development';
 // Models
 import { CategoryModel } from '@/models/categories';
 import { HeaderMenu, HeaderMenuItem } from '@/models/headerMenu';
-import { DevelopmentEnv } from '@/configs/development';
-import { AdsAndProductsFilters } from '@/services/staticLookups';
 
 const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
 
@@ -17,7 +18,7 @@ const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
     return [
       { title: t('myOrders'), link: '/', iconPath: '/icons/book.svg', suffix: 12 },
       { title: t('myAds'), link: '/', iconPath: '/icons/document.svg', suffix: 6 },
-      { title: t('addAnAd'), link: '/', iconPath: '/icons/add-circle.svg' },
+      { title: t('addAnAd'), link: '/advertise', iconPath: '/icons/add-circle.svg' },
       { title: t('myChats'), link: '/', iconPath: '/icons/chat.svg' },
       { title: t('favorite'), link: '/', iconPath: '/icons/favorite.svg' },
       { title: t('myAddresses'), link: '/', iconPath: '/icons/map.svg' },
@@ -42,6 +43,7 @@ const getAccountMenuItems = (t: any, profile: any): HeaderMenuItem[] => {
   return [
     { title: t('login'), link: '/login' },
     { title: t('signup'), link: '/signup'},  
+    { title: t('resetPassword'), link: '/reset-password' },
   ];
 };
 
@@ -77,7 +79,7 @@ const generateMenus = (t: any, profile?: any): {[key: string]: HeaderMenu} => ({
 const loadCategoryMenu = (t: any, categories: CategoryModel[]) => {
   const items = categories.map((category: CategoryModel) => ({
     title: category.title.ar,
-    link: `/categories?type=${category.id}`,
+    link: `/categories/${category.id}`,
     iconPath: category.icon.small
   }));
 

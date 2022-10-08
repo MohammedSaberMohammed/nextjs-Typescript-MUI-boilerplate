@@ -4,16 +4,17 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { useTranslation } from 'next-i18next';
 import Container from '@mui/material/Container';
+// Components
+import Breadcrumb from '@/components/Breadcrumb';
+import PageHeader from '@/components/PageHeader/pageHeader';
 // Utils
 import { LayoutSettings } from '@/configs/layout';
 import ImageGallery from '@/components/ImageGallery';
 // Models
+import { BreadCrumbItem } from '@/models/breadcrumb';
 import { AdAndProductDetails } from '@/models/pages/productsAndAds';
 // styles
 import classes from './products.module.scss';
-import Breadcrumb from '@/components/Breadcrumb';
-import { BreadCrumbItem } from '@/models/breadcrumb';
-import PageHeader from '@/components/PageHeader/pageHeader';
 
 const ProductDetails: FC<AdAndProductDetails> = ({ breadcrumbTitle, details }) => {
   const { t } = useTranslation('productsAndAds');

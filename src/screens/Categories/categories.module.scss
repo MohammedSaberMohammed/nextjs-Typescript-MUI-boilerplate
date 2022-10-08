@@ -1,0 +1,49 @@
+@import 'src/styles/variables.scss';
+
+// Details
+.tabName {
+  font-size: 20px;
+  font-family: $medium-font;
+  
+  .count {
+    color: $secondary-color;
+    font-size: 20px;
+    margin: 0 10px;
+  }
+}
+// List
+.wrapper {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  .title {
+    margin: 0;
+    line-height: 35px;
+    font-size: 35px;
+    font-family: $heavy-font;
+  }
+
+  .categoryWrapper {
+    // width: 180px !important;
+    height: 180px;
+    display: flex !important;
+    border: 1px solid #4D3C1C1A;
+    border-radius: 6px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .categoryName {
+    font-size: 20px;
+    font-family: $medium-font;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 390px) {
+    .title {
+      font-size: 25px;
+    }
+  }
+}
