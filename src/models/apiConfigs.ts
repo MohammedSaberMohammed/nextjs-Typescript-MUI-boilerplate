@@ -6,10 +6,10 @@ export interface APIConfigsModel {
   },
   configs: {
     timeout: number,
+    withCredentials?: boolean;
+    xsrfHeaderName?: string;
     headers: {
-      withCredentials?: boolean;
       accept: string;
-      xsrfHeaderName?: string;
       'Content-Type': string;
     }
   }

@@ -10,10 +10,10 @@ const ApiConfigs: APIConfigsModel = {
   },
   configs: {
     timeout: msOf(50),
+    withCredentials: true,
+    xsrfHeaderName: 'X-XSRF-TOKEN',
     headers: { 
-      withCredentials: true,
       accept: 'application/json',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
       'Content-Type': 'application/json',
     },
   }

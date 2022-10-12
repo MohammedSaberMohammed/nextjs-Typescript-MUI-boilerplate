@@ -42,12 +42,12 @@ const Layout: FC<Props> = (props) => {
         autoClose={5000}
         hideProgressBar={false}
       />
-      <Header />
+      {/* <Header /> */}
 
       <main>{props.children}</main>
 
       <Box sx={{ mt: 'auto' }}>
-        <Footer />
+        {/* <Footer /> */}
       </Box>
     </Box>
   );

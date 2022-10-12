@@ -119,21 +119,25 @@ const Header: FC = () => {
               </IconButton>
             ) : (
               <Stack direction="row" spacing={2}>
-                <Link href='/notifications'>
-                  <a>
-                    <Box className={classes.notificationWrapper} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Image src='/icons/notifications.svg' width={25} height={25} alt='Notifications' />
-                    </Box>
-                  </a>
-                </Link>            
+                {profile && (
+                  <>
+                    <Link href='/notifications'>
+                      <a>
+                        <Box className={classes.notificationWrapper} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <Image src='/icons/notifications.svg' width={25} height={25} alt='Notifications' />
+                        </Box>
+                      </a>
+                    </Link>            
           
-                <Link href='/basket'>
-                  <a>
-                    <Box className={classes.basketWrapper} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Image src='/icons/basket.svg' width={25} height={25} alt='Notifications' />
-                    </Box>
-                  </a>
-                </Link>
+                    <Link href='/basket'>
+                      <a>
+                        <Box className={classes.basketWrapper} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <Image src='/icons/basket.svg' width={25} height={25} alt='Notifications' />
+                        </Box>
+                      </a>
+                    </Link>
+                  </>
+                )}
 
                 <BaseMenu data={headerMenus.account} isPrimary variant='outlined'/>
               </Stack>

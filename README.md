@@ -42,20 +42,25 @@
   - [x] Search
   - [ ] Product details
   - [ ] Ad details
-  - Anonymous user
-    - [ ] Terms And conditions
-    - [ ] Privacy policy
-    - [ ] Return Policy
-    - [ ] Contact us  
+  - [ ] Anonymous user **Without Integration**
+    - [ ] Contact us
+    - [x] About us
+    - [x] Privacy policy
+    - [x] Terms And conditions
+    - [x] Usage Policy
   - [ ] LoggedIn user
     - [ ] Profile
     - [ ] Favorite
-    - [ ] My Adresses
+    - [ ] Adresses
+      - [ ] List
+      - [ ] Add
+      - [ ] Edit
     - [ ] My Ads
     - [ ] My Orders
     - [ ] My Chats
     - [ ] Checkout
     - [ ] Basket
+    - [ ] Notifications
 # front-end
 
 

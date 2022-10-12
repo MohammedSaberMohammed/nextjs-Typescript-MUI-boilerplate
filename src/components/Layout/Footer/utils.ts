@@ -19,10 +19,11 @@ const generateFooterLinks = (t: any): FooterLinks => ({
     {title: t('sparePartsSections'), link: '/categories'},
   ],
   important: [
-    { title: t('privacyPolicy'), link: '/' },
-    { title: t('termsAndConditions'), link: '/' },
+    { title: t('privacyPolicy'), link: '/privacy-policy' },
+    { title: t('aboutUs'), link: '/about-us' },
+    { title: t('termsAndConditions'), link: '/terms-and-conditions' },
     { title: t('favorite'), link: '/' },
-    { title: t('returnPolicy'), link: '/' },
+    { title: t('usagePolicy'), link: '/usage-policy' },
     { title: t('myAddresses'), link: '/' }
   ]
 });

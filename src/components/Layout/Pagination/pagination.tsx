@@ -41,8 +41,8 @@ const PaginationLayout: FC<Props> = ({
   const availablePages = useMemo(() => Math.ceil(totalCount / (perPage || LayoutSettings.initialPerPage)), [perPage, totalCount]);
 
   const processData = (response: PaginationResponse) => {
-    setTotalCount(response.total);
-    setLoadedData(response.data);
+    setTotalCount(response.total || 0);
+    setLoadedData(response.data || []);
 
     setIsLoading(false);
   };

@@ -14,8 +14,6 @@ import { SearchProps } from '@/models/pages/search';
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }: GetServerSidePropsContext) => {
   const { text, categoryId } = query;
-  
-  console.log({ text, categoryId });
 
   if(!text) {
     return {
