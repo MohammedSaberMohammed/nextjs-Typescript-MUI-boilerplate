@@ -1,0 +1,60 @@
+@import 'src/styles/variables.scss';
+
+
+.contentWrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+  .headerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .bodyTitle,
+    .subTitle {
+      margin: 0;
+    }
+
+    .bodyTitle {
+      font-size: 25px;
+      margin-bottom: 20px;
+      font-family: $heavy-font;
+      
+      .count {
+        color: $primary-color;
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+    }
+
+    .subTitle {
+      color: $light-grey;
+      font-size: 16px;
+    }
+
+    .advertiseLink {
+      .addBtn {
+        font-size: 16px;
+        padding: 0 40px;
+        height: 55px;
+        font-family: $medium-font;
+      }
+    }
+  }
+
+  @media (max-width: 470px) {
+    .headerWrapper {
+      flex-direction: column;
+      justify-content: unset;
+      align-items: unset;
+
+      .advertiseLink {
+        .addBtn {
+          margin-top: 10px;
+          padding: 0 20px;
+        }
+      }
+    }
+  }
+}
+

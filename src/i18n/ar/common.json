@@ -53,5 +53,7 @@
   "maxFileSizeExceeded": "حجم الملف كبير",
   "maxFilesSizeExceeded": "تم تجاوز الحد الأقصى لحجم للمرفقات",
   "invalidFileType": "نوع الملف غير مدعوم",
-  "coverPhoto": "صورة الغلاف"
+  "coverPhoto": "صورة الغلاف",
+  "edit": "تعديل",
+  "delete": "حذف"
 }

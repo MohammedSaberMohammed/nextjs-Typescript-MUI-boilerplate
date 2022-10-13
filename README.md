@@ -42,12 +42,12 @@
   - [x] Search
   - [ ] Product details
   - [ ] Ad details
-  - [ ] Anonymous user **Without Integration**
+  - [ ] Anonymous user
     - [ ] Contact us
-    - [x] About us
-    - [x] Privacy policy
-    - [x] Terms And conditions
-    - [x] Usage Policy
+    - [x] About us ***[Integration remains]***
+    - [x] Privacy policy ***[Integration remains]***
+    - [x] Terms And conditions ***[Integration remains]***
+    - [x] Usage Policy ***[Integration remains]***
   - [ ] LoggedIn user
     - [ ] Profile
     - [ ] Favorite
@@ -55,7 +55,7 @@
       - [ ] List
       - [ ] Add
       - [ ] Edit
-    - [ ] My Ads
+    - [x] My Ads ***[Integration remains]***
     - [ ] My Orders
     - [ ] My Chats
     - [ ] Checkout

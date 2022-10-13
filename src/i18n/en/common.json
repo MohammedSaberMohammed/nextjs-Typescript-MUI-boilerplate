@@ -52,5 +52,7 @@
   "maxFileSizeExceeded": "Max file size exceeded",
   "maxFilesSizeExceeded": "Max files size exceeded",
   "invalidFileType": "Invalid file type",
-  "coverPhoto": "Cover photo"
+  "coverPhoto": "Cover photo",
+  "edit": "Edit",
+  "delete": "Delete"
 }

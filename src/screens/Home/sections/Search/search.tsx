@@ -30,7 +30,6 @@ const Search: FC<Props> = ({ categories }) => {
 
   const searchLink = useMemo(() => {
     return `/search?text=${searchText}${selectedCategory ? `&categoryId=${selectedCategory.id}` : ''}`;
-
   }, [ searchText, selectedCategory ]);
 
   return (
